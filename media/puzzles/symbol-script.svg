@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420" font-family="DejaVu Sans, Verdana, Arial, sans-serif" role="img">
+<rect width="900" height="420" fill="#fbf6e8"/>
+<defs>
+<g id="s0"><circle r="17" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></g>
+<g id="s1"><rect x="-16" y="-16" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></g>
+<g id="s2"><path d="M0 -19 L18 14 L-18 14 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></g>
+<g id="s3"><path d="M0 -20 L20 0 L0 20 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></g>
+<g id="s4"><path d="M-10 -17 L10 -17 L20 0 L10 17 L-10 17 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></g>
+<g id="s7"><path d="M0 -19 L18 14 L-18 14 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="0" cy="4" r="3.5" fill="currentColor"/></g>
+<g id="s8"><path d="M0 -20 L20 0 L0 20 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="0" cy="0" r="3.5" fill="currentColor"/></g>
+<g id="s9"><path d="M-10 -17 L10 -17 L20 0 L10 17 L-10 17 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="0" cy="0" r="3.5" fill="currentColor"/></g>
+<g id="s10"><circle r="17" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><line x1="-8" y1="0" x2="8" y2="0" stroke="currentColor" stroke-width="3"/></g>
+<g id="s11"><rect x="-16" y="-16" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><line x1="-8" y1="0" x2="8" y2="0" stroke="currentColor" stroke-width="3"/></g>
+<g id="s12"><path d="M0 -19 L18 14 L-18 14 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><line x1="-8" y1="4" x2="8" y2="4" stroke="currentColor" stroke-width="3"/></g>
+<g id="s13"><path d="M0 -20 L20 0 L0 20 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><line x1="-8" y1="0" x2="8" y2="0" stroke="currentColor" stroke-width="3"/></g>
+<g id="s14"><path d="M-10 -17 L10 -17 L20 0 L10 17 L-10 17 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><line x1="-8" y1="0" x2="8" y2="0" stroke="currentColor" stroke-width="3"/></g>
+<g id="s16"><rect x="-16" y="-16" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><line x1="0" y1="-8" x2="0" y2="8" stroke="currentColor" stroke-width="3"/></g>
+<g id="s18"><path d="M0 -20 L20 0 L0 20 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><line x1="0" y1="-8" x2="0" y2="8" stroke="currentColor" stroke-width="3"/></g>
+<g id="s19"><path d="M-10 -17 L10 -17 L20 0 L10 17 L-10 17 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><line x1="0" y1="-8" x2="0" y2="8" stroke="currentColor" stroke-width="3"/></g>
+<g id="s20"><circle r="17" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="-6" cy="0" r="3" fill="currentColor"/><circle cx="6" cy="0" r="3" fill="currentColor"/></g>
+<g id="s21"><rect x="-16" y="-16" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="-6" cy="0" r="3" fill="currentColor"/><circle cx="6" cy="0" r="3" fill="currentColor"/></g>
+<g id="s22"><path d="M0 -19 L18 14 L-18 14 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="-6" cy="4" r="3" fill="currentColor"/><circle cx="6" cy="4" r="3" fill="currentColor"/></g>
+<g id="s23"><path d="M0 -20 L20 0 L0 20 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="-6" cy="0" r="3" fill="currentColor"/><circle cx="6" cy="0" r="3" fill="currentColor"/></g>
+<g id="s24"><path d="M-10 -17 L10 -17 L20 0 L10 17 L-10 17 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="-6" cy="0" r="3" fill="currentColor"/><circle cx="6" cy="0" r="3" fill="currentColor"/></g>
+<g id="s25"><circle r="17" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M-6 -6 L6 6 M6 -6 L-6 6" stroke="currentColor" stroke-width="2.5"/></g>
+<g id="s26"><rect x="-16" y="-16" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M-6 -6 L6 6 M6 -6 L-6 6" stroke="currentColor" stroke-width="2.5"/></g>
+<g id="s27"><path d="M0 -19 L18 14 L-18 14 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M-6 -2 L6 10 M6 -2 L-6 10" stroke="currentColor" stroke-width="2.5"/></g>
+<g id="s28"><path d="M0 -20 L20 0 L0 20 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M-6 -6 L6 6 M6 -6 L-6 6" stroke="currentColor" stroke-width="2.5"/></g>
+<g id="s29"><path d="M-10 -17 L10 -17 L20 0 L10 17 L-10 17 L-20 0 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M-6 -6 L6 6 M6 -6 L-6 6" stroke="currentColor" stroke-width="2.5"/></g>
+</defs>
+<text x="450" y="40" font-size="18" fill="#7a6a4a" text-anchor="middle" font-weight="bold">KEY</text>
+<g color="#233a66"><use href="#s26" x="60" y="95"/></g><text class="kk" x="60" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">A</text>
+<g color="#233a66"><use href="#s4" x="123" y="95"/></g><text class="kk" x="123" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">B</text>
+<g color="#233a66"><use href="#s16" x="186" y="95"/></g><text class="kk" x="186" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">C</text>
+<g color="#233a66"><use href="#s23" x="249" y="95"/></g><text class="kk" x="249" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">D</text>
+<g color="#233a66"><use href="#s3" x="312" y="95"/></g><text class="kk" x="312" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">E</text>
+<g color="#233a66"><use href="#s18" x="375" y="95"/></g><text class="kk" x="375" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">F</text>
+<g color="#233a66"><use href="#s7" x="438" y="95"/></g><text class="kk" x="438" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">G</text>
+<g color="#233a66"><use href="#s13" x="501" y="95"/></g><text class="kk" x="501" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">H</text>
+<g color="#233a66"><use href="#s1" x="564" y="95"/></g><text class="kk" x="564" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">I</text>
+<g color="#233a66"><use href="#s8" x="627" y="95"/></g><text class="kk" x="627" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">J</text>
+<g color="#233a66"><use href="#s21" x="690" y="95"/></g><text class="kk" x="690" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">K</text>
+<g color="#233a66"><use href="#s22" x="753" y="95"/></g><text class="kk" x="753" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">L</text>
+<g color="#233a66"><use href="#s20" x="816" y="95"/></g><text class="kk" x="816" y="145" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">M</text>
+<g color="#233a66"><use href="#s27" x="60" y="195"/></g><text class="kk" x="60" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">N</text>
+<g color="#233a66"><use href="#s28" x="123" y="195"/></g><text class="kk" x="123" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">O</text>
+<g color="#233a66"><use href="#s14" x="186" y="195"/></g><text class="kk" x="186" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">P</text>
+<g color="#233a66"><use href="#s12" x="249" y="195"/></g><text class="kk" x="249" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">Q</text>
+<g color="#233a66"><use href="#s2" x="312" y="195"/></g><text class="kk" x="312" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">R</text>
+<g color="#233a66"><use href="#s19" x="375" y="195"/></g><text class="kk" x="375" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">S</text>
+<g color="#233a66"><use href="#s11" x="438" y="195"/></g><text class="kk" x="438" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">T</text>
+<g color="#233a66"><use href="#s29" x="501" y="195"/></g><text class="kk" x="501" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">U</text>
+<g color="#233a66"><use href="#s0" x="564" y="195"/></g><text class="kk" x="564" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">V</text>
+<g color="#233a66"><use href="#s24" x="627" y="195"/></g><text class="kk" x="627" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">W</text>
+<g color="#233a66"><use href="#s9" x="690" y="195"/></g><text class="kk" x="690" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">X</text>
+<g color="#233a66"><use href="#s10" x="753" y="195"/></g><text class="kk" x="753" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">Y</text>
+<g color="#233a66"><use href="#s25" x="816" y="195"/></g><text class="kk" x="816" y="245" font-size="20" fill="#7a4a1a" text-anchor="middle" font-weight="bold">Z</text>
+<line x1="40" y1="300" x2="860" y2="300" stroke="#c9bb95" stroke-width="2"/>
+<g color="#111"><use href="#s14" x="110" y="360"/></g>
+<g color="#111"><use href="#s10" x="215" y="360"/></g>
+<g color="#111"><use href="#s2" x="320" y="360"/></g>
+<g color="#111"><use href="#s26" x="425" y="360"/></g>
+<g color="#111"><use href="#s20" x="530" y="360"/></g>
+<g color="#111"><use href="#s1" x="635" y="360"/></g>
+<g color="#111"><use href="#s23" x="740" y="360"/></g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 380" width="340" height="249" role="img">
+<rect width="520" height="380" fill="#3b4a52"/>
+<ellipse cx="260" cy="190" rx="200" ry="165" fill="#d8e8ec" stroke="#c9a24a" stroke-width="16"/>
+<ellipse cx="260" cy="190" rx="184" ry="149" fill="none" stroke="#9fb8c0" stroke-width="2"/>
+<path d="M120 120 Q150 90 190 80" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+<g transform="translate(520 0) scale(-1 1)">
+<text class="mir" x="260" y="100" font-family="Georgia,serif" font-size="24" fill="#33454c" text-anchor="middle" font-weight="bold">A IS ZERO</text>
+<text class="mir" x="260" y="138" font-family="Georgia,serif" font-size="24" fill="#33454c" text-anchor="middle" font-weight="bold">FIVE TIMES THE PLACE,</text>
+<text class="mir" x="260" y="174" font-family="Georgia,serif" font-size="24" fill="#33454c" text-anchor="middle" font-weight="bold">THEN EIGHT MORE,</text>
+<text class="mir" x="260" y="214" font-family="Georgia,serif" font-size="24" fill="#33454c" text-anchor="middle" font-weight="bold">THEN SET IT IN ROWS</text>
+<text class="mir" x="260" y="250" font-family="Georgia,serif" font-size="24" fill="#33454c" text-anchor="middle" font-weight="bold">UNDER SILVER AND</text>
+<text class="mir" x="260" y="286" font-family="Georgia,serif" font-size="24" fill="#33454c" text-anchor="middle" font-weight="bold">READ THE COLUMNS</text>
+</g>
+</svg>

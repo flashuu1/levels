@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 640" width="700" height="640" font-family="DejaVu Sans, Verdana, Arial, sans-serif" role="img">
+<rect width="700" height="640" fill="#f3f1ea"/>
+<rect x="190" y="30" width="320" height="400" rx="26" fill="#2c3542"/>
+<rect x="215" y="52" width="270" height="56" rx="8" fill="#a9c8a0"/>
+<g class="key"><rect x="220" y="130" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="260" y="164" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">1</text>
+<text class="kl" x="260" y="183" font-size="14" fill="#556" text-anchor="middle"></text>
+</g>
+<g class="key"><rect x="310" y="130" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="350" y="164" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">2</text>
+<text class="kl" x="350" y="183" font-size="14" fill="#556" text-anchor="middle">ABC</text>
+</g>
+<g class="key"><rect x="400" y="130" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="440" y="164" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">3</text>
+<text class="kl" x="440" y="183" font-size="14" fill="#556" text-anchor="middle">DEF</text>
+</g>
+<g class="key"><rect x="220" y="202" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="260" y="236" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">4</text>
+<text class="kl" x="260" y="255" font-size="14" fill="#556" text-anchor="middle">GHI</text>
+</g>
+<g class="key"><rect x="310" y="202" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="350" y="236" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">5</text>
+<text class="kl" x="350" y="255" font-size="14" fill="#556" text-anchor="middle">JKL</text>
+</g>
+<g class="key"><rect x="400" y="202" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="440" y="236" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">6</text>
+<text class="kl" x="440" y="255" font-size="14" fill="#556" text-anchor="middle">MNO</text>
+</g>
+<g class="key"><rect x="220" y="274" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="260" y="308" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">7</text>
+<text class="kl" x="260" y="327" font-size="14" fill="#556" text-anchor="middle">PQRS</text>
+</g>
+<g class="key"><rect x="310" y="274" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="350" y="308" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">8</text>
+<text class="kl" x="350" y="327" font-size="14" fill="#556" text-anchor="middle">TUV</text>
+</g>
+<g class="key"><rect x="400" y="274" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="440" y="308" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">9</text>
+<text class="kl" x="440" y="327" font-size="14" fill="#556" text-anchor="middle">WXYZ</text>
+</g>
+<g class="key"><rect x="220" y="346" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="260" y="380" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">*</text>
+<text class="kl" x="260" y="399" font-size="14" fill="#556" text-anchor="middle"></text>
+</g>
+<g class="key"><rect x="310" y="346" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="350" y="380" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">0</text>
+<text class="kl" x="350" y="399" font-size="14" fill="#556" text-anchor="middle"></text>
+</g>
+<g class="key"><rect x="400" y="346" width="80" height="62" rx="10" fill="#e9edf2"/><text class="kd" x="440" y="380" font-size="30" fill="#1b2330" text-anchor="middle" font-weight="bold">#</text>
+<text class="kl" x="440" y="399" font-size="14" fill="#556" text-anchor="middle"></text>
+</g>
+<text x="350" y="500" font-size="20" fill="#445" text-anchor="middle">Press the keys like this:</text>
+<text class="seq" x="350" y="560" font-size="38" fill="#111" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">9 2 777 3 777 666 22 33</text>
+<text x="350" y="606" font-size="16" fill="#667" text-anchor="middle">a gap means: start a new letter</text>
+</svg>

@@ -1,0 +1,242 @@
+(function (root) {
+  'use strict';
+  // Mini-games, hidden pages and the simulated phone line. Loaded before app.js, which passes in shared helpers.
+  // Local only: nothing here contacts any network or real phone number.
+  var GAMES = [
+    { id: 'memory', title: 'Memory', blurb: 'Flip cards and match all eight pairs.' },
+    { id: 'scramble', title: 'Word Scramble', blurb: 'Unscramble three words in a row.' },
+    { id: 'sudoku', title: 'Sudoku', blurb: 'Fill the grid so no row, column or box repeats a digit.' }
+  ];
+  var GLYPHS = ['★', '♦', '♣', '♠', '♥', '●', '▲', '■'];
+  var VOICEMAIL_DELAY = 1400;
+
+  function create(ctx) {
+    var view = ctx.view, esc = ctx.esc, store = ctx.store, G = root.Games, H = root.Hidden;
+    var data = ctx.hidden || { pages: [], phone: { lines: [] } };
+    var pages = Array.isArray(data.pages) ? data.pages : [];
+    var lines = data.phone && Array.isArray(data.phone.lines) ? data.phone.lines : [];
+    var timers = [];
+
+    function later(fn, ms) { var t = setTimeout(fn, ms); timers.push(t); return t; }
+    function dispose() { timers.forEach(clearTimeout); timers = []; }
+    function el(tag, cls, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text !== undefined) e.textContent = text;
+      return e;
+    }
+    function seed() { return (Date.now() ^ Math.floor(Math.random() * 4294967296)) >>> 0; }
+    function won(id, msgEl, text) {
+      store.markSolved('game-' + id);
+      msgEl.className = 'msg ok'; msgEl.textContent = text;
+      if (ctx.updateProgress) ctx.updateProgress();
+    }
+    function head(title, backHref, backText) {
+      view.textContent = '';
+      var p = el('p'), a = el('a', '', '← ' + backText);
+      a.href = backHref; p.appendChild(a);
+      view.appendChild(p);
+      view.appendChild(el('h1', '', title));
+    }
+
+    function gamesIndex() {
+      view.innerHTML = '<h1>Games</h1><p>Small diversions. Winning one marks it with a tick.</p><div class="grid"></div>';
+      var grid = view.querySelector('.grid');
+      GAMES.forEach(function (g) {
+        var a = el('a', 'tile' + (store.isSolved('game-' + g.id) ? ' solved' : ''));
+        a.href = '#/games/' + g.id;
+        a.appendChild(document.createTextNode(g.title));
+        a.appendChild(el('small', '', g.blurb));
+        if (store.isSolved('game-' + g.id)) { var t = el('span', 'tick', ' ✓'); a.insertBefore(t, a.childNodes[1]); }
+        grid.appendChild(a);
+      });
+    }
+
+    function memoryGame() {
+      head('Memory', '#/games', 'Games');
+      var board = G.memoryBoard(8, seed()), matched = [], open = [], busy = false, moves = 0;
+      var info = el('p', 'msg', 'Moves: 0'), grid = el('div', 'mem-grid'), btns = [];
+      var panel = el('div', 'panel');
+      panel.appendChild(info);
+      if (store.isSolved('game-memory')) panel.appendChild(el('p', 'msg ok', 'You have already won this one. Play again if you like.'));
+      panel.appendChild(grid);
+      view.appendChild(panel);
+      function paint(i) {
+        var shown = matched.indexOf(i) !== -1 || open.indexOf(i) !== -1;
+        btns[i].textContent = shown ? GLYPHS[board[i] % GLYPHS.length] : '?';
+        btns[i].className = 'mem-card' + (matched.indexOf(i) !== -1 ? ' matched' : shown ? ' open' : '');
+      }
+      board.forEach(function (_, i) {
+        var b = el('button', 'mem-card', '?');
+        b.type = 'button'; b.setAttribute('aria-label', 'Card ' + (i + 1)); b.setAttribute('data-card-id', String(board[i]));
+        b.onclick = function () {
+          if (busy || open.indexOf(i) !== -1 || matched.indexOf(i) !== -1) return;
+          open.push(i); paint(i);
+          if (open.length < 2) return;
+          moves++; info.textContent = 'Moves: ' + moves;
+          var a = open[0], c = open[1];
+          if (G.memoryMatch(board, a, c)) {
+            matched.push(a, c); open = []; paint(a); paint(c);
+            if (G.memoryWon(board, matched)) { info.className = 'msg'; won('memory', info, 'All pairs found in ' + moves + ' moves. Well done!'); }
+          } else {
+            busy = true;
+            later(function () { open = []; busy = false; paint(a); paint(c); }, 700);
+          }
+        };
+        btns.push(b); grid.appendChild(b);
+      });
+    }
+
+    function scrambleGame() {
+      head('Word Scramble', '#/games', 'Games');
+      var need = 3, streak = 0, word = '', panel = el('div', 'panel');
+      var shownEl = el('p', 'scramble-word'), form = el('form', 'row'), inp = el('input'), go = el('button', '', 'Check'), skip = el('button', '', 'Skip');
+      var msg = el('p', 'msg'), status = el('p', '');
+      inp.type = 'text'; inp.autocomplete = 'off'; inp.setAttribute('aria-label', 'Your guess');
+      go.type = 'submit'; skip.type = 'button';
+      form.appendChild(inp); form.appendChild(go); form.appendChild(skip);
+      [status, shownEl, form, msg].forEach(function (n) { panel.appendChild(n); });
+      view.appendChild(panel);
+      function next() {
+        word = G.WORDS[Math.floor(Math.random() * G.WORDS.length)];
+        shownEl.textContent = G.scramble(word, seed());
+        status.textContent = 'Streak: ' + streak + ' / ' + need;
+        inp.value = ''; inp.focus();
+      }
+      form.onsubmit = function (ev) {
+        ev.preventDefault();
+        if (inp.value.trim().toLowerCase() === word) {
+          streak++;
+          if (streak >= need) { won('scramble', msg, 'Three in a row. Solved!'); status.textContent = 'Streak: ' + streak + ' / ' + need; streak = 0; later(next, 1200); return; }
+          msg.className = 'msg ok'; msg.textContent = 'Correct!';
+          next();
+        } else { streak = 0; msg.className = 'msg err'; msg.textContent = 'Not quite; the streak resets.'; status.textContent = 'Streak: 0 / ' + need; inp.select(); }
+      };
+      skip.onclick = function () { streak = 0; msg.className = 'msg'; msg.textContent = 'Skipped; the streak resets.'; next(); };
+      next();
+    }
+
+    function sudokuGame() {
+      head('Sudoku', '#/games', 'Games');
+      var panel = el('div', 'panel'), pick = el('select'), table = el('div', 'sudoku'), msg = el('p', 'msg');
+      pick.setAttribute('aria-label', 'Puzzle');
+      G.SUDOKU.forEach(function (p, i) { var o = el('option', '', p.name); o.value = String(i); pick.appendChild(o); });
+      var check = el('button', '', 'Check'); check.type = 'button';
+      var cells = [];
+      function load(idx) {
+        var p = G.SUDOKU[idx]; table.textContent = ''; cells = []; msg.className = 'msg'; msg.textContent = '';
+        for (var r = 0; r < 9; r++) {
+          cells.push([]);
+          for (var c = 0; c < 9; c++) {
+            var inp = el('input', 'sd-cell' + (c % 3 === 2 && c < 8 ? ' rb' : '') + (r % 3 === 2 && r < 8 ? ' bb' : ''));
+            inp.type = 'text'; inp.maxLength = 1; inp.inputMode = 'numeric'; inp.setAttribute('aria-label', 'Row ' + (r + 1) + ' column ' + (c + 1));
+            if (p.puzzle[r][c]) { inp.value = String(p.puzzle[r][c]); inp.readOnly = true; inp.className += ' given'; }
+            else inp.oninput = function () { this.value = this.value.replace(/[^1-9]/g, ''); this.classList.remove('bad'); };
+            cells[r].push(inp); table.appendChild(inp);
+          }
+        }
+      }
+      pick.onchange = function () { load(Number(pick.value)); };
+      check.onclick = function () {
+        var grid = cells.map(function (row) { return row.map(function (i) { return i.value ? Number(i.value) : 0; }); });
+        var res = G.sudokuValid(grid);
+        cells.forEach(function (row) { row.forEach(function (i) { i.classList.remove('bad'); }); });
+        res.conflicts.forEach(function (rc) { cells[rc[0]][rc[1]].classList.add('bad'); });
+        if (res.complete && res.valid) won('sudoku', msg, 'Solved! Every row, column and box is correct.');
+        else if (!res.valid) { msg.className = 'msg err'; msg.textContent = res.conflicts.length + ' cells conflict (highlighted).'; }
+        else { msg.className = 'msg'; msg.textContent = 'No conflicts so far, but the grid is not full yet.'; }
+      };
+      var bar = el('div', 'row'); bar.appendChild(pick); bar.appendChild(check);
+      panel.appendChild(bar); panel.appendChild(table); panel.appendChild(msg);
+      view.appendChild(panel);
+      load(0);
+    }
+
+    function gameRoute(name) {
+      if (name === 'memory') return memoryGame();
+      if (name === 'scramble') return scrambleGame();
+      if (name === 'sudoku') return sudokuGame();
+      ctx.notFound('No game called "' + name + '".');
+    }
+
+    function hiddenIndex() {
+      head('Hidden', '#/', 'Start');
+      var vis = H.visiblePages(pages, store), locked = H.lockedCount(pages, store);
+      var ul = el('ul', 'plain');
+      vis.forEach(function (p) {
+        var li = el('li'), a = el('a', '', String(p.title || p.id));
+        a.href = '#/hidden/' + encodeURIComponent(p.id); li.appendChild(a); ul.appendChild(li);
+      });
+      if (vis.length) view.appendChild(ul);
+      else view.appendChild(el('p', '', 'Nothing here yet. Keep solving levels.'));
+      if (locked > 0) view.appendChild(el('p', 'note-partial', locked + ' more page' + (locked === 1 ? ' is' : 's are') + ' locked.'));
+      var p = el('p'), a = el('a', '', 'Try the phone line'); a.href = '#/phone'; p.appendChild(a); view.appendChild(p);
+    }
+
+    function hiddenPage(id) {
+      var page = null;
+      pages.forEach(function (p) { if (p && p.id === id) page = p; });
+      // Locked and unknown pages look identical so locked titles never leak.
+      if (!page || !H.isUnlocked(page, store)) return ctx.notFound('No hidden page called "' + id + '" is open to you.');
+      head(String(page.title || page.id), '#/hidden', 'Hidden');
+      var body = el('div', 'panel');
+      body.innerHTML = String(page.body_html || ''); // our own tracked data only
+      view.appendChild(body);
+    }
+
+    function phoneView() {
+      head('Phone Line', '#/hidden', 'Hidden');
+      var intro = data.phone && data.phone.intro ? String(data.phone.intro) : 'ENTER CODE.';
+      var panel = el('div', 'panel phone'), screen = el('div', 'phone-screen', intro), tr = el('div', 'phone-transcript');
+      var form = el('form', 'row'), inp = el('input'), dial = el('button', '', 'Dial'), clear = el('button', '', 'Clear');
+      inp.type = 'text'; inp.autocomplete = 'off'; inp.maxLength = 24; inp.setAttribute('aria-label', 'Code'); inp.placeholder = 'Digits or letters';
+      dial.type = 'submit'; clear.type = 'button';
+      form.appendChild(inp); form.appendChild(dial); form.appendChild(clear);
+      var pad = el('div', 'keypad');
+      '123456789*0#'.split('').forEach(function (k) {
+        var b = el('button', 'key', k); b.type = 'button';
+        b.onclick = function () { if (inp.value.length < 24) inp.value += k; inp.focus(); };
+        pad.appendChild(b);
+      });
+      var skip = el('button', '', 'Skip to end'); skip.type = 'button'; skip.hidden = true;
+      [screen, form, pad, skip, tr].forEach(function (n) { panel.appendChild(n); });
+      view.appendChild(panel);
+      clear.onclick = function () { inp.value = ''; inp.focus(); };
+
+      var playing = null; // {rest:[...], line}
+      function finish(line) {
+        playing = null; skip.hidden = true;
+        screen.textContent = 'Message ended.';
+      }
+      function step() {
+        if (!playing) return;
+        if (!playing.rest.length) return finish(playing.line);
+        tr.appendChild(el('p', 'vm-line', String(playing.rest.shift())));
+        later(step, VOICEMAIL_DELAY);
+      }
+      skip.onclick = function () {
+        if (!playing) return;
+        dispose();
+        while (playing.rest.length) tr.appendChild(el('p', 'vm-line', String(playing.rest.shift())));
+        finish(playing.line);
+      };
+      form.onsubmit = function (ev) {
+        ev.preventDefault();
+        dispose(); playing = null; skip.hidden = true; tr.textContent = '';
+        var code = inp.value.replace(/[\s\-]+/g, '');
+        var line = code ? H.findLine(lines, code) : null;
+        inp.value = '';
+        if (!line || !Array.isArray(line.voicemail)) { screen.textContent = 'The number you have dialled is not in service.'; return; }
+        screen.textContent = 'Connected: ' + String(line.name || line.id);
+        store.markSolved('phone-' + line.id); // solved at dial time, not when playback finishes
+        if (ctx.updateProgress) ctx.updateProgress();
+        playing = { rest: line.voicemail.slice(), line: line }; skip.hidden = false;
+        later(step, 600);
+      };
+    }
+
+    return { games: gamesIndex, game: gameRoute, hidden: hiddenIndex, hiddenPage: hiddenPage, phone: phoneView, dispose: dispose };
+  }
+
+  root.Views3 = { create: create };
+})(typeof window !== 'undefined' ? window : this);

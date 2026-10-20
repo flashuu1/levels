@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 150" width="600" height="150" role="img">
+<rect width="600" height="150" fill="#2a1a10"/>
+<rect x="60" y="6" width="220" height="138" rx="14" fill="#4f3220" stroke="#8a5a34" stroke-width="4"/>
+<circle cx="170" cy="62" r="46" fill="#f2e9d0" stroke="#8a6a2a" stroke-width="5"/>
+<line x1="170.0" y1="24.0" x2="170.0" y2="19.0" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="189.0" y1="29.1" x2="191.5" y2="24.8" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="202.9" y1="43.0" x2="207.2" y2="40.5" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="208.0" y1="62.0" x2="213.0" y2="62.0" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="202.9" y1="81.0" x2="207.2" y2="83.5" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="189.0" y1="94.9" x2="191.5" y2="99.2" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="170.0" y1="100.0" x2="170.0" y2="105.0" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="151.0" y1="94.9" x2="148.5" y2="99.2" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="137.1" y1="81.0" x2="132.8" y2="83.5" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="132.0" y1="62.0" x2="127.0" y2="62.0" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="137.1" y1="43.0" x2="132.8" y2="40.5" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="151.0" y1="29.1" x2="148.5" y2="24.8" stroke="#4a3a1a" stroke-width="3"/>
+<line x1="170" y1="62" x2="170" y2="32" stroke="#2a2a2a" stroke-width="4"/>
+<line x1="170" y1="62" x2="194" y2="72" stroke="#2a2a2a" stroke-width="3"/>
+<circle cx="170" cy="62" r="4" fill="#2a2a2a"/>
+<text class="dial" x="170" y="90" font-family="Georgia,serif" font-size="10" fill="#4a3a1a" text-anchor="middle" font-weight="bold" letter-spacing="3">CLOCK</text>
+<rect x="340" y="6" width="200" height="138" rx="10" fill="#1a0f08" stroke="#6a4424" stroke-width="3"/>
+<line x1="440" y1="6" x2="440" y2="96" stroke="#d9b55a" stroke-width="5"/>
+<circle cx="440" cy="116" r="20" fill="#e4c26a" stroke="#7a5a1a" stroke-width="4"/>
+<path d="M296 75 L328 75 M318 65 L328 75 L318 85" stroke="#c9a868" stroke-width="4" fill="none"/>
+</svg>

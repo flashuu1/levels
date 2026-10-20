@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" width="800" height="460" font-family="DejaVu Sans, Verdana, Arial, sans-serif" role="img">
+<rect width="800" height="460" fill="#dfe7f1"/>
+<path d="M330 0 L360 60 M470 0 L440 60" stroke="#445" stroke-width="6" fill="none"/>
+<rect x="150" y="50" width="500" height="250" rx="22" fill="#ffffff" stroke="#667" stroke-width="3"/>
+<path d="M150 72 a22 22 0 0 1 22 -22 L628 50 a22 22 0 0 1 22 22 L650 130 L150 130 Z" fill="#d84a4a"/>
+<text x="400" y="107" font-size="52" fill="#ffffff" text-anchor="middle" font-weight="bold">HELLO</text>
+<text x="400" y="160" font-size="22" fill="#c33" text-anchor="middle">my name is</text>
+<text class="nm" x="400" y="250" font-size="78" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">NOVA</text>
+<rect x="100" y="330" width="600" height="100" rx="12" fill="#fbf6e8" stroke="#b9ad8a" stroke-width="2"/>
+<text x="400" y="362" font-size="17" fill="#7a6a4a" text-anchor="middle">note found in the host's pocket</text>
+<text class="ct" x="400" y="412" font-size="44" fill="#222" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">FIIRVGZ</text>
+</svg>

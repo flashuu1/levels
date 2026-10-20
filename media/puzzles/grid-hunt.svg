@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 528 528" width="528" height="528" font-family="DejaVu Sans, Verdana, Arial, sans-serif" role="img">
+<rect width="528" height="528" fill="#f5efdd"/>
+<rect x="40" y="40" width="448" height="448" fill="#fffdf6" stroke="#6b5d3a" stroke-width="3"/>
+<line x1="104" y1="40" x2="104" y2="488" stroke="#e2d8bd" stroke-width="1.5"/><line x1="40" y1="104" x2="488" y2="104" stroke="#e2d8bd" stroke-width="1.5"/>
+<line x1="168" y1="40" x2="168" y2="488" stroke="#e2d8bd" stroke-width="1.5"/><line x1="40" y1="168" x2="488" y2="168" stroke="#e2d8bd" stroke-width="1.5"/>
+<line x1="232" y1="40" x2="232" y2="488" stroke="#e2d8bd" stroke-width="1.5"/><line x1="40" y1="232" x2="488" y2="232" stroke="#e2d8bd" stroke-width="1.5"/>
+<line x1="296" y1="40" x2="296" y2="488" stroke="#e2d8bd" stroke-width="1.5"/><line x1="40" y1="296" x2="488" y2="296" stroke="#e2d8bd" stroke-width="1.5"/>
+<line x1="360" y1="40" x2="360" y2="488" stroke="#e2d8bd" stroke-width="1.5"/><line x1="40" y1="360" x2="488" y2="360" stroke="#e2d8bd" stroke-width="1.5"/>
+<line x1="424" y1="40" x2="424" y2="488" stroke="#e2d8bd" stroke-width="1.5"/><line x1="40" y1="424" x2="488" y2="424" stroke="#e2d8bd" stroke-width="1.5"/>
+<text class="c" x="72" y="83" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">F</text>
+<text class="c" x="136" y="83" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">A</text>
+<text class="c" x="200" y="83" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">L</text>
+<text class="c" x="264" y="83" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">C</text>
+<text class="c" x="328" y="83" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">O</text>
+<text class="c" x="392" y="83" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">N</text>
+<text class="c" x="456" y="83" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">G</text>
+<text class="c" x="72" y="147" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">R</text>
+<text class="c" x="136" y="147" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">H</text>
+<text class="c" x="200" y="147" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">B</text>
+<text class="c" x="264" y="147" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">C</text>
+<text class="c" x="328" y="147" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">T</text>
+<text class="c" x="392" y="147" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">O</text>
+<text class="c" x="456" y="147" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">S</text>
+<text class="c" x="72" y="211" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">R</text>
+<text class="c" x="136" y="211" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">E</text>
+<text class="c" x="200" y="211" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">E</text>
+<text class="c" x="264" y="211" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">D</text>
+<text class="c" x="328" y="211" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">T</text>
+<text class="c" x="392" y="211" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">E</text>
+<text class="c" x="456" y="211" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">S</text>
+<text class="c" x="72" y="275" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">E</text>
+<text class="c" x="136" y="275" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">A</text>
+<text class="c" x="200" y="275" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">G</text>
+<text class="c" x="264" y="275" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">W</text>
+<text class="c" x="328" y="275" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">E</text>
+<text class="c" x="392" y="275" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">D</text>
+<text class="c" x="456" y="275" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">A</text>
+<text class="c" x="72" y="339" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">N</text>
+<text class="c" x="136" y="339" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">R</text>
+<text class="c" x="200" y="339" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">I</text>
+<text class="c" x="264" y="339" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">D</text>
+<text class="c" x="328" y="339" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">R</text>
+<text class="c" x="392" y="339" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">S</text>
+<text class="c" x="456" y="339" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">R</text>
+<text class="c" x="72" y="403" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">I</text>
+<text class="c" x="136" y="403" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">T</text>
+<text class="c" x="200" y="403" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">A</text>
+<text class="c" x="264" y="403" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">N</text>
+<text class="c" x="328" y="403" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">A</text>
+<text class="c" x="392" y="403" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">E</text>
+<text class="c" x="456" y="403" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">G</text>
+<text class="c" x="72" y="467" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">V</text>
+<text class="c" x="136" y="467" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">A</text>
+<text class="c" x="200" y="467" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">S</text>
+<text class="c" x="264" y="467" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">H</text>
+<text class="c" x="328" y="467" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">S</text>
+<text class="c" x="392" y="467" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">B</text>
+<text class="c" x="456" y="467" font-size="34" fill="#1d2b4a" text-anchor="middle" font-weight="bold" font-family="DejaVu Sans Mono, Consolas, Courier New, monospace">N</text>
+</svg>

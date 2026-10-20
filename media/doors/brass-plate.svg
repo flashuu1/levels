@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 240" width="560" height="240" role="img">
+<rect width="560" height="240" fill="#3a2a1c"/>
+<line x1="70" y1="0" x2="70" y2="240" stroke="#2a1d12" stroke-width="3"/>
+<line x1="140" y1="0" x2="140" y2="240" stroke="#2a1d12" stroke-width="3"/>
+<line x1="210" y1="0" x2="210" y2="240" stroke="#2a1d12" stroke-width="3"/>
+<line x1="280" y1="0" x2="280" y2="240" stroke="#2a1d12" stroke-width="3"/>
+<line x1="350" y1="0" x2="350" y2="240" stroke="#2a1d12" stroke-width="3"/>
+<line x1="420" y1="0" x2="420" y2="240" stroke="#2a1d12" stroke-width="3"/>
+<line x1="490" y1="0" x2="490" y2="240" stroke="#2a1d12" stroke-width="3"/>
+<rect x="30" y="14" width="500" height="212" rx="14" fill="#b89342" stroke="#6b4f16" stroke-width="5"/>
+<rect x="44" y="28" width="472" height="184" rx="8" fill="#c6a352" stroke="#e3c777" stroke-width="2"/>
+<line x1="70" y1="66" x2="120" y2="50" stroke="#a98334" stroke-width="2"/>
+<line x1="430" y1="140" x2="500" y2="126" stroke="#a98334" stroke-width="2"/>
+<circle class="rv" cx="62" cy="46" r="10" fill="#dcbc65" stroke="#6b4f16" stroke-width="3"/>
+<ellipse cx="59" cy="43" rx="4" ry="3" fill="#f4e2a4"/>
+<circle class="rv" cx="498" cy="46" r="10" fill="#dcbc65" stroke="#6b4f16" stroke-width="3"/>
+<ellipse cx="495" cy="43" rx="4" ry="3" fill="#f4e2a4"/>
+<circle class="rv" cx="62" cy="194" r="10" fill="#dcbc65" stroke="#6b4f16" stroke-width="3"/>
+<ellipse cx="59" cy="191" rx="4" ry="3" fill="#f4e2a4"/>
+<circle class="rv" cx="498" cy="194" r="10" fill="#dcbc65" stroke="#6b4f16" stroke-width="3"/>
+<ellipse cx="495" cy="191" rx="4" ry="3" fill="#f4e2a4"/>
+<circle class="rv" cx="280" cy="200" r="10" fill="#dcbc65" stroke="#6b4f16" stroke-width="3"/>
+<ellipse cx="277" cy="197" rx="4" ry="3" fill="#f4e2a4"/>
+<text x="186.0" y="84" font-family="monospace" font-size="42" fill="#f0d98c" text-anchor="middle" font-weight="bold">C</text>
+<text class="e" x="184.0" y="82" font-family="monospace" font-size="42" fill="#4a3512" text-anchor="middle" font-weight="bold">C</text>
+<text x="250.0" y="84" font-family="monospace" font-size="42" fill="#f0d98c" text-anchor="middle" font-weight="bold">F</text>
+<text class="e" x="248.0" y="82" font-family="monospace" font-size="42" fill="#4a3512" text-anchor="middle" font-weight="bold">F</text>
+<text x="314.0" y="84" font-family="monospace" font-size="42" fill="#f0d98c" text-anchor="middle" font-weight="bold">S</text>
+<text class="e" x="312.0" y="82" font-family="monospace" font-size="42" fill="#4a3512" text-anchor="middle" font-weight="bold">S</text>
+<text x="378.0" y="84" font-family="monospace" font-size="42" fill="#f0d98c" text-anchor="middle" font-weight="bold">X</text>
+<text class="e" x="376.0" y="82" font-family="monospace" font-size="42" fill="#4a3512" text-anchor="middle" font-weight="bold">X</text>
+<text x="218.0" y="130" font-family="monospace" font-size="42" fill="#f0d98c" text-anchor="middle" font-weight="bold">I</text>
+<text class="e" x="216.0" y="128" font-family="monospace" font-size="42" fill="#4a3512" text-anchor="middle" font-weight="bold">I</text>
+<text x="282.0" y="130" font-family="monospace" font-size="42" fill="#f0d98c" text-anchor="middle" font-weight="bold">V</text>
+<text class="e" x="280.0" y="128" font-family="monospace" font-size="42" fill="#4a3512" text-anchor="middle" font-weight="bold">V</text>
+<text x="346.0" y="130" font-family="monospace" font-size="42" fill="#f0d98c" text-anchor="middle" font-weight="bold">N</text>
+<text class="e" x="344.0" y="128" font-family="monospace" font-size="42" fill="#4a3512" text-anchor="middle" font-weight="bold">N</text>
+<text class="w" x="60" y="172" font-family="monospace" font-size="14" fill="#6b4f16" font-weight="bold">1 BRONZE</text>
+<text class="w" x="145.8" y="172" font-family="monospace" font-size="14" fill="#6b4f16" font-weight="bold">2 TIN</text>
+<text class="w" x="205.8" y="172" font-family="monospace" font-size="14" fill="#6b4f16" font-weight="bold">3 ZINC</text>
+<text class="w" x="274.4" y="172" font-family="monospace" font-size="14" fill="#6b4f16" font-weight="bold">4 LEAD</text>
+<text class="w" x="343.0" y="172" font-family="monospace" font-size="14" fill="#6b4f16" font-weight="bold">5 NICKEL</text>
+<text class="w" x="428.8" y="172" font-family="monospace" font-size="14" fill="#6b4f16" font-weight="bold">6 PEWTER</text>
+</svg>

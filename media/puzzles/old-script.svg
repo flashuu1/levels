@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" height="400" font-family="DejaVu Sans, Verdana, Arial, sans-serif" role="img">
+<rect width="900" height="400" fill="#fbf6e8"/>
+<text x="450" y="36" font-size="18" fill="#7a6a4a" text-anchor="middle" font-weight="bold">KEY</text>
+<g id="fig1">
+<line x1="130" y1="60" x2="130" y2="216" stroke="#5a4a2a" stroke-width="3"/><line x1="78" y1="112" x2="234" y2="112" stroke="#5a4a2a" stroke-width="3"/>
+<line x1="182" y1="60" x2="182" y2="216" stroke="#5a4a2a" stroke-width="3"/><line x1="78" y1="164" x2="234" y2="164" stroke="#5a4a2a" stroke-width="3"/>
+<text class="kk" x="104" y="94" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">A</text>
+<text class="kk" x="156" y="94" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">B</text>
+<text class="kk" x="208" y="94" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">C</text>
+<text class="kk" x="104" y="146" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">D</text>
+<text class="kk" x="156" y="146" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">E</text>
+<text class="kk" x="208" y="146" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">F</text>
+<text class="kk" x="104" y="198" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">G</text>
+<text class="kk" x="156" y="198" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">H</text>
+<text class="kk" x="208" y="198" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">I</text>
+</g>
+<g id="fig2">
+<line x1="326" y1="60" x2="326" y2="216" stroke="#5a4a2a" stroke-width="3"/><line x1="274" y1="112" x2="430" y2="112" stroke="#5a4a2a" stroke-width="3"/>
+<line x1="378" y1="60" x2="378" y2="216" stroke="#5a4a2a" stroke-width="3"/><line x1="274" y1="164" x2="430" y2="164" stroke="#5a4a2a" stroke-width="3"/>
+<text class="kk" x="300" y="88" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">J</text>
+<circle cx="300" cy="102" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="352" y="88" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">K</text>
+<circle cx="352" cy="102" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="404" y="88" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">L</text>
+<circle cx="404" cy="102" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="300" y="140" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">M</text>
+<circle cx="300" cy="154" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="352" y="140" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">N</text>
+<circle cx="352" cy="154" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="404" y="140" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">O</text>
+<circle cx="404" cy="154" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="300" y="192" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">P</text>
+<circle cx="300" cy="206" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="352" y="192" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">Q</text>
+<circle cx="352" cy="206" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="404" y="192" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">R</text>
+<circle cx="404" cy="206" r="3.4" fill="#7a4a1a"/>
+</g>
+<g id="fig3">
+<path d="M470 60 L626 216 M626 60 L470 216" stroke="#5a4a2a" stroke-width="3"/>
+<text class="kk" x="548" y="94" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">S</text>
+<text class="kk" x="500" y="146" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">T</text>
+<text class="kk" x="596" y="146" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">U</text>
+<text class="kk" x="548" y="196" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">V</text>
+</g>
+<g id="fig4">
+<path d="M666 60 L822 216 M822 60 L666 216" stroke="#5a4a2a" stroke-width="3"/>
+<text class="kk" x="744" y="94" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">W</text>
+<circle cx="744" cy="110" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="696" y="146" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">X</text>
+<circle cx="696" cy="162" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="792" y="146" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">Y</text>
+<circle cx="792" cy="162" r="3.4" fill="#7a4a1a"/>
+<text class="kk" x="744" y="196" font-size="22" fill="#7a4a1a" text-anchor="middle" font-weight="bold">Z</text>
+<circle cx="744" cy="212" r="3.4" fill="#7a4a1a"/>
+</g>
+<line x1="40" y1="270" x2="860" y2="270" stroke="#c9bb95" stroke-width="2"/>
+<g class="pp" transform="translate(120 310) scale(1.6)"><rect x="-8" y="-8" width="46" height="46" rx="7" fill="#e6edf9" stroke="#9db0d3" stroke-width="1.2"/><path d="M0 0 L30 0 M30 0 L30 30 M0 0 L0 30" fill="none" stroke="#1b2a4a" stroke-width="3.5" stroke-linecap="round"/></g>
+<g class="pp" transform="translate(220 310) scale(1.6)"><rect x="-8" y="-8" width="46" height="46" rx="7" fill="#e6edf9" stroke="#9db0d3" stroke-width="1.2"/><path d="M0 0 L30 0 M0 0 L0 30" fill="none" stroke="#1b2a4a" stroke-width="3.5" stroke-linecap="round"/></g>
+<g class="pp" transform="translate(320 310) scale(1.6)"><rect x="-8" y="-8" width="46" height="46" rx="7" fill="#e6edf9" stroke="#9db0d3" stroke-width="1.2"/><path d="M0 0 L15 30 M15 30 L30 0" fill="none" stroke="#1b2a4a" stroke-width="3.5" stroke-linecap="round"/></g>
+<g class="pp" transform="translate(420 310) scale(1.6)"><rect x="-8" y="-8" width="46" height="46" rx="7" fill="#e6edf9" stroke="#9db0d3" stroke-width="1.2"/><path d="M0 0 L30 15 M30 15 L0 30" fill="none" stroke="#1b2a4a" stroke-width="3.5" stroke-linecap="round"/></g>
+<g class="pp" transform="translate(520 310) scale(1.6)"><rect x="-8" y="-8" width="46" height="46" rx="7" fill="#e6edf9" stroke="#9db0d3" stroke-width="1.2"/><path d="M0 0 L30 0 M0 30 L30 30 M0 0 L0 30" fill="none" stroke="#1b2a4a" stroke-width="3.5" stroke-linecap="round"/><circle cx="15" cy="15" r="4.8" fill="#c0392b"/></g>
+<g class="pp" transform="translate(620 310) scale(1.6)"><rect x="-8" y="-8" width="46" height="46" rx="7" fill="#e6edf9" stroke="#9db0d3" stroke-width="1.2"/><path d="M0 0 L30 0 M0 0 L0 30" fill="none" stroke="#1b2a4a" stroke-width="3.5" stroke-linecap="round"/><circle cx="15" cy="15" r="4.8" fill="#c0392b"/></g>
+<g class="pp" transform="translate(720 310) scale(1.6)"><rect x="-8" y="-8" width="46" height="46" rx="7" fill="#e6edf9" stroke="#9db0d3" stroke-width="1.2"/><path d="M30 0 L0 15 M0 15 L30 30" fill="none" stroke="#1b2a4a" stroke-width="3.5" stroke-linecap="round"/><circle cx="15" cy="15" r="4.8" fill="#c0392b"/></g>
+</svg>

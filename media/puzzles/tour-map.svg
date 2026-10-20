@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620" font-family="DejaVu Sans, Verdana, Arial, sans-serif" role="img">
+<rect width="900" height="620" fill="#e6efcf"/>
+<path d="M470 -10 C520 90 430 170 520 250 C610 330 700 300 780 380 C840 440 880 470 920 520 L920 580 C860 520 800 470 730 420 C650 360 560 380 470 290 C380 200 430 100 400 -10 Z" fill="#9fd0ea" stroke="#6fb0d6" stroke-width="3"/>
+<ellipse cx="170" cy="560" rx="110" ry="40" fill="#bfe0a8"/><ellipse cx="800" cy="570" rx="90" ry="32" fill="#bfe0a8"/>
+<path d="M60 520 L130 500 L260 380 L350 230" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 520 L130 500 L260 380 L350 230" fill="none" stroke="#d6cba8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M260 380 L400 470 L610 530" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M260 380 L400 470 L610 530" fill="none" stroke="#d6cba8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M350 230 L520 300 L580 140" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M350 230 L520 300 L580 140" fill="none" stroke="#d6cba8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M400 470 L460 380 L520 300" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M400 470 L460 380 L520 300" fill="none" stroke="#d6cba8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M520 300 L700 430 L740 180" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M520 300 L700 430 L740 180" fill="none" stroke="#d6cba8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M180 200 L350 230" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M180 200 L350 230" fill="none" stroke="#d6cba8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M700 430 L610 530" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M700 430 L610 530" fill="none" stroke="#d6cba8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M130 500 L260 380 L400 470 L520 300 L700 430 L740 180" fill="none" stroke="#c0392b" stroke-width="4" stroke-dasharray="12 8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+<g class="lm"><circle class="mk" cx="180" cy="200" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="198" y="206" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Bell Tower</text>
+</g>
+<g class="lm"><circle class="mk" cx="350" cy="230" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="368" y="236" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Clock Square</text>
+</g>
+<g class="lm"><circle class="mk" cx="580" cy="140" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="598" y="146" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Wren Market</text>
+</g>
+<g class="lm"><circle class="mk" cx="610" cy="530" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="628" y="536" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Lamp Yard</text>
+</g>
+<g class="lm"><circle class="mk" cx="460" cy="380" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="478" y="386" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Maple Mill</text>
+</g>
+<g class="lm"><circle class="mk" cx="130" cy="500" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="148" y="506" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Fern Gate</text>
+</g>
+<g class="lm"><circle class="mk" cx="260" cy="380" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="278" y="386" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Old Pier</text>
+</g>
+<g class="lm"><circle class="mk" cx="400" cy="470" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="418" y="476" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Rose Court</text>
+</g>
+<g class="lm"><circle class="mk" cx="520" cy="300" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="538" y="306" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Elder Chapel</text>
+</g>
+<g class="lm"><circle class="mk" cx="700" cy="430" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="718" y="436" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Stone Ford</text>
+</g>
+<g class="lm"><circle class="mk" cx="740" cy="180" r="9" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="758" y="186" font-size="17" fill="#243049" text-anchor="start" font-weight="600">Tin Bridge</text>
+</g>
+<g class="stop"><circle cx="130" cy="500" r="13" fill="#c0392b" stroke="#fff" stroke-width="2.5"/><text x="130" y="506" font-size="17" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+</g>
+<g class="stop"><circle cx="260" cy="380" r="13" fill="#c0392b" stroke="#fff" stroke-width="2.5"/><text x="260" y="386" font-size="17" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+</g>
+<g class="stop"><circle cx="400" cy="470" r="13" fill="#c0392b" stroke="#fff" stroke-width="2.5"/><text x="400" y="476" font-size="17" fill="#fff" text-anchor="middle" font-weight="bold">3</text>
+</g>
+<g class="stop"><circle cx="520" cy="300" r="13" fill="#c0392b" stroke="#fff" stroke-width="2.5"/><text x="520" y="306" font-size="17" fill="#fff" text-anchor="middle" font-weight="bold">4</text>
+</g>
+<g class="stop"><circle cx="700" cy="430" r="13" fill="#c0392b" stroke="#fff" stroke-width="2.5"/><text x="700" y="436" font-size="17" fill="#fff" text-anchor="middle" font-weight="bold">5</text>
+</g>
+<g class="stop"><circle cx="740" cy="180" r="13" fill="#c0392b" stroke="#fff" stroke-width="2.5"/><text x="740" y="186" font-size="17" fill="#fff" text-anchor="middle" font-weight="bold">6</text>
+</g>
+<rect x="20" y="16" width="360" height="104" rx="8" fill="#fffdf6" stroke="#8a7a52" stroke-width="2"/>
+<text x="34" y="42" font-size="17" fill="#3a2f1c" text-anchor="start" font-weight="bold">Tarnwick Old Town - Walking Tour</text>
+<circle cx="42" cy="64" r="10" fill="#c0392b" stroke="#fff" stroke-width="2"/><text x="42" y="69" font-size="13" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+<text x="62" y="69" font-size="14" fill="#3a2f1c" text-anchor="start">numbered stop: visit in number order</text>
+<circle cx="42" cy="92" r="8" fill="#fff" stroke="#3b4a66" stroke-width="3"/><text x="62" y="97" font-size="14" fill="#3a2f1c" text-anchor="start">other sight: not on the tour</text>
+<g transform="translate(840 70)"><circle r="36" fill="#fffdf6" stroke="#8a7a52" stroke-width="2"/><path d="M0 -30 L7 0 L0 30 L-7 0 Z" fill="#8a7a52"/><text x="0" y="-42" font-size="15" fill="#3a2f1c" text-anchor="middle" font-weight="bold">N</text>
+</g>
+</svg>

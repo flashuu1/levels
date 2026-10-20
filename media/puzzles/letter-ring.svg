@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" font-family="DejaVu Sans, Verdana, Arial, sans-serif" role="img">
+<rect width="800" height="800" fill="#fffdf8"/>
+<circle cx="400" cy="400" r="304" fill="#f4ede0" stroke="#bda97d" stroke-width="3"/><circle cx="400" cy="400" r="236" fill="#fbf7ee" stroke="#d7c9a3" stroke-width="2"/>
+<text class="r" x="660.8" y="480.9" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">A</text>
+<text class="r" x="535" y="177.2" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">C</text>
+<text class="r" x="265" y="177.2" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">P</text>
+<text class="r" x="670" y="411" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">R</text>
+<text class="r" x="330.1" y="671.8" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">A</text>
+<text class="r" x="633.8" y="546" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">E</text>
+<text class="r" x="469.9" y="671.8" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">W</text>
+<text class="r" x="209.1" y="601.9" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">S</text>
+<text class="r" x="400" y="681" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">U</text>
+<text class="r" x="469.9" y="150.2" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">H</text>
+<text class="r" x="633.8" y="276" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">U</text>
+<text class="r" x="265" y="644.8" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">V</text>
+<text class="r" x="400" y="141" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">C</text>
+<text class="r" x="139.2" y="341.1" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">P</text>
+<text class="r" x="166.2" y="276" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">M</text>
+<text class="r" x="330.1" y="150.2" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">Z</text>
+<text class="r" x="590.9" y="220.1" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">A</text>
+<text class="r" x="166.2" y="546" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">T</text>
+<text class="r" x="209.1" y="220.1" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">L</text>
+<text class="r" x="535" y="644.8" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">J</text>
+<text class="r" x="130" y="411" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">E</text>
+<text class="r" x="660.8" y="341.1" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">O</text>
+<text class="r" x="590.9" y="601.9" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">O</text>
+<text class="r" x="139.2" y="480.9" font-size="34" fill="#2a3a5c" text-anchor="middle" font-weight="bold">A</text>
+<path class="start" d="M384 68 L416 68 L400 90 Z" fill="#2fa84f"/>
+<text x="400" y="58" font-size="20" fill="#2a7a40" text-anchor="middle" font-weight="bold">START</text>
+<circle cx="400" cy="400" r="46" fill="none" stroke="#d7c9a3" stroke-width="3" stroke-dasharray="6 6"/>
+</svg>
