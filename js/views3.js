@@ -166,7 +166,10 @@
       var ul = el('ul', 'plain');
       vis.forEach(function (p) {
         var li = el('li'), a = el('a', '', String(p.title || p.id));
-        a.href = '#/hidden/' + encodeURIComponent(p.id); li.appendChild(a); ul.appendChild(li);
+        a.href = '#/hidden/' + encodeURIComponent(p.id); li.appendChild(a);
+        var arc = p.id === 'keepers-log' ? 'keeper' : p.id === 'gardeners-verse' ? 'gardener' : '';
+        if (arc && S) { var pr = S.progress(arc); li.appendChild(el('span', 'index-pct', ' ' + pr.pct + '%')); }
+        ul.appendChild(li);
       });
       if (vis.length) view.appendChild(ul);
       if (!vis.length) view.appendChild(el('p', '', 'Nothing here yet. Keep solving levels.'));
@@ -187,28 +190,46 @@
       if (extra) view.appendChild(extra);
     }
 
+    var KEYLETTERS = { 2: 'ABC', 3: 'DEF', 4: 'GHI', 5: 'JKL', 6: 'MNO', 7: 'PQRS', 8: 'TUV', 9: 'WXYZ' };
     function phoneView() {
       head('Phone Line', '#/hidden', 'Hidden');
       var intro = data.phone && data.phone.intro ? String(data.phone.intro) : 'ENTER CODE.';
-      var panel = el('div', 'panel phone'), screen = el('div', 'phone-screen', intro), tr = el('div', 'phone-transcript');
-      var form = el('form', 'row'), inp = el('input'), dial = el('button', '', 'Dial'), clear = el('button', '', 'Clear');
+      var panel = el('div', 'panel phone deskphone'), body = el('div', 'phone-body'), screen = el('div', 'phone-screen', intro), tr = el('div', 'phone-transcript');
+      var handset = el('div', 'phone-handset'); handset.setAttribute('aria-hidden', 'true');
+      var form = el('form', 'row phone-form'), inp = el('input'), dial = el('button', '', 'Dial'), clear = el('button', '', 'Clear');
       inp.type = 'text'; inp.autocomplete = 'off'; inp.maxLength = 24; inp.setAttribute('aria-label', 'Code'); inp.placeholder = 'Digits or letters';
       dial.type = 'submit'; clear.type = 'button';
       form.appendChild(inp); form.appendChild(dial); form.appendChild(clear);
       var pad = el('div', 'keypad');
       '123456789*0#'.split('').forEach(function (k) {
         var b = el('button', 'key', k); b.type = 'button';
+        if (KEYLETTERS[k]) b.appendChild(el('small', 'key-letters', KEYLETTERS[k]));
+        b.setAttribute('aria-label', 'Key ' + k);
         b.onclick = function () { if (inp.value.length < 24) inp.value += k; inp.focus(); };
         pad.appendChild(b);
       });
       var skip = el('button', '', 'Skip to end'); skip.type = 'button'; skip.hidden = true;
-      [screen, form, pad, skip, tr].forEach(function (n) { panel.appendChild(n); });
+      body.appendChild(handset); body.appendChild(screen); body.appendChild(form); body.appendChild(pad);
+      panel.appendChild(body);
+      var log = el('div', 'call-log'); // everyone you have reached so far
+      function drawLog() {
+        var names = [];
+        lines.forEach(function (l) { if (store.isSolved('phone-' + l.id)) names.push(String(l.name || l.id)); });
+        if (S && S.found) S.found().forEach(function (r) { if (r.kind === 'phone') names.push(String(r.name || r.title)); });
+        log.textContent = '';
+        if (!names.length) return;
+        log.appendChild(el('h3', 'call-log-title', 'Calls you have made'));
+        var ul = el('ul', 'plain'); names.forEach(function (n) { ul.appendChild(el('li', '', '\u260e ' + n)); }); log.appendChild(ul);
+      }
+      drawLog();
+      [skip, tr, log].forEach(function (n) { panel.appendChild(n); });
       view.appendChild(panel);
       clear.onclick = function () { inp.value = ''; inp.focus(); };
 
       var playing = null; // {rest:[...], line}
+      function hangUp() { handset.classList.remove('off-hook'); screen.classList.remove('ringing'); }
       function finish(line) {
-        playing = null; skip.hidden = true;
+        playing = null; skip.hidden = true; hangUp();
         screen.textContent = 'Message ended.';
       }
       function step() {
@@ -225,17 +246,22 @@
       };
       form.onsubmit = function (ev) {
         ev.preventDefault();
-        dispose(); playing = null; skip.hidden = true; tr.textContent = '';
+        dispose(); playing = null; skip.hidden = true; tr.textContent = ''; hangUp();
         var code = inp.value.replace(/[\s\-]+/g, '');
         var line = code ? H.findLine(lines, code) : null;
         if (!line && code && S) { var sealed = S.tryPhone(code); if (sealed) { line = sealed.payload; S.remember(sealed.payload, sealed.code); } }
         inp.value = '';
-        if (!line || !Array.isArray(line.voicemail)) { screen.textContent = 'The number you have dialled is not in service.'; return; }
-        screen.textContent = 'Connected: ' + String(line.name || line.id);
-        store.markSolved('phone-' + line.id); // solved at dial time, not when playback finishes
-        if (ctx.updateProgress) ctx.updateProgress();
-        playing = { rest: line.voicemail.slice(), line: line }; skip.hidden = false;
-        later(step, 600);
+        if (!line || !Array.isArray(line.voicemail)) { screen.textContent = 'Dialling\u2026'; later(function () { screen.textContent = 'The number you have dialled is not in service.'; }, 500); return; }
+        screen.textContent = 'Ringing\u2026'; screen.classList.add('ringing');
+        later(function () {
+          screen.classList.remove('ringing'); handset.classList.add('off-hook');
+          screen.textContent = 'Connected: ' + String(line.name || line.id);
+          store.markSolved('phone-' + line.id); // solved when it connects, not when playback finishes
+          if (ctx.updateProgress) ctx.updateProgress();
+          drawLog();
+          playing = { rest: line.voicemail.slice(), line: line }; skip.hidden = false;
+          later(step, 600);
+        }, 900);
       };
     }
 

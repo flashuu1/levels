@@ -31,6 +31,7 @@
     const save = () => { try { if (storage) { const raw = JSON.stringify(st); storage.setItem(KEY, raw); lastRaw = raw; } } catch (e) { /* memory only */ } };
     return {
       markSolved(id) { sync(); st.solved[id] = Date.now(); save(); },
+      solvedAt(id) { sync(); return Object.prototype.hasOwnProperty.call(st.solved, id) ? st.solved[id] : 0; },
       isSolved(id) { sync(); return Object.prototype.hasOwnProperty.call(st.solved, id) && !!st.solved[id]; },
       recordHint(id, tier) { sync(); if (Number.isInteger(tier) && tier >= 1 && tier <= 4 && tier > (st.hints[id] || 0)) { st.hints[id] = tier; save(); } },
       solvedIds() { sync(); return Object.keys(st.solved).filter(k => !!st.solved[k]); },
