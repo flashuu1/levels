@@ -34,7 +34,8 @@
   function checkCode(line, input) {
     if (!line || typeof line.salt !== 'string' || typeof line.codeHash !== 'string' || !line.codeHash) return false;
     if (typeof input !== 'string' || !A.normalize(input)) return false;
-    return A.hashAnswer(line.salt, input) === line.codeHash;
+    var h = A.hashAnswer(line.salt, input); // extra accepted codes (same salt) live in codeHashes, e.g. the log read with its zeros counted separately
+    return h === line.codeHash || (Array.isArray(line.codeHashes) && line.codeHashes.indexOf(h) !== -1);
   }
   function findLine(lines, input) {
     if (!Array.isArray(lines)) return null;

@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 510" width="640" height="466" role="img">
+<rect width="700" height="510" fill="#d9c9a0"/>
+<rect x="44" y="40" width="416" height="416" fill="#efe3c2" stroke="#3a2a18" stroke-width="3"/>
+<path d="M460 40 L460 196 Q356 144 304 92 Q283.2 60.8 252 40 Z" fill="#bcd3dc"/>
+<path d="M44 362.40000000000003 Q148 300 226 378 T356 456" fill="none" stroke="#8fb3c4" stroke-width="5"/>
+<path d="M64 196 L114 164.8 L164 196 Z" fill="#c9b78a" fill-opacity="0.6"/>
+<line x1="96" y1="40" x2="96" y2="456" stroke="#7a6845" stroke-width="1"/>
+<line x1="44" y1="92" x2="460" y2="92" stroke="#7a6845" stroke-width="1"/>
+<line x1="148" y1="40" x2="148" y2="456" stroke="#7a6845" stroke-width="1"/>
+<line x1="44" y1="144" x2="460" y2="144" stroke="#7a6845" stroke-width="1"/>
+<line x1="200" y1="40" x2="200" y2="456" stroke="#7a6845" stroke-width="1"/>
+<line x1="44" y1="196" x2="460" y2="196" stroke="#7a6845" stroke-width="1"/>
+<line x1="252" y1="40" x2="252" y2="456" stroke="#7a6845" stroke-width="1"/>
+<line x1="44" y1="248" x2="460" y2="248" stroke="#7a6845" stroke-width="1"/>
+<line x1="304" y1="40" x2="304" y2="456" stroke="#7a6845" stroke-width="1"/>
+<line x1="44" y1="300" x2="460" y2="300" stroke="#7a6845" stroke-width="1"/>
+<line x1="356" y1="40" x2="356" y2="456" stroke="#7a6845" stroke-width="1"/>
+<line x1="44" y1="352" x2="460" y2="352" stroke="#7a6845" stroke-width="1"/>
+<line x1="408" y1="40" x2="408" y2="456" stroke="#7a6845" stroke-width="1"/>
+<line x1="44" y1="404" x2="460" y2="404" stroke="#7a6845" stroke-width="1"/>
+<rect class="fl" x="200" y="248" width="52" height="52" fill="#4f86b0" fill-opacity="0.55" stroke="#2f5f86" stroke-width="2"/>
+<line x1="204" y1="296" x2="248" y2="252" stroke="#2f5f86" stroke-width="2"/>
+<rect class="fl" x="44" y="144" width="52" height="52" fill="#4f86b0" fill-opacity="0.55" stroke="#2f5f86" stroke-width="2"/>
+<line x1="48" y1="192" x2="92" y2="148" stroke="#2f5f86" stroke-width="2"/>
+<rect class="fl" x="304" y="196" width="52" height="52" fill="#4f86b0" fill-opacity="0.55" stroke="#2f5f86" stroke-width="2"/>
+<line x1="308" y1="244" x2="352" y2="200" stroke="#2f5f86" stroke-width="2"/>
+<rect class="fl" x="200" y="404" width="52" height="52" fill="#4f86b0" fill-opacity="0.55" stroke="#2f5f86" stroke-width="2"/>
+<line x1="204" y1="452" x2="248" y2="408" stroke="#2f5f86" stroke-width="2"/>
+<text class="cl" x="70" y="28" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">A</text>
+<text class="cl" x="122" y="28" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">B</text>
+<text class="cl" x="174" y="28" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">C</text>
+<text class="cl" x="226" y="28" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">D</text>
+<text class="cl" x="278" y="28" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">E</text>
+<text class="cl" x="330" y="28" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">F</text>
+<text class="cl" x="382" y="28" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">G</text>
+<text class="cl" x="434" y="28" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">H</text>
+<text class="rw" x="26" y="436" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">1</text>
+<text class="rw" x="26" y="384" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">2</text>
+<text class="rw" x="26" y="332" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">3</text>
+<text class="rw" x="26" y="280" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">4</text>
+<text class="rw" x="26" y="228" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">5</text>
+<text class="rw" x="26" y="176" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">6</text>
+<text class="rw" x="26" y="124" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">7</text>
+<text class="rw" x="26" y="72" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle" font-weight="bold">8</text>
+<text class="c" x="122" y="386" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">J</text>
+<text class="c" x="122" y="334" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">X</text>
+<text class="c" x="70" y="438" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">B</text>
+<text class="c" x="278" y="334" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">X</text>
+<text class="c" x="226" y="230" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">I</text>
+<text class="c" x="434" y="126" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">E</text>
+<text class="c" x="226" y="178" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">I</text>
+<text class="c" x="70" y="74" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">L</text>
+<text class="c" x="434" y="178" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">X</text>
+<text class="c" x="382" y="126" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">G</text>
+<text class="c" x="122" y="282" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">W</text>
+<text class="c" x="330" y="282" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">R</text>
+<text class="c" x="226" y="386" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">L</text>
+<text class="c" x="226" y="334" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">I</text>
+<text class="c" x="278" y="438" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">X</text>
+<text class="c" x="226" y="282" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">N</text>
+<text class="c" x="70" y="178" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">Q</text>
+<text class="c" x="330" y="230" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">C</text>
+<text class="c" x="226" y="438" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">Q</text>
+<text class="c" x="70" y="282" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">J</text>
+<text class="c" x="278" y="126" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">Q</text>
+<text class="c" x="434" y="438" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">B</text>
+<text class="c" x="434" y="334" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">T</text>
+<text class="c" x="434" y="282" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">C</text>
+<text class="c" x="330" y="438" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">I</text>
+<text class="c" x="122" y="74" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">S</text>
+<text class="c" x="382" y="230" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">U</text>
+<text class="c" x="330" y="126" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">G</text>
+<text class="c" x="434" y="230" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">K</text>
+<text class="c" x="330" y="334" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">X</text>
+<text class="c" x="122" y="178" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">K</text>
+<text class="c" x="174" y="178" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">G</text>
+<text class="c" x="174" y="282" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">S</text>
+<text class="c" x="382" y="334" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">I</text>
+<text class="c" x="382" y="74" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">L</text>
+<text class="c" x="278" y="386" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">L</text>
+<text class="c" x="122" y="126" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">K</text>
+<text class="c" x="330" y="178" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">F</text>
+<text class="c" x="174" y="386" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">O</text>
+<text class="c" x="330" y="386" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">Q</text>
+<text class="c" x="174" y="74" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">O</text>
+<text class="c" x="382" y="386" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">S</text>
+<text class="c" x="70" y="334" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">B</text>
+<text class="c" x="382" y="178" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">G</text>
+<text class="c" x="434" y="386" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">R</text>
+<text class="c" x="278" y="74" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">Y</text>
+<text class="c" x="226" y="74" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">R</text>
+<text class="c" x="70" y="126" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">G</text>
+<text class="c" x="70" y="230" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">E</text>
+<text class="c" x="382" y="282" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">L</text>
+<text class="c" x="174" y="438" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">P</text>
+<text class="c" x="278" y="230" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">Z</text>
+<text class="c" x="278" y="282" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">Q</text>
+<text class="c" x="434" y="74" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">O</text>
+<text class="c" x="226" y="126" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">G</text>
+<text class="c" x="330" y="74" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">B</text>
+<text class="c" x="122" y="438" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">S</text>
+<text class="c" x="174" y="126" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">E</text>
+<text class="c" x="278" y="178" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">Z</text>
+<text class="c" x="382" y="438" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">U</text>
+<text class="c" x="174" y="334" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">J</text>
+<text class="c" x="122" y="230" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">G</text>
+<text class="c" x="70" y="386" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">A</text>
+<text class="c" x="174" y="230" font-family="Courier New,monospace" font-size="24" fill="#2a1c10" text-anchor="middle" font-weight="bold">X</text>
+<text class="mark" x="250" y="490" font-family="Courier New,monospace" font-size="17" fill="#8a7a5a" text-anchor="middle" transform="rotate(-2 250 490)" letter-spacing="3">61.4</text>
+<rect x="490" y="40" width="190" height="270" fill="#efe3c2" stroke="#3a2a18" stroke-width="2"/>
+<text class="lg" x="585" y="68" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#2a1c10" text-anchor="middle" font-weight="bold">SPOT HEIGHTS (m)</text>
+<polygon points="510,108 530,108 520,88" fill="#8b6b3a" stroke="#2a1c10" stroke-width="2"/>
+<text class="pl" x="562" y="108" font-family="Courier New,monospace" font-size="22" fill="#2a1c10" text-anchor="middle" font-weight="bold">R</text>
+<text class="ph" x="630" y="108" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle">388</text>
+<polygon points="510,148 530,148 520,128" fill="#8b6b3a" stroke="#2a1c10" stroke-width="2"/>
+<text class="pl" x="562" y="148" font-family="Courier New,monospace" font-size="22" fill="#2a1c10" text-anchor="middle" font-weight="bold">T</text>
+<text class="ph" x="630" y="148" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle">254</text>
+<polygon points="510,188 530,188 520,168" fill="#8b6b3a" stroke="#2a1c10" stroke-width="2"/>
+<text class="pl" x="562" y="188" font-family="Courier New,monospace" font-size="22" fill="#2a1c10" text-anchor="middle" font-weight="bold">C</text>
+<text class="ph" x="630" y="188" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle">412</text>
+<polygon points="510,228 530,228 520,208" fill="#8b6b3a" stroke="#2a1c10" stroke-width="2"/>
+<text class="pl" x="562" y="228" font-family="Courier New,monospace" font-size="22" fill="#2a1c10" text-anchor="middle" font-weight="bold">E</text>
+<text class="ph" x="630" y="228" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle">351</text>
+<polygon points="510,268 530,268 520,248" fill="#8b6b3a" stroke="#2a1c10" stroke-width="2"/>
+<text class="pl" x="562" y="268" font-family="Courier New,monospace" font-size="22" fill="#2a1c10" text-anchor="middle" font-weight="bold">S</text>
+<text class="ph" x="630" y="268" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#2a1c10" text-anchor="middle">297</text>
+<rect x="510" y="266" width="30" height="22" fill="#4f86b0" fill-opacity="0.55" stroke="#2f5f86" stroke-width="2"/>
+<line x1="513" y1="285" x2="537" y2="269" stroke="#2f5f86" stroke-width="2"/>
+<text class="lg" x="610" y="282" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#2a1c10" text-anchor="middle">covered by the tide</text>
+</svg>

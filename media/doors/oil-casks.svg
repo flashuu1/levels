@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="640" height="253" role="img">
+<rect width="760" height="300" fill="#2b2118"/>
+<rect y="236" width="760" height="64" fill="#4a3826"/>
+<rect y="232" width="760" height="6" fill="#1d150e"/>
+<rect x="20" y="96" width="90" height="136" rx="22" fill="#8b5a2b" stroke="#1d150e" stroke-width="3"/>
+<rect x="20" y="116" width="90" height="9" fill="#3a2a18"/>
+<rect x="20" y="196" width="90" height="9" fill="#3a2a18"/>
+<rect x="32" y="132" width="66" height="58" rx="6" fill="#e9dcb8" stroke="#1d150e" stroke-width="2"/>
+<text class="no" x="65" y="158" font-family="Georgia,serif" font-size="26" fill="#2a1c10" text-anchor="middle" font-weight="bold">1</text>
+<text class="k" x="65" y="183" font-family="Courier New,monospace" font-size="24" fill="#1c120a" text-anchor="middle" font-weight="bold">G</text>
+<rect x="125" y="96" width="90" height="136" rx="22" fill="#8b5a2b" stroke="#1d150e" stroke-width="3"/>
+<rect x="125" y="116" width="90" height="9" fill="#3a2a18"/>
+<rect x="125" y="196" width="90" height="9" fill="#3a2a18"/>
+<rect x="137" y="132" width="66" height="58" rx="6" fill="#e9dcb8" stroke="#1d150e" stroke-width="2"/>
+<text class="no" x="170" y="158" font-family="Georgia,serif" font-size="26" fill="#2a1c10" text-anchor="middle" font-weight="bold">2</text>
+<text class="k" x="170" y="183" font-family="Courier New,monospace" font-size="24" fill="#1c120a" text-anchor="middle" font-weight="bold">S</text>
+<rect x="230" y="96" width="90" height="136" rx="22" fill="#8b5a2b" stroke="#1d150e" stroke-width="3"/>
+<rect x="230" y="116" width="90" height="9" fill="#3a2a18"/>
+<rect x="230" y="196" width="90" height="9" fill="#3a2a18"/>
+<rect x="242" y="132" width="66" height="58" rx="6" fill="#e9dcb8" stroke="#1d150e" stroke-width="2"/>
+<text class="no" x="275" y="158" font-family="Georgia,serif" font-size="26" fill="#2a1c10" text-anchor="middle" font-weight="bold">3</text>
+<text class="k" x="275" y="183" font-family="Courier New,monospace" font-size="24" fill="#1c120a" text-anchor="middle" font-weight="bold">T</text>
+<rect x="335" y="96" width="90" height="136" rx="22" fill="#8b5a2b" stroke="#1d150e" stroke-width="3"/>
+<rect x="335" y="116" width="90" height="9" fill="#3a2a18"/>
+<rect x="335" y="196" width="90" height="9" fill="#3a2a18"/>
+<rect x="347" y="132" width="66" height="58" rx="6" fill="#e9dcb8" stroke="#1d150e" stroke-width="2"/>
+<text class="no" x="380" y="158" font-family="Georgia,serif" font-size="26" fill="#2a1c10" text-anchor="middle" font-weight="bold">4</text>
+<text class="k" x="380" y="183" font-family="Courier New,monospace" font-size="24" fill="#1c120a" text-anchor="middle" font-weight="bold">I</text>
+<rect x="440" y="96" width="90" height="136" rx="22" fill="#8b5a2b" stroke="#1d150e" stroke-width="3"/>
+<rect x="440" y="116" width="90" height="9" fill="#3a2a18"/>
+<rect x="440" y="196" width="90" height="9" fill="#3a2a18"/>
+<rect x="452" y="132" width="66" height="58" rx="6" fill="#e9dcb8" stroke="#1d150e" stroke-width="2"/>
+<text class="no" x="485" y="158" font-family="Georgia,serif" font-size="26" fill="#2a1c10" text-anchor="middle" font-weight="bold">5</text>
+<text class="k" x="485" y="183" font-family="Courier New,monospace" font-size="24" fill="#1c120a" text-anchor="middle" font-weight="bold">P</text>
+<rect x="545" y="96" width="90" height="136" rx="22" fill="#8b5a2b" stroke="#1d150e" stroke-width="3"/>
+<rect x="545" y="116" width="90" height="9" fill="#3a2a18"/>
+<rect x="545" y="196" width="90" height="9" fill="#3a2a18"/>
+<rect x="557" y="132" width="66" height="58" rx="6" fill="#e9dcb8" stroke="#1d150e" stroke-width="2"/>
+<text class="no" x="590" y="158" font-family="Georgia,serif" font-size="26" fill="#2a1c10" text-anchor="middle" font-weight="bold">6</text>
+<text class="k" x="590" y="183" font-family="Courier New,monospace" font-size="24" fill="#1c120a" text-anchor="middle" font-weight="bold">O</text>
+<rect x="655" y="176" width="92" height="56" fill="#6d4a26" stroke="#1d150e" stroke-width="3"/>
+<rect x="655" y="196" width="92" height="4" fill="#3a2a18"/>
+<text class="mark" x="701" y="222" font-family="Courier New,monospace" font-size="15" fill="#c9b48a" text-anchor="middle" letter-spacing="2">ember</text>
+<path d="M20 60 L740 60" stroke="#3b2d20" stroke-width="3"/>
+<circle cx="380" cy="40" r="10" fill="#e8b84a" fill-opacity="0.8"/>
+</svg>

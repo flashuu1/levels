@@ -16,9 +16,10 @@
     var pages = Array.isArray(data.pages) ? data.pages : [];
     var lines = data.phone && Array.isArray(data.phone.lines) ? data.phone.lines : [];
     var timers = [];
+    var S = root.Story && root.Seal ? root.Story.create({ view: view, store: store, notFound: ctx.notFound, hidden: data, updateProgress: ctx.updateProgress }) : null; // sealed story layer (optional)
 
     function later(fn, ms) { var t = setTimeout(fn, ms); timers.push(t); return t; }
-    function dispose() { timers.forEach(clearTimeout); timers = []; }
+    function dispose() { timers.forEach(clearTimeout); timers = []; if (S) S.dispose(); }
     function el(tag, cls, text) {
       var e = document.createElement(tag);
       if (cls) e.className = cls;
@@ -161,19 +162,20 @@
 
     function hiddenIndex() {
       head('Hidden', '#/', 'Start');
-      var vis = H.visiblePages(pages, store), locked = H.lockedCount(pages, store);
+      var vis = H.visiblePages(pages, store), recs = S ? S.recordList() : null; // no locked-page count: undiscovered pages leave no trace
       var ul = el('ul', 'plain');
       vis.forEach(function (p) {
         var li = el('li'), a = el('a', '', String(p.title || p.id));
         a.href = '#/hidden/' + encodeURIComponent(p.id); li.appendChild(a); ul.appendChild(li);
       });
       if (vis.length) view.appendChild(ul);
-      else view.appendChild(el('p', '', 'Nothing here yet. Keep solving levels.'));
-      if (locked > 0) view.appendChild(el('p', 'note-partial', locked + ' more page' + (locked === 1 ? ' is' : 's are') + ' locked.'));
+      if (recs) view.appendChild(recs);
+      if (!vis.length && !recs) view.appendChild(el('p', '', 'Nothing here yet. Keep solving levels.'));
       var p = el('p'), a = el('a', '', 'Try the phone line'); a.href = '#/phone'; p.appendChild(a); view.appendChild(p);
     }
 
     function hiddenPage(id) {
+      if (S && /^story-/.test(id)) return S.recordView(id);
       var page = null;
       pages.forEach(function (p) { if (p && p.id === id) page = p; });
       // Locked and unknown pages look identical so locked titles never leak.
@@ -225,6 +227,7 @@
         dispose(); playing = null; skip.hidden = true; tr.textContent = '';
         var code = inp.value.replace(/[\s\-]+/g, '');
         var line = code ? H.findLine(lines, code) : null;
+        if (!line && code && S) { var sealed = S.tryPhone(code); if (sealed) { line = sealed.payload; S.remember(sealed.payload, sealed.code); } }
         inp.value = '';
         if (!line || !Array.isArray(line.voicemail)) { screen.textContent = 'The number you have dialled is not in service.'; return; }
         screen.textContent = 'Connected: ' + String(line.name || line.id);
@@ -235,7 +238,7 @@
       };
     }
 
-    return { games: gamesIndex, game: gameRoute, hidden: hiddenIndex, hiddenPage: hiddenPage, phone: phoneView, dispose: dispose };
+    return { games: gamesIndex, game: gameRoute, hidden: hiddenIndex, hiddenPage: hiddenPage, phone: phoneView, radio: function () { return S ? S.radio() : ctx.notFound('Nothing here.'); }, terminal: function () { return S ? S.terminal() : ctx.notFound('Nothing here.'); }, safe: function () { return S ? S.safe() : ctx.notFound('Nothing here.'); }, dispose: dispose };
   }
 
   root.Views3 = { create: create };

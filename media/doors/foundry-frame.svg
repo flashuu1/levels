@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="700" height="330" role="img">
+<rect width="700" height="330" fill="#f6f1e7"/>
+<rect x="30" y="30" width="640" height="16" fill="#6b4a2b"/>
+<rect x="30" y="30" width="16" height="270" fill="#6b4a2b"/>
+<rect x="654" y="30" width="16" height="270" fill="#6b4a2b"/>
+<rect x="20" y="298" width="660" height="10" fill="#4a3a2a"/>
+<rect x="107" y="46" width="6" height="14" fill="#4a3a2a"/>
+<path class="bell" d="M99 60 C99 102.8 88.3 117.0 75.0 155.0 L145.0 155.0 C131.7 117.0 121 102.8 121 60 Z" fill="#b8892f" stroke="#6e4f12" stroke-width="2"/>
+<rect x="73.0" y="151.0" width="74.0" height="6" rx="2" fill="#8d6a1c"/>
+<text class="ins" x="110" y="99.9" font-family="Verdana,Arial,sans-serif" font-size="20" font-weight="bold" fill="#3d2a08" text-anchor="middle">U</text>
+<text class="wt" x="110" y="183.0" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#3a3a3a" text-anchor="middle">180 kg</text>
+<rect x="227" y="46" width="6" height="14" fill="#4a3a2a"/>
+<path class="bell" d="M219 60 C219 91.9 215.0 102.5 205.7 130.8 L254.3 130.8 C245.0 102.5 241 91.9 241 60 Z" fill="#b8892f" stroke="#6e4f12" stroke-width="2"/>
+<rect x="203.7" y="126.8" width="52.5" height="6" rx="2" fill="#8d6a1c"/>
+<text class="ins" x="230" y="89.7" font-family="Verdana,Arial,sans-serif" font-size="20" font-weight="bold" fill="#3d2a08" text-anchor="middle">M</text>
+<text class="wt" x="230" y="158.8" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#3a3a3a" text-anchor="middle">60 kg</text>
+<rect x="347" y="46" width="6" height="14" fill="#4a3a2a"/>
+<path class="bell" d="M339 60 C339 114.4 321.2 132.5 303.6 180.8 L396.4 180.8 C378.8 132.5 361 114.4 361 60 Z" fill="#b8892f" stroke="#6e4f12" stroke-width="2"/>
+<rect x="301.6" y="176.8" width="96.9" height="6" rx="2" fill="#8d6a1c"/>
+<text class="ins" x="350" y="110.8" font-family="Verdana,Arial,sans-serif" font-size="20" font-weight="bold" fill="#3d2a08" text-anchor="middle">D</text>
+<text class="wt" x="350" y="208.8" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#3a3a3a" text-anchor="middle">420 kg</text>
+<rect x="467" y="46" width="6" height="14" fill="#4a3a2a"/>
+<path class="bell" d="M459 60 C459 95.9 452.5 107.9 441.7 139.9 L498.3 139.9 C487.5 107.9 481 95.9 481 60 Z" fill="#b8892f" stroke="#6e4f12" stroke-width="2"/>
+<rect x="439.7" y="135.9" width="60.6" height="6" rx="2" fill="#8d6a1c"/>
+<text class="ins" x="470" y="93.5" font-family="Verdana,Arial,sans-serif" font-size="20" font-weight="bold" fill="#3d2a08" text-anchor="middle">O</text>
+<text class="wt" x="470" y="167.9" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#3a3a3a" text-anchor="middle">95 kg</text>
+<rect x="587" y="46" width="6" height="14" fill="#4a3a2a"/>
+<path class="bell" d="M579 60 C579 107.4 565.5 123.2 550.4 165.4 L629.6 165.4 C614.5 123.2 601 107.4 601 60 Z" fill="#b8892f" stroke="#6e4f12" stroke-width="2"/>
+<rect x="548.4" y="161.4" width="83.1" height="6" rx="2" fill="#8d6a1c"/>
+<text class="ins" x="590" y="104.2" font-family="Verdana,Arial,sans-serif" font-size="20" font-weight="bold" fill="#3d2a08" text-anchor="middle">L</text>
+<text class="wt" x="590" y="193.4" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#3a3a3a" text-anchor="middle">260 kg</text>
+<text class="mark" x="596" y="292" font-family="Verdana,Arial,sans-serif" font-size="11" font-style="italic" fill="#8a7a62" text-anchor="middle">tern</text>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 330" width="780" height="330" role="img">
+<rect width="780" height="330" fill="#d8cfbd"/>
+<rect y="250" width="780" height="80" fill="#9a8a70"/>
+<rect x="0" y="0" width="780" height="2" fill="#bdb29c"/>
+<rect x="0" y="50" width="780" height="2" fill="#bdb29c"/>
+<rect x="0" y="100" width="780" height="2" fill="#bdb29c"/>
+<rect x="0" y="150" width="780" height="2" fill="#bdb29c"/>
+<rect x="0" y="200" width="780" height="2" fill="#bdb29c"/>
+<text class="mark" x="716" y="60" font-family="Verdana,Arial,sans-serif" font-size="18" fill="#efe9db" text-anchor="middle">17</text>
+<g class="crate">
+<rect x="20" y="196" width="96" height="74" rx="3" fill="#a9763d" stroke="#5d3d18" stroke-width="2"/>
+<rect x="20" y="226" width="96" height="6" fill="#8a5d2a"/>
+<circle class="apple" cx="44" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<text class="no" x="68" y="296" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#2a2a2a" text-anchor="middle">1</text>
+<text class="stamp" x="68" y="258" font-family="Verdana,Arial,sans-serif" font-size="26" font-weight="bold" fill="#f3e4c8" text-anchor="middle">C</text>
+</g>
+<g class="crate">
+<rect x="126" y="196" width="96" height="74" rx="3" fill="#a9763d" stroke="#5d3d18" stroke-width="2"/>
+<rect x="126" y="226" width="96" height="6" fill="#8a5d2a"/>
+<circle class="apple" cx="150" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="174" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="198" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="150" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="174" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="198" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="150" cy="148" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="174" cy="148" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<text class="no" x="174" y="296" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#2a2a2a" text-anchor="middle">2</text>
+<text class="stamp" x="174" y="258" font-family="Verdana,Arial,sans-serif" font-size="26" font-weight="bold" fill="#f3e4c8" text-anchor="middle">L</text>
+</g>
+<g class="crate">
+<rect x="232" y="196" width="96" height="74" rx="3" fill="#a9763d" stroke="#5d3d18" stroke-width="2"/>
+<rect x="232" y="226" width="96" height="6" fill="#8a5d2a"/>
+<circle class="apple" cx="256" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="280" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="304" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="256" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<text class="no" x="280" y="296" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#2a2a2a" text-anchor="middle">3</text>
+<text class="stamp" x="280" y="258" font-family="Verdana,Arial,sans-serif" font-size="26" font-weight="bold" fill="#f3e4c8" text-anchor="middle">S</text>
+</g>
+<g class="crate">
+<rect x="338" y="196" width="96" height="74" rx="3" fill="#a9763d" stroke="#5d3d18" stroke-width="2"/>
+<rect x="338" y="226" width="96" height="6" fill="#8a5d2a"/>
+<circle class="apple" cx="362" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="386" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="410" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<text class="no" x="386" y="296" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#2a2a2a" text-anchor="middle">4</text>
+<text class="stamp" x="386" y="258" font-family="Verdana,Arial,sans-serif" font-size="26" font-weight="bold" fill="#f3e4c8" text-anchor="middle">I</text>
+</g>
+<g class="crate">
+<rect x="444" y="196" width="96" height="74" rx="3" fill="#a9763d" stroke="#5d3d18" stroke-width="2"/>
+<rect x="444" y="226" width="96" height="6" fill="#8a5d2a"/>
+<circle class="apple" cx="468" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="492" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="516" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="468" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="492" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<text class="no" x="492" y="296" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#2a2a2a" text-anchor="middle">5</text>
+<text class="stamp" x="492" y="258" font-family="Verdana,Arial,sans-serif" font-size="26" font-weight="bold" fill="#f3e4c8" text-anchor="middle">D</text>
+</g>
+<g class="crate">
+<rect x="550" y="196" width="96" height="74" rx="3" fill="#a9763d" stroke="#5d3d18" stroke-width="2"/>
+<rect x="550" y="226" width="96" height="6" fill="#8a5d2a"/>
+<circle class="apple" cx="574" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="598" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="622" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="574" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="598" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="622" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="574" cy="148" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="598" cy="148" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="622" cy="148" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<text class="no" x="598" y="296" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#2a2a2a" text-anchor="middle">6</text>
+<text class="stamp" x="598" y="258" font-family="Verdana,Arial,sans-serif" font-size="26" font-weight="bold" fill="#f3e4c8" text-anchor="middle">R</text>
+</g>
+<g class="crate">
+<rect x="656" y="196" width="96" height="74" rx="3" fill="#a9763d" stroke="#5d3d18" stroke-width="2"/>
+<rect x="656" y="226" width="96" height="6" fill="#8a5d2a"/>
+<circle class="apple" cx="680" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="704" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="728" cy="186" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="680" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="704" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="728" cy="167" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<circle class="apple" cx="680" cy="148" r="10" fill="#c0392b" stroke="#7a1f16" stroke-width="1.5"/>
+<text class="no" x="704" y="296" font-family="Verdana,Arial,sans-serif" font-size="15" fill="#2a2a2a" text-anchor="middle">7</text>
+<text class="stamp" x="704" y="258" font-family="Verdana,Arial,sans-serif" font-size="26" font-weight="bold" fill="#f3e4c8" text-anchor="middle">E</text>
+</g>
+</svg>

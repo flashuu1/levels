@@ -169,3 +169,21 @@ input[type=text], input[type=number], textarea, select { font-size:16px; } /* 16
   nav a { flex:0 0 auto; padding:0 .3rem; white-space:nowrap; min-height:40px; }
   .progress { flex:0 0 100%; }
 }
+
+/* sealed story layer: radio, terminal, vault */
+.radio-screen { min-height:2.4rem; word-break:break-all; }
+.dial-freq { font:700 2.6rem/1.1 ui-monospace,Consolas,monospace; letter-spacing:.08em; text-align:center; color:var(--acc); margin:.4rem 0; }
+.radio input[type=range] { width:100%; margin:.4rem 0 .8rem; accent-color:var(--acc); min-height:32px; }
+.dial-row input[type=number] { width:6rem; }
+.term-out { height:18rem; max-height:55vh; overflow:auto; margin:0 0 .6rem; padding:.6rem; background:#0a0c10; border:1px solid var(--line); border-radius:6px; color:#9fe8b0; font:14px/1.45 ui-monospace,Consolas,"Courier New",monospace; white-space:pre-wrap; word-break:break-word; -webkit-overflow-scrolling:touch; }
+.term-form { align-items:center; flex-wrap:wrap; }
+.term-form input { flex:1 1 8rem; min-width:0; font-family:ui-monospace,Consolas,monospace; }
+.term-prompt { font-family:ui-monospace,Consolas,monospace; color:#9fe8b0; }
+.term-quick { margin:.2rem 0 .6rem; }
+.safe-dials { display:flex; gap:.6rem; margin:.6rem 0; }
+.safe-dial { width:5rem !important; text-align:center; font:700 1.8rem ui-monospace,Consolas,monospace !important; padding:.4rem .2rem; }
+.safe-text .vm-line { margin:.6rem 0; }
+.lamp-btn { margin:.8rem 0; font-size:1.1rem; padding:.7rem 1.4rem; }
+.lamp-line { color:#ffe9a8; }
+body.lamp-lit { background:radial-gradient(ellipse at 50% -10%, #3a3216 0%, var(--bg) 60%); transition:background 2s; }
+@media (max-width:600px) { .dial-freq { font-size:2.2rem; } .dial-row { flex-direction:row; flex-wrap:wrap; } }

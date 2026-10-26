@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 270" width="560" height="252" role="img">
+<rect width="600" height="270" fill="#3b2c20"/>
+<rect x="0" y="196" width="600" height="74" fill="#5a4230"/>
+<rect x="0" y="196" width="2" height="74" fill="#4a3526"/>
+<rect x="60" y="196" width="2" height="74" fill="#4a3526"/>
+<rect x="120" y="196" width="2" height="74" fill="#4a3526"/>
+<rect x="180" y="196" width="2" height="74" fill="#4a3526"/>
+<rect x="240" y="196" width="2" height="74" fill="#4a3526"/>
+<rect x="300" y="196" width="2" height="74" fill="#4a3526"/>
+<rect x="360" y="196" width="2" height="74" fill="#4a3526"/>
+<rect x="420" y="196" width="2" height="74" fill="#4a3526"/>
+<rect x="480" y="196" width="2" height="74" fill="#4a3526"/>
+<rect x="540" y="196" width="2" height="74" fill="#4a3526"/>
+<rect x="30" y="60" width="540" height="110" rx="6" fill="#8d8f93" stroke="#2b2b2e" stroke-width="3"/>
+<rect x="30" y="60" width="540" height="14" fill="#a9abb0"/>
+<rect x="30" y="156" width="540" height="14" fill="#a9abb0"/>
+<rect x="556" y="60" width="14" height="110" fill="#6c6e73"/>
+<rect x="30" y="60" width="16" height="110" fill="#6c6e73"/>
+<g transform="translate(600 0) scale(-1 1)">
+<rect x="80" y="82" width="58" height="66" rx="3" fill="#c9ccd2" stroke="#2b2b2e" stroke-width="2"/>
+<rect x="80" y="140" width="58" height="8" fill="#9a9da4"/>
+<text class="ty" x="109" y="132" font-family="Georgia,serif" font-size="46" font-weight="bold" fill="#1b1b1e" text-anchor="middle">A</text>
+<rect x="152" y="82" width="58" height="66" rx="3" fill="#c9ccd2" stroke="#2b2b2e" stroke-width="2"/>
+<rect x="152" y="140" width="58" height="8" fill="#9a9da4"/>
+<text class="ty" x="181" y="132" font-family="Georgia,serif" font-size="46" font-weight="bold" fill="#1b1b1e" text-anchor="middle">Y</text>
+<rect x="224" y="82" width="58" height="66" rx="3" fill="#c9ccd2" stroke="#2b2b2e" stroke-width="2"/>
+<rect x="224" y="140" width="58" height="8" fill="#9a9da4"/>
+<text class="ty" x="253" y="132" font-family="Georgia,serif" font-size="46" font-weight="bold" fill="#1b1b1e" text-anchor="middle">L</text>
+<rect x="296" y="82" width="58" height="66" rx="3" fill="#c9ccd2" stroke="#2b2b2e" stroke-width="2"/>
+<rect x="296" y="140" width="58" height="8" fill="#9a9da4"/>
+<text class="ty" x="325" y="132" font-family="Georgia,serif" font-size="46" font-weight="bold" fill="#1b1b1e" text-anchor="middle">E</text>
+<rect x="368" y="82" width="58" height="66" rx="3" fill="#c9ccd2" stroke="#2b2b2e" stroke-width="2"/>
+<rect x="368" y="140" width="58" height="8" fill="#9a9da4"/>
+<text class="ty" x="397" y="132" font-family="Georgia,serif" font-size="46" font-weight="bold" fill="#1b1b1e" text-anchor="middle">L</text>
+<rect x="440" y="82" width="58" height="66" rx="3" fill="#c9ccd2" stroke="#2b2b2e" stroke-width="2"/>
+<rect x="440" y="140" width="58" height="8" fill="#9a9da4"/>
+<text class="ty" x="469" y="132" font-family="Georgia,serif" font-size="46" font-weight="bold" fill="#1b1b1e" text-anchor="middle">G</text>
+</g>
+<rect x="214" y="30" width="172" height="24" rx="4" fill="#c9a24a" stroke="#6b4e12" stroke-width="2"/>
+<text class="plate" x="300" y="48" font-family="Georgia,serif" font-size="16" fill="#3a2a08" text-anchor="middle" letter-spacing="3">CHASE</text>
+<rect x="40" y="212" width="96" height="44" rx="3" fill="#7a5a3c" stroke="#2a1d12" stroke-width="2"/>
+<rect x="70" y="222" width="36" height="12" rx="2" fill="#d9b55a" stroke="#6b4e12"/>
+<rect x="148" y="212" width="96" height="44" rx="3" fill="#7a5a3c" stroke="#2a1d12" stroke-width="2"/>
+<rect x="178" y="222" width="36" height="12" rx="2" fill="#d9b55a" stroke="#6b4e12"/>
+<rect x="256" y="212" width="96" height="44" rx="3" fill="#7a5a3c" stroke="#2a1d12" stroke-width="2"/>
+<rect x="286" y="222" width="36" height="12" rx="2" fill="#d9b55a" stroke="#6b4e12"/>
+<rect x="364" y="212" width="96" height="44" rx="3" fill="#7a5a3c" stroke="#2a1d12" stroke-width="2"/>
+<rect x="394" y="222" width="36" height="12" rx="2" fill="#d9b55a" stroke="#6b4e12"/>
+<rect x="472" y="212" width="96" height="44" rx="3" fill="#7a5a3c" stroke="#2a1d12" stroke-width="2"/>
+<rect x="502" y="222" width="36" height="12" rx="2" fill="#d9b55a" stroke="#6b4e12"/>
+<text class="mark" x="460" y="250" font-family="Georgia,serif" font-size="11" fill="#9b8466" text-anchor="middle">42</text>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 300" width="940" height="300" role="img">
+<rect width="940" height="300" fill="#fbf8f1"/>
+<rect x="120" y="50" width="820" height="30" fill="#f1ead9"/>
+<text class="lbl" x="110" y="70" font-family="Verdana,Arial,sans-serif" font-size="13" fill="#555555" text-anchor="end">HIGHEST</text>
+<rect x="120" y="90" width="820" height="30" fill="#e9eef0"/>
+<text class="lbl" x="110" y="110" font-family="Verdana,Arial,sans-serif" font-size="13" fill="#555555" text-anchor="end">HIGH</text>
+<rect x="120" y="130" width="820" height="30" fill="#f1ead9"/>
+<text class="lbl" x="110" y="150" font-family="Verdana,Arial,sans-serif" font-size="13" fill="#555555" text-anchor="end">MIDDLE</text>
+<rect x="120" y="170" width="820" height="30" fill="#e9eef0"/>
+<text class="lbl" x="110" y="190" font-family="Verdana,Arial,sans-serif" font-size="13" fill="#555555" text-anchor="end">LOW</text>
+<rect x="120" y="210" width="820" height="30" fill="#f1ead9"/>
+<text class="lbl" x="110" y="230" font-family="Verdana,Arial,sans-serif" font-size="13" fill="#555555" text-anchor="end">LOWEST</text>
+<text class="lbl" x="130" y="38" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#555555" text-anchor="start">test ring</text>
+<text class="lbl" x="410" y="38" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#555555" text-anchor="start">message</text>
+<circle class="hit" cx="154.1" cy="145" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="187.0" cy="65" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="219.9" cy="225" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="252.8" cy="105" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="285.7" cy="185" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="419.6" cy="145" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="447.8" cy="185" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="490.1" cy="225" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="518.3" cy="225" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="560.6" cy="185" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="588.8" cy="225" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="631.1" cy="65" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="659.3" cy="65" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="701.6" cy="185" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="729.8" cy="145" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="772.1" cy="185" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="800.3" cy="65" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="842.6" cy="105" r="8" fill="#8a5a1a"/>
+<circle class="hit" cx="870.8" cy="65" r="8" fill="#8a5a1a"/>
+</svg>
