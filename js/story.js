@@ -117,7 +117,12 @@
       };
       skip.onclick = function () { if (playing) playing.skip(); skip.hidden = true; };
       [down, up, go].forEach(function (b) { row.appendChild(b); });
-      [screen, freqBox, slider, num, row, skip, tr].forEach(function (n) { panel.appendChild(n); });
+      var saved = found().filter(function (r) { return r.kind === 'radio' && r.freq; }).sort(function (a, b) { return parseFloat(a.freq) - parseFloat(b.freq); });
+      var chips = el('div', 'chips radio-found');
+      saved.forEach(function (r) { var b = el('button', 'chip', r.freq); b.type = 'button'; b.title = 'Tune to ' + r.freq; b.onclick = function () { setF(r.freq); go.onclick(); }; chips.appendChild(b); });
+      [screen, freqBox, slider, num, row].forEach(function (n) { panel.appendChild(n); });
+      if (saved.length) { panel.appendChild(el('p', 'mute', 'Stations you have found:')); panel.appendChild(chips); }
+      [skip, tr].forEach(function (n) { panel.appendChild(n); });
       view.appendChild(panel);
       view.appendChild(el('p', 'mute', 'A wireless set with one dial. Most of the band is static.'));
     }
@@ -236,12 +241,13 @@
         var code = safeCode(inputs.map(function (i) { return i.value; })), r = Seal.tryOpen(channel(story, 'safe'), code);
         if (!r) { msg.className = 'msg err'; msg.textContent = 'The dials turn and stop. Nothing gives.'; return; }
         msg.className = 'msg ok'; msg.textContent = 'Click. The vault opens.';
+        dials.hidden = true; go.hidden = true;
         remember(r.payload, code); reveal(r.payload);
       };
       [dials, go, msg, entry].forEach(function (n) { panel.appendChild(n); });
       view.appendChild(panel);
       var saved = store.getNote('seal:last-entry'), r0 = saved ? Seal.tryOpen(channel(story, 'safe'), saved) : null;
-      if (r0) { msg.className = 'msg ok'; msg.textContent = 'The vault stands open.'; reveal(r0.payload); }
+      if (r0) { dials.hidden = true; go.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The vault stands open.'; reveal(r0.payload); }
     }
 
     // ---- recovered records ----
