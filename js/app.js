@@ -71,7 +71,7 @@
   try { v3 = Views3.create({ view: view, store: store, esc: esc, notFound: notFound, hidden: window.LEVELS_DATA && window.LEVELS_DATA.hidden, updateProgress: updateProgress }); } catch (e) { v3 = null; if (window.console) console.error('Views3 failed to load:', e); }
   if (!v3) {
     var failed3 = function () { view.innerHTML = '<h1>Unavailable</h1><p>This section failed to load.</p>'; };
-    v3 = { games: failed3, game: failed3, hidden: failed3, hiddenPage: failed3, phone: failed3, radio: failed3, terminal: failed3, safe: failed3, dispose: function () {} };
+    v3 = { games: failed3, game: failed3, hidden: failed3, hiddenPage: failed3, phone: failed3, radio: failed3, greenhouse: failed3, terminal: failed3, safe: failed3, dispose: function () {} };
   }
   function param(raw) { try { return decodeURIComponent(raw); } catch (e) { return raw; } }
 
@@ -85,6 +85,10 @@
       '<button id="exp">Export progress</button> <label class="btn" for="imp">Import progress</label><input id="imp" type="file" accept=".json,application/json" hidden>' +
       '<p id="pmsg" class="msg"></p></div>';
     v2.settingsPanel(view);
+    var done = [];
+    if (store.isSolved('story-finale')) done.push('The lamp is lit.' + (store.getNote('roll-name') ? ' Keeper of the lamp: ' + store.getNote('roll-name') + '.' : ''));
+    if (store.isSolved('story-bloom')) done.push('The orchard is in bloom.');
+    if (done.length) { var tp = document.createElement('div'); tp.className = 'panel testament-panel'; tp.innerHTML = '<h2>Testament</h2>' + done.map(function (d) { return '<p>' + esc(d) + '</p>'; }).join(''); view.appendChild(tp); }
     document.getElementById('exp').onclick = function () {
       var url = URL.createObjectURL(new Blob([store.exportJSON()], { type: 'application/json' }));
       var a = document.createElement('a');
@@ -218,6 +222,7 @@
     if (timer) { clearInterval(timer); timer = null; }
     v3.dispose();
     document.body.classList.remove('level-page');
+    if (window.Story && Story.applyTestament) Story.applyTestament(store); // the lamp / orchard testament follows you on every page
     if (!window.LEVELS_DATA) {
       view.innerHTML = '<h1>Data not built</h1><div class="panel" id="nodata" role="alert"><p>Data not built — run <code>python tools/build_data.py</code></p></div>';
       updateProgress();
@@ -243,6 +248,7 @@
     else if (hash === '/phone') v3.phone();
     else if (hash === '/wireless') v3.radio();
     else if (hash === '/terminal') v3.terminal();
+    else if (hash === '/greenhouse') v3.greenhouse();
     else if (hash === '/safe') v3.safe();
     else if (hash === '/profile') profileView();
     else if ((m = /^\/level\/([^/]+)$/.exec(hash))) {

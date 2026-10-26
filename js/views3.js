@@ -162,15 +162,14 @@
 
     function hiddenIndex() {
       head('Hidden', '#/', 'Start');
-      var vis = H.visiblePages(pages, store), recs = S ? S.recordList() : null; // no locked-page count: undiscovered pages leave no trace
+      var vis = H.visiblePages(pages, store); // each story is a hub page; no locked-page count: undiscovered stories leave no trace
       var ul = el('ul', 'plain');
       vis.forEach(function (p) {
         var li = el('li'), a = el('a', '', String(p.title || p.id));
         a.href = '#/hidden/' + encodeURIComponent(p.id); li.appendChild(a); ul.appendChild(li);
       });
       if (vis.length) view.appendChild(ul);
-      if (recs) view.appendChild(recs);
-      if (!vis.length && !recs) view.appendChild(el('p', '', 'Nothing here yet. Keep solving levels.'));
+      if (!vis.length) view.appendChild(el('p', '', 'Nothing here yet. Keep solving levels.'));
       var p = el('p'), a = el('a', '', 'Try the phone line'); a.href = '#/phone'; p.appendChild(a); view.appendChild(p);
     }
 
@@ -184,6 +183,8 @@
       var body = el('div', 'panel');
       body.innerHTML = String(page.body_html || ''); // our own tracked data only
       view.appendChild(body);
+      var extra = S ? S.hub(id === 'keepers-log' ? 'keeper' : id === 'gardeners-verse' ? 'gardener' : '') : null; // everything found for this story
+      if (extra) view.appendChild(extra);
     }
 
     function phoneView() {
@@ -238,7 +239,7 @@
       };
     }
 
-    return { games: gamesIndex, game: gameRoute, hidden: hiddenIndex, hiddenPage: hiddenPage, phone: phoneView, radio: function () { return S ? S.radio() : ctx.notFound('Nothing here.'); }, terminal: function () { return S ? S.terminal() : ctx.notFound('Nothing here.'); }, safe: function () { return S ? S.safe() : ctx.notFound('Nothing here.'); }, dispose: dispose };
+    return { games: gamesIndex, game: gameRoute, hidden: hiddenIndex, hiddenPage: hiddenPage, phone: phoneView, greenhouse: function () { return S ? S.greenhouse() : ctx.notFound('Nothing here.'); }, radio: function () { return S ? S.radio() : ctx.notFound('Nothing here.'); }, terminal: function () { return S ? S.terminal() : ctx.notFound('Nothing here.'); }, safe: function () { return S ? S.safe() : ctx.notFound('Nothing here.'); }, dispose: dispose };
   }
 
   root.Views3 = { create: create };
