@@ -256,7 +256,10 @@ body.orchard-bloom .brand::before { content:"\2740"; color:#7fd18a; margin-right
 .dial-knob { position:absolute; left:50%; top:50%; width:104px; height:104px; margin:-52px 0 0 -52px; }
 .dial-readout { font:700 1.7rem ui-monospace,Consolas,monospace; color:#f2b84b; background:#0d0f13; border:2px solid #444c5c; border-radius:8px; padding:.1rem .8rem; letter-spacing:.1em; }
 .dial-steps { display:flex; gap:.6rem; justify-content:center; margin:.8rem 0 .4rem; } .step-lamp { width:14px; height:14px; border-radius:50%; background:#2b2f38; border:2px solid #6e7684; } .step-lamp.on { background:#f2b84b; box-shadow:0 0 10px 2px rgba(242,184,75,.8); }
-.lever { background:linear-gradient(#c9ced8,#8f97a6); color:#1b1f27; border:2px solid #5b6372; border-radius:999px; padding:.55rem 1.3rem; }
+.dial-readout { position:relative; overflow:hidden; transition:background .2s, color .2s; }
+.dial-readout::after { content:""; position:absolute; left:0; bottom:0; height:4px; width:0; background:#f2b84b; }
+.dial-readout.settling::after { animation:dial-settle 1.1s linear forwards; } @keyframes dial-settle { to { width:100%; } }
+.dial-readout.clicked { background:#3b300f; color:#fff; box-shadow:0 0 16px 4px rgba(242,184,75,.7); } .dial-readout.slipped { animation:shake .35s; color:#f85149; }
 .dial-guide { text-align:center; min-height:1.5em; } .safe-numbers { max-width:22rem; margin:.4rem auto; } .safe-numbers .safe-dials { margin:.6rem 0; }
 
 /* scenes */

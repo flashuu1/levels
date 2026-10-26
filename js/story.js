@@ -235,9 +235,9 @@
         return d;
       });
       var go = el('button', '', 'Try the vault'); go.type = 'button';
-      var door = el('div', 'vault-door'), dial = W ? W.vaultDial({ onChange: function () { guide.textContent = ''; } }) : null, guide = el('p', 'mute dial-guide');
-      var lever = el('button', 'lever', 'Lock in this number'); lever.type = 'button';
-      if (dial) { door.appendChild(dial.el); door.appendChild(status); door.appendChild(lever); }
+      var door = el('div', 'vault-door'), guide = el('p', 'mute dial-guide'), dial = W ? W.vaultDial({ onSettle: settle }) : null;
+      var again = el('button', 'chip', 'Start over'); again.type = 'button';
+      if (dial) { door.appendChild(dial.el); door.appendChild(status); door.appendChild(again); cleanups.push(dial.destroy); }
       var keypad = el('details', 'safe-numbers'), sum = el('summary', '', 'Type the numbers instead'), dials = el('div', 'safe-dials');
       keypad.appendChild(sum); inputs.forEach(function (i) { dials.appendChild(i); }); keypad.appendChild(dials); keypad.appendChild(go); keypad.open = !dial;
       function paintSteps() { lamps.forEach(function (l, i) { l.classList.toggle('on', i < steps.length); }); }
@@ -285,20 +285,23 @@
         return true;
       }
       go.onclick = function () { attempt(safeCode(inputs.map(function (i) { return i.value; }))); };
-      lever.onclick = function () {
+      var WAY = { L: 'left (anticlockwise)', R: 'right (clockwise)' };
+      // The dial calls this when you stop on a number for a moment. Returns true if it clicked in.
+      function settle(n, d) {
+        if (steps.length >= 3) return false;
         var want = DIAL_TURNS[steps.length];
-        if (dial.getDir() !== want) { steps = []; paintSteps(); dial.reset(); msg.className = 'msg err'; msg.textContent = 'The tumblers slip. Start again, and mind which way you turn.'; return; }
-        steps.push(dial.getNumber()); paintSteps(); dial.reset();
-        msg.className = 'msg'; msg.textContent = '';
-        if (steps.length < 3) { guide.textContent = 'Click. Now turn ' + (DIAL_TURNS[steps.length] === 'R' ? 'right (clockwise)' : 'left (anticlockwise)') + ' to the next number.'; return; }
-        var code = safeCode(steps); steps = []; paintSteps();
-        if (!attempt(code)) guide.textContent = 'Left to the first number, right to the second, left to the third.';
-      };
-      if (dial) guide.textContent = 'Turn the dial left to the first number, lock it in, then right, then left.';
+        if (d !== want) { msg.className = 'msg'; msg.textContent = 'No click. Come at this number turning ' + WAY[want] + ': go a little past it and back.'; return false; }
+        steps.push(n); paintSteps(); dial.reset(); msg.className = 'msg'; msg.textContent = '';
+        if (steps.length < 3) { guide.textContent = 'Click. Now turn ' + WAY[DIAL_TURNS[steps.length]] + ' to the next number, and stop on it.'; return true; }
+        var code = safeCode(steps); steps = []; setTimeout(function () { paintSteps(); if (!attempt(code)) guide.textContent = 'Turn ' + WAY.L + ' to the first number, ' + WAY.R + ' to the second, ' + WAY.L + ' to the third.'; }, 450);
+        return true;
+      }
+      again.onclick = function () { steps = []; paintSteps(); dial.reset(); msg.textContent = ''; guide.textContent = 'Start again: turn ' + WAY.L + ' to the first number and stop on it.'; };
+      if (dial) guide.textContent = 'Spin the dial. Turn ' + WAY.L + ' to the first number and stop on it: it clicks in by itself. Then ' + WAY.R + ', then ' + WAY.L + '.';
       [door, guide, msg, keypad, entry].forEach(function (n) { panel.appendChild(n); });
       view.appendChild(panel);
       var saved = store.getNote('seal:last-entry'), r0 = saved ? Seal.tryOpen(channel(story, 'safe'), saved) : null;
-      if (r0) { door.hidden = true; keypad.hidden = true; lever.hidden = true; guide.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The vault stands open.'; reveal(r0.payload); }
+      if (r0) { door.hidden = true; keypad.hidden = true; guide.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The vault stands open.'; reveal(r0.payload); }
     }
 
     // ---- recovered records ----

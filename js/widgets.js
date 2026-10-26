@@ -97,18 +97,31 @@
       if (big) { var t = svg('text', { x: 100 + Math.cos(rad) * 66, y: 100 + Math.sin(rad) * 66 + 4, class: 'dial-num', 'text-anchor': 'middle' }); t.textContent = String(n); s.appendChild(t); }
     }
     s.appendChild(svg('path', { d: 'M100 4 L94 16 L106 16 Z', class: 'dial-pointer' }));
+    var SETTLE_MS = 1100, settleTimer = null, readoutEl = null;
+    // Stop on a number and wait a moment: it clicks in. The direction you were last turning is what counts (like a real safe).
+    function arm() {
+      clearTimeout(settleTimer);
+      if (readoutEl) { readoutEl.classList.remove('settling'); void readoutEl.offsetWidth; readoutEl.classList.add('settling'); }
+      settleTimer = setTimeout(function () {
+        if (readoutEl) readoutEl.classList.remove('settling');
+        if (!dir || !opts.onSettle) return; // not moved yet: nothing to click in
+        var ok = opts.onSettle(number, dir);
+        if (readoutEl) { readoutEl.classList.add(ok ? 'clicked' : 'slipped'); setTimeout(function () { readoutEl.classList.remove('clicked', 'slipped'); }, 500); }
+        if (ok && root.navigator && navigator.vibrate) { try { navigator.vibrate(15); } catch (e) { /* ok */ } }
+      }, SETTLE_MS);
+    }
     var kn = knob({ label: 'Combination dial', bounded: null, area: face,
-      onTurn: function (d, rot) { if (Math.abs(d) > 0.2) dir = d > 0 ? 'R' : 'L'; set(Math.round(rot / 3.6), false, true); },
-      onKey: function (k) { dir = k > 0 ? 'R' : 'L'; kn.setRotation(kn.getRotation() + k * 3.6); set(Math.round(kn.getRotation() / 3.6), false, true); } });
+      onTurn: function (d, rot) { if (Math.abs(d) > 0.2) dir = d > 0 ? 'R' : 'L'; set(Math.round(rot / 3.6), false, true); arm(); },
+      onKey: function (k) { dir = k > 0 ? 'R' : 'L'; kn.setRotation(kn.getRotation() + k * 3.6); set(Math.round(kn.getRotation() / 3.6), false, true); arm(); } });
     kn.el.classList.add('dial-knob');
     face.appendChild(s); face.appendChild(kn.el); box.appendChild(face);
-    var readout = el('div', 'dial-readout', '00'); readout.setAttribute('aria-live', 'off'); box.appendChild(readout);
+    var readout = el('div', 'dial-readout', '00'); readout.setAttribute('aria-live', 'off'); box.appendChild(readout); readoutEl = readout;
     function set(v, fromKnob, fromTurn) {
       number = ((v % 100) + 100) % 100; readout.textContent = (number < 10 ? '0' : '') + number; kn.aria(number);
       if (opts.onChange) opts.onChange(number, dir);
     }
     kn.aria(0);
-    return { el: box, getNumber: function () { return number; }, getDir: function () { return dir; }, reset: function () { dir = ''; } };
+    return { el: box, getNumber: function () { return number; }, getDir: function () { return dir; }, reset: function () { dir = ''; clearTimeout(settleTimer); readout.classList.remove('settling'); }, destroy: function () { clearTimeout(settleTimer); } };
   }
 
   // ---- full-screen scenes ----
