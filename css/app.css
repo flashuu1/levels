@@ -255,7 +255,7 @@ body.orchard-bloom .brand::before { content:"\2740"; color:#7fd18a; margin-right
 .dial-readout { font:700 1.7rem ui-monospace,Consolas,monospace; color:#f2b84b; background:#0d0f13; border:2px solid #444c5c; border-radius:8px; padding:.1rem .8rem; letter-spacing:.1em; }
 .dial-steps { display:flex; gap:.6rem; justify-content:center; margin:.8rem 0 .4rem; } .step-lamp { width:14px; height:14px; border-radius:50%; background:#2b2f38; border:2px solid #6e7684; } .step-lamp.on { background:#f2b84b; box-shadow:0 0 10px 2px rgba(242,184,75,.8); }
 .lever { background:linear-gradient(#c9ced8,#8f97a6); color:#1b1f27; border:2px solid #5b6372; border-radius:999px; padding:.55rem 1.3rem; }
-.dial-hint { text-align:center; min-height:1.5em; } .safe-numbers { max-width:22rem; margin:.4rem auto; } .safe-numbers .safe-dials { margin:.6rem 0; }
+.dial-guide { text-align:center; min-height:1.5em; } .safe-numbers { max-width:22rem; margin:.4rem auto; } .safe-numbers .safe-dials { margin:.6rem 0; }
 
 /* scenes */
 .scene { position:fixed; inset:0; z-index:100; overflow:hidden; display:flex; align-items:flex-start; justify-content:center; animation:scene-in 1s ease both; }

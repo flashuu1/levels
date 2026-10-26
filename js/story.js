@@ -220,7 +220,7 @@
         return d;
       });
       var go = el('button', '', 'Try the vault'); go.type = 'button';
-      var door = el('div', 'vault-door'), dial = W ? W.vaultDial({ onChange: function () { hint.textContent = ''; } }) : null, hint = el('p', 'mute dial-hint');
+      var door = el('div', 'vault-door'), dial = W ? W.vaultDial({ onChange: function () { guide.textContent = ''; } }) : null, guide = el('p', 'mute dial-guide');
       var lever = el('button', 'lever', 'Lock in this number'); lever.type = 'button';
       if (dial) { door.appendChild(dial.el); door.appendChild(status); door.appendChild(lever); }
       var keypad = el('details', 'safe-numbers'), sum = el('summary', '', 'Type the numbers instead'), dials = el('div', 'safe-dials');
@@ -275,15 +275,15 @@
         if (dial.getDir() !== want) { steps = []; paintSteps(); dial.reset(); msg.className = 'msg err'; msg.textContent = 'The tumblers slip. Start again, and mind which way you turn.'; return; }
         steps.push(dial.getNumber()); paintSteps(); dial.reset();
         msg.className = 'msg'; msg.textContent = '';
-        if (steps.length < 3) { hint.textContent = 'Click. Now turn ' + (DIAL_TURNS[steps.length] === 'R' ? 'right (clockwise)' : 'left (anticlockwise)') + ' to the next number.'; return; }
+        if (steps.length < 3) { guide.textContent = 'Click. Now turn ' + (DIAL_TURNS[steps.length] === 'R' ? 'right (clockwise)' : 'left (anticlockwise)') + ' to the next number.'; return; }
         var code = safeCode(steps); steps = []; paintSteps();
-        if (!attempt(code)) hint.textContent = 'Left to the first number, right to the second, left to the third.';
+        if (!attempt(code)) guide.textContent = 'Left to the first number, right to the second, left to the third.';
       };
-      if (dial) hint.textContent = 'Turn the dial left to the first number, lock it in, then right, then left.';
-      [door, hint, msg, keypad, entry].forEach(function (n) { panel.appendChild(n); });
+      if (dial) guide.textContent = 'Turn the dial left to the first number, lock it in, then right, then left.';
+      [door, guide, msg, keypad, entry].forEach(function (n) { panel.appendChild(n); });
       view.appendChild(panel);
       var saved = store.getNote('seal:last-entry'), r0 = saved ? Seal.tryOpen(channel(story, 'safe'), saved) : null;
-      if (r0) { door.classList.add('open'); keypad.hidden = true; lever.hidden = true; hint.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The vault stands open.'; reveal(r0.payload); }
+      if (r0) { door.classList.add('open'); keypad.hidden = true; lever.hidden = true; guide.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The vault stands open.'; reveal(r0.payload); }
     }
 
     // ---- recovered records ----
