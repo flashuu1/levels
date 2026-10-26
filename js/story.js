@@ -27,6 +27,21 @@
     for (var i = 0; i < cands.length; i++) { var r = Seal.tryOpen(channel(story, 'phone'), cands[i]); if (r) return { payload: r.payload, code: cands[i] }; }
     return null;
   }
+// The second story knows whether you signed the roll: the Gardener counts your name among the trees.
+  function personalize(payload, name) {
+    if (!payload || payload.arc !== 'gardener') return payload;
+    var swap = function (s) {
+      s = String(s);
+      s = s.replace('Seventy-three of them in the walled garden, and I have tended every one.', name
+        ? 'Seventy-three of them in the walled garden, and a seventy-fourth by the gate since you signed the roll: ' + name + '. I have tended every one.'
+        : 'Seventy-three of them in the walled garden, and a bare patch by the gate in case anyone ever signs the roll. I have tended every one.');
+      if (name) s = s.replace('seventy-three trees let go of their petals at once.', 'seventy-four trees let go of their petals at once, the youngest by the gate.');
+      return s;
+    };
+    var out = JSON.parse(JSON.stringify(payload));
+    ['lines', 'voicemail', 'finale'].forEach(function (k) { if (Array.isArray(out[k])) out[k] = out[k].map(swap); });
+    return out;
+  }
   function safeCode(dials) { return dials.map(function (d) { var n = parseInt(d, 10); return isNaN(n) ? '' : (n < 10 ? '0' : '') + n; }).join(''); }
   // Terminal commands -> { type, ... } (no side effects)
   function parseCommand(line) {
@@ -49,7 +64,7 @@
     document.body.classList.toggle('lamp-lit', !!store.isSolved('story-finale'));
     document.body.classList.toggle('orchard-bloom', !!store.isSolved('story-bloom'));
   }
-  var api = { applyTestament: applyTestament, ARC_HUB: ARC_HUB, allEntries: allEntries, formatFreq: formatFreq, phoneCandidates: phoneCandidates, tryPhone: tryPhone, safeCode: safeCode, parseCommand: parseCommand, KIND_ORDER: KIND_ORDER, KIND_TITLE: KIND_TITLE };
+  var api = { personalize: personalize, applyTestament: applyTestament, ARC_HUB: ARC_HUB, allEntries: allEntries, formatFreq: formatFreq, phoneCandidates: phoneCandidates, tryPhone: tryPhone, safeCode: safeCode, parseCommand: parseCommand, KIND_ORDER: KIND_ORDER, KIND_TITLE: KIND_TITLE };
 
   // ---- views (browser only) ----
   api.create = function (ctx) {
@@ -74,7 +89,7 @@
       store.solvedIds().forEach(function (k) {
         if (k.indexOf('story-') !== 0) return;
         var code = store.getNote('seal:' + k.slice(6)); if (!code) return;
-        var r = Seal.tryOpen(entries, code); if (r) { r.payload.at = store.solvedAt ? store.solvedAt(k) : 0; out.push(r.payload); }
+        var r = Seal.tryOpen(entries, code); if (r) { var pl = personalize(r.payload, store.getNote('roll-name')); pl.at = store.solvedAt ? store.solvedAt(k) : 0; out.push(pl); }
       });
       out.sort(function (a, b) { return a.at - b.at; });
       return out;
@@ -265,7 +280,7 @@
         var r = Seal.tryOpen(channel(story, 'safe'), code);
         if (!r) { msg.className = 'msg err'; msg.textContent = 'The dials turn and stop. Nothing gives.'; return false; }
         msg.className = 'msg ok'; msg.textContent = 'Click. The vault opens.';
-        door.classList.add('open'); keypad.hidden = true; go.hidden = true;
+        door.classList.add('open'); keypad.hidden = true; go.hidden = true; guide.hidden = true; later(function () { door.hidden = true; }, 1400);
         remember(r.payload, code); reveal(r.payload);
         return true;
       }
@@ -283,7 +298,7 @@
       [door, guide, msg, keypad, entry].forEach(function (n) { panel.appendChild(n); });
       view.appendChild(panel);
       var saved = store.getNote('seal:last-entry'), r0 = saved ? Seal.tryOpen(channel(story, 'safe'), saved) : null;
-      if (r0) { door.classList.add('open'); keypad.hidden = true; lever.hidden = true; guide.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The vault stands open.'; reveal(r0.payload); }
+      if (r0) { door.hidden = true; keypad.hidden = true; lever.hidden = true; guide.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The vault stands open.'; reveal(r0.payload); }
     }
 
     // ---- recovered records ----
@@ -374,15 +389,15 @@
         if (!r) { msg.className = 'msg err'; msg.textContent = 'The saplings droop. Something is not planted where it belongs.'; return; }
         msg.className = 'msg ok'; msg.textContent = 'The trees lift their branches.';
         plots.hidden = true; go.hidden = true;
-        remember(r.payload, code); reveal(r.payload);
+        remember(r.payload, code); reveal(personalize(r.payload, store.getNote('roll-name')));
       };
       [plots, go, msg, entry].forEach(function (n) { panel.appendChild(n); });
       view.appendChild(panel);
       var saved = store.getNote('seal:orchard'), r0 = saved ? Seal.tryOpen(channel(story, 'greenhouse'), saved) : null;
-      if (r0) { plots.hidden = true; go.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The orchard is planted.'; reveal(r0.payload); }
+      if (r0) { plots.hidden = true; go.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The orchard is planted.'; reveal(personalize(r0.payload, store.getNote('roll-name'))); }
     }
 
-    return { found: found, progress: progress, greenhouse: greenhouseView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { return tryPhone(story, code); }, remember: remember, dispose: disposeAll };
+    return { found: found, progress: progress, greenhouse: greenhouseView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store.getNote('roll-name')); return r; }, remember: remember, dispose: disposeAll };
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Story = api;

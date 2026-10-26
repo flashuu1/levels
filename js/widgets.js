@@ -19,19 +19,20 @@
     spin.appendChild(svg('line', { x1: 50, y1: 10, x2: 50, y2: 30, class: 'knob-mark' }));
     s.appendChild(spin); box.appendChild(s);
     box.tabIndex = 0; box.setAttribute('role', 'slider'); box.setAttribute('aria-label', opts.label || 'Knob');
-    var rotation = 0, last = null, dragging = false;
+    var rotation = 0, last = null, dragging = false, area = opts.area || box; // area: the element you may grab (the whole dial face, say)
     function paint() { spin.setAttribute('transform', 'rotate(' + rotation + ' 50 50)'); }
-    function angleOf(ev) { var r = box.getBoundingClientRect(); return Math.atan2(ev.clientY - (r.top + r.height / 2), ev.clientX - (r.left + r.width / 2)) * 180 / Math.PI; }
+    function angleOf(ev) { var r = area.getBoundingClientRect(); return Math.atan2(ev.clientY - (r.top + r.height / 2), ev.clientX - (r.left + r.width / 2)) * 180 / Math.PI; }
     function turn(d) {
       var b = opts.bounded, next = rotation + d;
       if (b) next = Math.max(b.degMin, Math.min(b.degMax, next));
       var eff = next - rotation; rotation = next; paint();
       if (eff !== 0 || !b) opts.onTurn(eff, rotation);
     }
-    box.addEventListener('pointerdown', function (ev) { dragging = true; last = angleOf(ev); try { box.setPointerCapture(ev.pointerId); } catch (e) { /* ok */ } box.classList.add('turning'); ev.preventDefault(); });
-    box.addEventListener('pointermove', function (ev) { if (!dragging) return; var a = angleOf(ev), d = wrap180(a - last); last = a; if (d) turn(d); });
+    area.style.touchAction = 'none';
+    area.addEventListener('pointerdown', function (ev) { dragging = true; last = angleOf(ev); try { area.setPointerCapture(ev.pointerId); } catch (e) { /* ok */ } box.classList.add('turning'); try { box.focus({ preventScroll: true }); } catch (e) { /* ok */ } ev.preventDefault(); });
+    area.addEventListener('pointermove', function (ev) { if (!dragging) return; var a = angleOf(ev), d = wrap180(a - last); last = a; if (d) turn(d); });
     function up() { dragging = false; box.classList.remove('turning'); }
-    box.addEventListener('pointerup', up); box.addEventListener('pointercancel', up);
+    area.addEventListener('pointerup', up); area.addEventListener('pointercancel', up);
     box.addEventListener('keydown', function (ev) {
       var sign = ev.key === 'ArrowRight' || ev.key === 'ArrowUp' ? 1 : ev.key === 'ArrowLeft' || ev.key === 'ArrowDown' ? -1 : 0;
       if (!sign) return; ev.preventDefault();
@@ -96,7 +97,7 @@
       if (big) { var t = svg('text', { x: 100 + Math.cos(rad) * 66, y: 100 + Math.sin(rad) * 66 + 4, class: 'dial-num', 'text-anchor': 'middle' }); t.textContent = String(n); s.appendChild(t); }
     }
     s.appendChild(svg('path', { d: 'M100 4 L94 16 L106 16 Z', class: 'dial-pointer' }));
-    var kn = knob({ label: 'Combination dial', bounded: null,
+    var kn = knob({ label: 'Combination dial', bounded: null, area: face,
       onTurn: function (d, rot) { if (Math.abs(d) > 0.2) dir = d > 0 ? 'R' : 'L'; set(Math.round(rot / 3.6), false, true); },
       onKey: function (k) { dir = k > 0 ? 'R' : 'L'; kn.setRotation(kn.getRotation() + k * 3.6); set(Math.round(kn.getRotation() / 3.6), false, true); } });
     kn.el.classList.add('dial-knob');
