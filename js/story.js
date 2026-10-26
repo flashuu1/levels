@@ -10,7 +10,7 @@
   // ---- pure helpers (Node-testable) ----
   function allEntries(story) {
     var out = [];
-    ['wireless', 'terminal', 'phone', 'safe'].forEach(function (k) { if (story && Array.isArray(story[k])) story[k].forEach(function (e) { out.push(e); }); });
+    ['wireless', 'terminal', 'phone', 'safe', 'epilogue'].forEach(function (k) { if (story && Array.isArray(story[k])) story[k].forEach(function (e) { out.push(e); }); });
     return out;
   }
   function channel(story, name) { return story && Array.isArray(story[name]) ? story[name] : []; }
@@ -69,6 +69,13 @@
         var r = Seal.tryOpen(entries, code); if (r) out.push(r.payload);
       });
       return out;
+    }
+    // The secret epilogue opens only under the codes of the ledger and the three household lines, as this player really found them.
+    function epilogue() {
+      var parts = ['ledger', 'line-clockmaker', 'line-cook', 'line-baker'].map(function (id) { return store.getNote('seal:' + id); });
+      if (parts.some(function (p) { return !p; })) return null;
+      var key = parts.join(' '), r = Seal.tryOpen(channel(story, 'epilogue'), key);
+      return r ? { payload: r.payload, code: key } : null;
     }
     // type a transcript line by line; returns {skip}
     function play(lines, into, done) {
@@ -199,9 +206,31 @@
         lamp.onclick = function () {
           lamp.disabled = true; document.body.classList.add('lamp-lit'); store.markSolved('story-finale');
           if (ctx.updateProgress) ctx.updateProgress();
+          var after = (payload.finale || []).length * LINE_DELAY;
           (payload.finale || []).forEach(function (l, i) { later(function () { end.appendChild(el('p', 'vm-line lamp-line', l)); }, i * LINE_DELAY); });
+          later(function () { showRoll(end, false); }, after);
         };
-        if (store.isSolved('story-finale')) { lamp.disabled = true; document.body.classList.add('lamp-lit'); (payload.finale || []).forEach(function (l) { end.appendChild(el('p', 'vm-line lamp-line', l)); }); }
+        if (store.isSolved('story-finale')) { lamp.disabled = true; document.body.classList.add('lamp-lit'); (payload.finale || []).forEach(function (l) { end.appendChild(el('p', 'vm-line lamp-line', l)); }); showRoll(end, true); }
+      }
+      // the hidden true ending: only for a player who found the ledger and all three household lines
+      function showRoll(end, instant) {
+        var ep = epilogue(); if (!ep) return;
+        remember(ep.payload, ep.code);
+        var box = el('div', 'roll'), lines = ep.payload.lines.slice();
+        end.appendChild(box);
+        function add(l) { box.appendChild(el('p', 'vm-line lamp-line', l)); }
+        function tail() {
+          var row = el('form', 'row roll-sign'), name = el('input'), go = el('button', '', ep.payload.sign || 'Sign');
+          name.type = 'text'; name.maxLength = 40; name.setAttribute('aria-label', 'Your name'); name.setAttribute('autocomplete', 'off'); name.placeholder = 'Your name';
+          go.type = 'submit'; row.appendChild(name); row.appendChild(go);
+          var done = el('p', 'vm-line lamp-line');
+          function signed(n) { row.hidden = true; done.textContent = n + '. ' + (ep.payload.signed || '') + ' ' + (ep.payload.end || ''); }
+          row.onsubmit = function (ev) { ev.preventDefault(); var n = name.value.replace(/\s+/g, ' ').trim(); if (!n) return; store.setNote('roll-name', n); signed(n); };
+          box.appendChild(row); box.appendChild(done);
+          var prev = store.getNote('roll-name'); if (prev) signed(prev);
+        }
+        if (instant) { lines.forEach(add); tail(); return; }
+        (function step() { if (!lines.length) return tail(); add(lines.shift()); later(step, LINE_DELAY); })();
       }
       go.onclick = function () {
         var code = safeCode(inputs.map(function (i) { return i.value; })), r = Seal.tryOpen(channel(story, 'safe'), code);
