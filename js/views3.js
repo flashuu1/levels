@@ -174,7 +174,15 @@
       // stories you have not reached yet show as ??? (there are always more than the ones you have found)
       for (var k = stories; S && k < Story_SLOTS; k++) { var q = el('li', 'found-unknown'); q.appendChild(el('span', 'found-q', '???')); ul.appendChild(q); }
       view.appendChild(ul);
-      var p = el('p'), a = el('a', '', 'Try the phone line'); a.href = '#/phone'; p.appendChild(a); view.appendChild(p);
+      // the rooms you have found stay one click away; each opens in a new tab so you can keep your place
+      var rs = S && S.rooms ? S.rooms() : [];
+      if (rs.length) {
+        view.appendChild(el('h2', '', 'Rooms you have found'));
+        var rl = el('ul', 'plain room-list');
+        rs.forEach(function (r) { var li = el('li'), a2 = el('a', '', r.title + ' \u2197'); a2.href = r.href; a2.target = '_blank'; a2.rel = 'noopener'; li.appendChild(a2); rl.appendChild(li); });
+        view.appendChild(rl);
+      }
+      if (!rs.length) { var p = el('p'), a = el('a', '', 'Try the phone line'); a.href = '#/phone'; p.appendChild(a); view.appendChild(p); }
     }
 
     function hiddenPage(id) {
@@ -193,6 +201,7 @@
 
     var KEYLETTERS = { 2: 'ABC', 3: 'DEF', 4: 'GHI', 5: 'JKL', 6: 'MNO', 7: 'PQRS', 8: 'TUV', 9: 'WXYZ' };
     function phoneView() {
+      if (S && S.visit) S.visit('phone');
       head('Phone Line', '#/hidden', 'Hidden');
       var intro = data.phone && data.phone.intro ? String(data.phone.intro) : 'ENTER CODE.';
       var panel = el('div', 'panel phone deskphone'), body = el('div', 'phone-body'), screen = el('div', 'phone-screen', intro), tr = el('div', 'phone-transcript');

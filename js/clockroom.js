@@ -22,7 +22,7 @@
     function stored(id) { var c = store.getNote('seal:' + id); if (!c) return null; var r = Seal.tryOpen(ch(), c); return r && r.payload.id === id ? r : null; }
 
     function view() {
-      env.head('The workshop', '#/', 'Start');
+      env.visit('clockroom'); env.head('The workshop', '#/', 'Start');
       var shop = el('div', 'clockshop'), grid = el('div', 'clock-grid'), msg = el('p', 'gh-msg'), cardBox = el('div', 'clock-card');
       msg.setAttribute('aria-live', 'polite');
       shop.appendChild(el('div', 'shop-beam')); shop.appendChild(grid); shop.appendChild(msg); shop.appendChild(cardBox); env.view.appendChild(shop);

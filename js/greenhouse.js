@@ -29,7 +29,7 @@
     function stored(id) { var c = store.getNote('seal:' + id); return c ? opens(id, c) : null; }
 
     function view() {
-      env.head('The glasshouse', '#/', 'Start');
+      env.visit('greenhouse'); env.head('The glasshouse', '#/', 'Start');
       var st = { notebook: null, orchard: null, shed: null, grove: null, arrangement: {}, seedPlanted: !!store.getNote('gh:seed'), selected: null, msg: '', wilting: false };
       function load() {
         var n = stored('notebook'), o = stored('orchard'), sh = stored('shed'), g = stored('grove');

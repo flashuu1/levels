@@ -86,9 +86,10 @@
       '<p id="pmsg" class="msg"></p></div>';
     v2.settingsPanel(view);
     var done = [];
-    if (store.isSolved('story-finale')) done.push('The lamp is lit.' + (store.getNote('roll-name') ? ' Keeper of the lamp: ' + store.getNote('roll-name') + '.' : ''));
-    if (store.isSolved('story-bloom')) done.push('The orchard is in bloom.');
-    if (store.isSolved('story-clockwork')) done.push('The clocks are running.');
+    var cmp = function (a) { return window.Story && Story.complete && Story.complete(a); };
+    if (cmp('keeper')) done.push('The lamp is lit.' + (store.getNote('roll-name') ? ' Keeper of the lamp: ' + store.getNote('roll-name') + '.' : ''));
+    if (cmp('gardener')) done.push('The orchard is in bloom.');
+    if (cmp('clockmaker')) done.push('The clocks are running.');
     if (done.length) { var tp = document.createElement('div'); tp.className = 'panel testament-panel'; tp.innerHTML = '<h2>Testament</h2>' + done.map(function (d) { return '<p>' + esc(d) + '</p>'; }).join(''); view.appendChild(tp); }
     document.getElementById('exp').onclick = function () {
       var url = URL.createObjectURL(new Blob([store.exportJSON()], { type: 'application/json' }));

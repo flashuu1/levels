@@ -27,20 +27,35 @@
     for (var i = 0; i < cands.length; i++) { var r = Seal.tryOpen(channel(story, 'phone'), cands[i]); if (r) return { payload: r.payload, code: cands[i] }; }
     return null;
   }
-// The second story knows whether you signed the roll: the Gardener counts your name among the trees.
-  function personalize(payload, name) {
-    if (!payload || payload.arc !== 'gardener') return payload;
-    var swap = function (s) {
-      s = String(s);
-      s = s.replace('Seventy-three of them in the walled garden, and I have tended every one.', name
-        ? 'Seventy-three of them in the walled garden, and a seventy-fourth by the gate since you signed the roll: ' + name + '. I have tended every one.'
-        : 'Seventy-three of them in the walled garden, and a bare patch by the gate in case anyone ever signs the roll. I have tended every one.');
-      if (name) s = s.replace('seventy-three trees let go of their petals at once.', 'seventy-four trees let go of their petals at once, the youngest by the gate.');
-      return s;
+// Text that knows what you have done. Any string in a record may contain [[what|text if you have|text if you have not]], where
+  // "what" is a record id (line-cook, ledger, ...), or one of: signed, lamp, bloom, clockwork. Evaluated when the record is shown.
+  function has(store, what) {
+    if (what === 'signed') return !!store.getNote('roll-name');
+    if (what === 'lamp') return !!store.isSolved('story-finale');
+    if (what === 'bloom') return !!store.isSolved('story-bloom');
+    if (what === 'clockwork') return !!store.isSolved('story-clockwork');
+    return !!(store.isSolved('story-' + what) || store.isSolved(what));
+  }
+  function expand(s, store) { return String(s).replace(/\[\[([A-Za-z0-9_:.-]+)\|([^|\]]*)\|([^\]]*)\]\]/g, function (m, what, yes, no) { return has(store, what) ? yes : no; }); }
+  function personalize(payload, store) {
+    if (!payload || typeof payload !== 'object') return payload;
+    var name = store && store.getNote ? store.getNote('roll-name') : '';
+    var swap = function (v) {
+      if (typeof v === 'string') {
+        v = expand(v, store);
+        if (payload.arc === 'gardener') {
+          v = v.replace('Seventy-three of them in the walled garden, and I have tended every one.', name
+            ? 'Seventy-three of them in the walled garden, and a seventy-fourth by the gate since you signed the roll: ' + name + '. I have tended every one.'
+            : 'Seventy-three of them in the walled garden, and a bare patch by the gate in case anyone ever signs the roll. I have tended every one.');
+          if (name) v = v.replace('seventy-three trees let go of their petals at once.', 'seventy-four trees let go of their petals at once, the youngest by the gate.');
+        }
+        return v;
+      }
+      if (Array.isArray(v)) return v.map(swap);
+      if (v && typeof v === 'object') { var o = {}; for (var k in v) o[k] = swap(v[k]); return o; }
+      return v;
     };
-    var out = JSON.parse(JSON.stringify(payload));
-    ['lines', 'voicemail', 'finale'].forEach(function (k) { if (Array.isArray(out[k])) out[k] = out[k].map(swap); });
-    return out;
+    return swap(payload);
   }
   function safeCode(dials) { return dials.map(function (d) { var n = parseInt(d, 10); return isNaN(n) ? '' : (n < 10 ? '0' : '') + n; }).join(''); }
   // Terminal commands -> { type, ... } (no side effects)
@@ -53,17 +68,24 @@
     if (cmd === 'clear' || cmd === 'cls') return { type: 'clear' };
     if (cmd === 'logout' || cmd === 'exit') return { type: 'logout' };
     if (cmd === 'login') return { type: 'login', user: rest[0] || '' };
+    if (cmd === 'su') return { type: 'su', user: rest[0] || '' };
+    if (cmd === 'who') return { type: 'who' };
+    if (cmd === 'last') return { type: 'last' };
+    if (cmd === 'mail') return { type: 'mail', n: rest[0] ? parseInt(rest[0], 10) || 0 : 0 };
     if (cmd === 'cat' || cmd === 'type' || cmd === 'read') return { type: 'cat', file: (rest[0] || '').toLowerCase() };
     if (cmd === 'open') return { type: 'open', file: (rest[0] || '').toLowerCase(), pass: rest.slice(1).join(' ') };
     return { type: 'unknown', cmd: cmd };
   }
 
   // The whole site wears what you have done: a lit lamp and a blooming orchard. Called on every page view and when either happens.
-  var clockTimer = null;
+  var clockTimer = null, current = null;
+  // A story's effects (the lamp's glow, the petals, the ticking clock) show only while that story is complete. If a find is added
+  // later the percentage drops below 100 and they switch off until you catch up.
+  function complete(arc, flagFallback, store) { return current ? current.progress(arc).pct >= 100 : !!(store && store.isSolved(flagFallback)); }
   function applyTestament(store) {
     if (typeof document === 'undefined' || !document.body) return;
-    var bloom = !!store.isSolved('story-bloom'), clock = !!store.isSolved('story-clockwork');
-    document.body.classList.toggle('lamp-lit', !!store.isSolved('story-finale'));
+    var bloom = complete('gardener', 'story-bloom', store), clock = complete('clockmaker', 'story-clockwork', store);
+    document.body.classList.toggle('lamp-lit', complete('keeper', 'story-finale', store));
     document.body.classList.toggle('orchard-bloom', bloom);
     document.body.classList.toggle('clockwork', clock);
     var field = document.getElementById('petal-field');
@@ -85,7 +107,8 @@
   }
   // which story a hub page belongs to ('' for other pages)
   function arcOfPage(pageId) { for (var a in ARC_HUB) if (ARC_HUB[a] === pageId) return a; return ''; }
-  var api = { arcOfPage: arcOfPage, STORY_SLOTS: 4, personalize: personalize, applyTestament: applyTestament, ARC_HUB: ARC_HUB, allEntries: allEntries, formatFreq: formatFreq, phoneCandidates: phoneCandidates, tryPhone: tryPhone, safeCode: safeCode, parseCommand: parseCommand, KIND_ORDER: KIND_ORDER, KIND_TITLE: KIND_TITLE };
+  function isComplete(arc) { return current ? current.progress(arc).pct >= 100 : false; }
+  var api = { complete: isComplete, expand: expand, arcOfPage: arcOfPage, STORY_SLOTS: 8, personalize: personalize, applyTestament: applyTestament, ARC_HUB: ARC_HUB, allEntries: allEntries, formatFreq: formatFreq, phoneCandidates: phoneCandidates, tryPhone: tryPhone, safeCode: safeCode, parseCommand: parseCommand, KIND_ORDER: KIND_ORDER, KIND_TITLE: KIND_TITLE };
 
   // ---- views (browser only) ----
   api.create = function (ctx) {
@@ -100,20 +123,31 @@
       var p = el('p'), a = el('a', '', '← ' + backText); a.href = backHref; p.appendChild(a); view.appendChild(p);
       view.appendChild(el('h1', '', title));
     }
+    var bySalt = null;
+    function saltIndex() { if (!bySalt) { bySalt = {}; allEntries(story).forEach(function (e) { bySalt[e.salt] = e; }); } return bySalt; }
     function remember(payload, code) {
       if (!store.isSolved('story-' + payload.id)) store.markSolved('story-' + payload.id); // the first find keeps its time: it is the order you found things in
       store.setNote('seal:' + payload.id, code); // so the record can be reopened from the Hidden page
+      var hit = Seal.tryOpen(allEntries(story), code); if (hit) store.setNote('salt:' + payload.id, hit.entry.salt); // and reopened with one decryption
+      foundCache = null;
       if (ctx.updateProgress) ctx.updateProgress();
+      applyTestament(store);
+    }
+    var foundCache = null;
+    function openFound(k) {
+      var id = k.slice(6), code = store.getNote('seal:' + id); if (!code) return null;
+      var salt = store.getNote('salt:' + id), e = salt ? saltIndex()[salt] : null, p = e ? Seal.open(e, code) : null;
+      if (p) return p;
+      var r = Seal.tryOpen(allEntries(story), code); return r ? r.payload : null;
     }
     function found() {
-      var entries = allEntries(story), out = [];
+      var raw = [];
       store.solvedIds().forEach(function (k) {
         if (k.indexOf('story-') !== 0) return;
-        var code = store.getNote('seal:' + k.slice(6)); if (!code) return;
-        var r = Seal.tryOpen(entries, code); if (r) { var pl = personalize(r.payload, store.getNote('roll-name')); pl.at = store.solvedAt ? store.solvedAt(k) : 0; out.push(pl); }
+        var p = openFound(k); if (p) { p.at = store.solvedAt ? store.solvedAt(k) : 0; raw.push(p); }
       });
-      out.sort(function (a, b) { return a.at - b.at; });
-      return out;
+      raw.sort(function (a, b) { return a.at - b.at; });
+      return raw.map(function (p) { var q = personalize(p, store); q.at = p.at; return q; });
     }
     // The secret epilogue opens only under the codes of the ledger and the three household lines, as this player really found them.
     function epilogue() {
@@ -137,7 +171,7 @@
 
     // ---- radio ----
     function radioView() {
-      head('The wireless', '#/', 'Start');
+      visit('wireless'); head('The wireless', '#/', 'Start');
       var panel = el('div', 'panel radio'), screen = el('div', 'phone-screen radio-screen', 'Static.'), tr = el('div', 'phone-transcript');
       var W = root.Widgets, box = null, idle = null;
       var num = el('input', 'radio-readout'); num.type = 'number'; num.min = '50'; num.max = '110'; num.step = '0.1'; num.value = '88.0'; num.setAttribute('inputmode', 'decimal'); num.setAttribute('aria-label', 'Frequency');
@@ -179,77 +213,12 @@
       view.appendChild(el('p', 'mute', 'Turn the knob, or drag it round. Most of the band is static.'));
     }
 
-    // ---- terminal ----
-    function terminalView() {
-      head('Terminal', '#/', 'Start');
-      var panel = el('div', 'panel term'), out = el('pre', 'term-out'), form = el('form', 'row term-form');
-      var prompt = el('span', 'term-prompt', '>'), inp = el('input');
-      inp.type = 'text'; inp.autocomplete = 'off'; inp.setAttribute('aria-label', 'Command'); inp.setAttribute('autocapitalize', 'none'); inp.setAttribute('autocorrect', 'off'); inp.spellcheck = false;
-      var go = el('button', '', 'Enter'); go.type = 'submit';
-      var quick = el('div', 'chips term-quick');
-      var session = null, pendingUser = null;
-      function print(lines) { (Array.isArray(lines) ? lines : [lines]).forEach(function (l) { out.appendChild(document.createTextNode(l + '\n')); }); out.scrollTop = out.scrollHeight; }
-      function setPrompt() { prompt.textContent = pendingUser !== null ? 'password:' : (session ? 'odile@undercroft>' : '>'); inp.type = pendingUser !== null ? 'password' : 'text'; }
-      function start(payload, restored) {
-        session = payload; pendingUser = null; setPrompt();
-        print(['', restored ? 'Session restored.' : 'Login accepted.'].concat(payload.motd || []));
-      }
-      function runLine(line) {
-        if (pendingUser !== null) { // answering the password prompt
-          var user = pendingUser; pendingUser = null;
-          var code = user + ' ' + line, r = Seal.tryOpen(channel(story, 'terminal'), code);
-          if (r && r.payload.kind === 'terminal') { remember(r.payload, code); start(r.payload, false); } else { print('Login incorrect.'); setPrompt(); }
-          return;
-        }
-        var c = parseCommand(line);
-        print((session ? 'odile@undercroft> ' : '> ') + (c.type === 'login' ? line : line));
-        if (c.type === 'empty') return;
-        if (c.type === 'help') return print(['help | login <user> | ls | cat <file> | open <file> <passphrase> | clear | logout']);
-        if (c.type === 'clear') { out.textContent = ''; return; }
-        if (c.type === 'login') { if (!c.user) return print('usage: login <user>'); pendingUser = c.user; setPrompt(); return; }
-        if (c.type === 'logout') { session = null; setPrompt(); return print('Logged out.'); }
-        if (c.type === 'unknown') return print('command not found: ' + c.cmd + '  (try help)');
-        if (!session) return print('Not logged in. Try: login <user>');
-        var files = session.files || [];
-        function fileNamed(n) { for (var i = 0; i < files.length; i++) if (files[i].name === n) return files[i]; return null; }
-        if (c.type === 'ls') return print(files.map(function (f) { return f.name + (f.sealed ? '   [sealed]' : ''); }));
-        var f = fileNamed(c.file);
-        if (c.type === 'cat') {
-          if (!f) return print('No such file: ' + c.file);
-          if (f.sealed) {
-            var again = store.getNote('seal:ledger'), reopen = again ? Seal.tryOpen(channel(story, 'terminal'), again) : null;
-            if (reopen && reopen.payload.kind === 'file') return print(reopen.payload.lines);
-            return print('sealed. Use: open ' + f.name + ' <passphrase>');
-          }
-          var fr = Seal.tryOpen(channel(story, 'terminal'), 'file ' + f.name); // each text file is a record of its own: reading it files it under what you have found
-          if (fr) { remember(fr.payload, 'file ' + f.name); return print(fr.payload.lines); }
-          return print(f.lines || []);
-        }
-        if (c.type === 'open') {
-          if (!f) return print('No such file: ' + c.file);
-          if (!f.sealed) return runLine('cat ' + f.name);
-          var o = c.pass ? Seal.tryOpen(channel(story, 'terminal'), c.pass) : null;
-          if (o && o.payload.kind === 'file') { remember(o.payload, c.pass); return print(o.payload.lines); }
-          return print('Wrong passphrase.');
-        }
-      }
-      form.onsubmit = function (ev) { ev.preventDefault(); var v = inp.value; inp.value = ''; runLine(v); inp.focus(); };
-      [['help', 'help'], ['ls', 'ls'], ['clear', 'clear']].forEach(function (q) {
-        var b = el('button', 'chip', q[0]); b.type = 'button'; b.onclick = function () { runLine(q[1]); inp.focus(); }; quick.appendChild(b);
-      });
-      form.appendChild(prompt); form.appendChild(inp); form.appendChild(go);
-      [out, quick, form].forEach(function (n) { panel.appendChild(n); });
-      view.appendChild(panel);
-      print(['MARSH HOUSE / UNDERCROFT OFFICE', 'Terminal ready. Type help.']);
-      // restore a previous session
-      var saved = store.getNote('seal:office'), r0 = saved ? Seal.tryOpen(channel(story, 'terminal'), saved) : null;
-      if (r0 && r0.payload.kind === 'terminal') start(r0.payload, true); else setPrompt();
-    }
+    function terminalView() { if (!root.Terminal) return ctx.notFound('Nothing here.'); root.Terminal.create(env()).view(); }
 
     // ---- vault ----
     var DIAL_TURNS = ['L', 'R', 'L']; // the combination is turned left, then right, then left
     function safeView() {
-      head('The vault', '#/', 'Start');
+      visit('safe'); head('The vault', '#/', 'Start');
       var panel = el('div', 'panel safe'), msg = el('p', 'msg'), entry = el('div', 'safe-entry'), W = root.Widgets;
       var steps = [], status = el('div', 'dial-steps'), lamps = [0, 1, 2].map(function () { var l = el('span', 'step-lamp'); status.appendChild(l); return l; });
       var inputs = [0, 1, 2].map(function (i) {
@@ -327,6 +296,17 @@
       if (r0) { door.hidden = true; keypad.hidden = true; guide.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The vault stands open.'; reveal(r0.payload); }
     }
 
+    // ---- rooms you have found: always one click away from the Hidden page ----
+    var ROOMS = [
+      { id: 'wireless', title: 'The wireless', href: '#/wireless' }, { id: 'phone', title: 'The phone line', href: '#/phone' }, { id: 'terminal', title: 'The terminal', href: '#/terminal' },
+      { id: 'safe', title: 'The vault', href: '#/safe' }, { id: 'greenhouse', title: 'The glasshouse', href: '#/greenhouse' }, { id: 'garden', title: 'The walled garden', href: '#/garden' },
+      { id: 'clockroom', title: 'The workshop', href: '#/clockroom' }, { id: 'tickets', title: 'The ticket archive', href: '#/tickets' },
+    ];
+    function visit(id) { if (!store.isSolved('room-' + id)) store.markSolved('room-' + id); }
+    function rooms() {
+      var seen = {}; found().forEach(function (r) { if (r.room) seen[r.room] = true; });
+      return ROOMS.filter(function (r) { return seen[r.id] || store.isSolved('room-' + r.id); });
+    }
     // ---- recovered records ----
     var KIND_TAG = { radio: 'wireless', terminal: 'office', file: 'file', phone: 'call', finale: 'vault' };
     function when(ts) { try { var d = new Date(ts); return d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' }) + ' ' + d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; } }
@@ -380,18 +360,20 @@
       if (arc === 'keeper' && store.isSolved('story-finale')) box.appendChild(el('p', 'testament lamp-note', 'The lamp is lit.' + (store.getNote('roll-name') ? ' Seventy-fourth name on the roll: ' + store.getNote('roll-name') + '.' : '')));
       if (arc === 'gardener' && store.isSolved('story-bloom')) box.appendChild(el('p', 'testament bloom-note', 'The orchard is in bloom.'));
       if (arc === 'clockmaker' && store.isSolved('story-clockwork')) box.appendChild(el('p', 'testament clock-note', 'The clocks are running.'));
+      if (progress(arc).pct >= 100) box.appendChild(el('p', 'testament complete-note', '★ Complete. Everything in this story is found.'));
       return box.childNodes.length ? box : null;
     }
 
     // ---- the second and third stories' puzzles live in greenhouse.js and clockroom.js ----
     function env() {
-      return { view: view, store: store, Seal: Seal, Widgets: root.Widgets, el: el, head: head, later: later, remember: remember, found: found, applyTestament: applyTestament,
-        channel: function (n) { return channel(story, n); }, personalize: function (p) { return personalize(p, store.getNote('roll-name')); } };
+      return { view: view, visit: visit, store: store, Seal: Seal, Widgets: root.Widgets, el: el, head: head, later: later, remember: remember, found: found, applyTestament: applyTestament,
+        channel: function (n) { return channel(story, n); }, personalize: function (p) { return personalize(p, store); }, parseCommand: parseCommand, visit: visit };
     }
     function greenhouseView() { if (!root.Greenhouse) return ctx.notFound('Nothing here.'); root.Greenhouse.create(env()).view(); }
     function clockroomView() { if (!root.Clockroom) return ctx.notFound('Nothing here.'); root.Clockroom.create(env()).view(); }
 
-    return { arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store.getNote('roll-name')); return r; }, remember: remember, dispose: disposeAll };
+    current = { progress: progress };
+    return { rooms: rooms, visit: visit, arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store); return r; }, remember: remember, dispose: disposeAll };
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Story = api;
