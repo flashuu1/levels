@@ -163,16 +163,17 @@
     function hiddenIndex() {
       head('Hidden', '#/', 'Start');
       var vis = H.visiblePages(pages, store); // each story is a hub page; no locked-page count: undiscovered stories leave no trace
-      var ul = el('ul', 'plain');
+      var ul = el('ul', 'plain'), stories = 0, Story_SLOTS = root.Story && root.Story.STORY_SLOTS || 4;
       vis.forEach(function (p) {
         var li = el('li'), a = el('a', '', String(p.title || p.id));
         a.href = '#/hidden/' + encodeURIComponent(p.id); li.appendChild(a);
-        var arc = p.id === 'keepers-log' ? 'keeper' : p.id === 'gardeners-verse' ? 'gardener' : '';
-        if (arc && S) { var pr = S.progress(arc); li.appendChild(el('span', 'index-pct', ' ' + pr.pct + '%')); }
+        var arc = S ? S.arcOfPage(p.id) : '';
+        if (arc) { stories++; var pr = S.progress(arc); li.appendChild(el('span', 'index-pct', ' ' + pr.pct + '%')); }
         ul.appendChild(li);
       });
-      if (vis.length) view.appendChild(ul);
-      if (!vis.length) view.appendChild(el('p', '', 'Nothing here yet. Keep solving levels.'));
+      // stories you have not reached yet show as ??? (there are always more than the ones you have found)
+      for (var k = stories; S && k < Story_SLOTS; k++) { var q = el('li', 'found-unknown'); q.appendChild(el('span', 'found-q', '???')); ul.appendChild(q); }
+      view.appendChild(ul);
       var p = el('p'), a = el('a', '', 'Try the phone line'); a.href = '#/phone'; p.appendChild(a); view.appendChild(p);
     }
 
@@ -186,7 +187,7 @@
       var body = el('div', 'panel');
       body.innerHTML = String(page.body_html || ''); // our own tracked data only
       view.appendChild(body);
-      var extra = S ? S.hub(id === 'keepers-log' ? 'keeper' : id === 'gardeners-verse' ? 'gardener' : '') : null; // everything found for this story
+      var extra = S ? S.hub(S.arcOfPage(id)) : null; // everything found for this story
       if (extra) view.appendChild(extra);
     }
 
@@ -265,7 +266,7 @@
       };
     }
 
-    return { games: gamesIndex, game: gameRoute, hidden: hiddenIndex, hiddenPage: hiddenPage, phone: phoneView, greenhouse: function () { return S ? S.greenhouse() : ctx.notFound('Nothing here.'); }, radio: function () { return S ? S.radio() : ctx.notFound('Nothing here.'); }, terminal: function () { return S ? S.terminal() : ctx.notFound('Nothing here.'); }, safe: function () { return S ? S.safe() : ctx.notFound('Nothing here.'); }, dispose: dispose };
+    return { games: gamesIndex, game: gameRoute, hidden: hiddenIndex, hiddenPage: hiddenPage, phone: phoneView, clockroom: function () { return S ? S.clockroom() : ctx.notFound('Nothing here.'); }, greenhouse: function () { return S ? S.greenhouse() : ctx.notFound('Nothing here.'); }, radio: function () { return S ? S.radio() : ctx.notFound('Nothing here.'); }, terminal: function () { return S ? S.terminal() : ctx.notFound('Nothing here.'); }, safe: function () { return S ? S.safe() : ctx.notFound('Nothing here.'); }, dispose: dispose };
   }
 
   root.Views3 = { create: create };

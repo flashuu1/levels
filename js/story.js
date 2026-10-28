@@ -4,14 +4,14 @@
   // anywhere until found: records are ciphertext (see seal.js) and open only with the code the player discovers. Local only.
   var Seal = (typeof module !== 'undefined' && module.exports) ? require('./seal.js') : root.Seal;
   var LINE_DELAY = 1300;
-  var ARC_HUB = { keeper: 'keepers-log', gardener: 'gardeners-verse' }; // the plain hidden page that is each story's hub
+  var ARC_HUB = { keeper: 'keepers-log', gardener: 'gardeners-verse', clockmaker: 'clockmakers-bench' }; // the plain hidden page that is each story's hub
   var KIND_ORDER = ['radio', 'terminal', 'file', 'phone', 'finale'];
   var KIND_TITLE = { radio: 'Transmissions', terminal: 'Office', file: 'Office files', phone: 'Voicemails', finale: 'The vault' };
 
   // ---- pure helpers (Node-testable) ----
   function allEntries(story) {
     var out = [];
-    ['wireless', 'terminal', 'phone', 'safe', 'epilogue', 'greenhouse'].forEach(function (k) { if (story && Array.isArray(story[k])) story[k].forEach(function (e) { out.push(e); }); });
+    ['wireless', 'terminal', 'phone', 'safe', 'epilogue', 'greenhouse', 'clock'].forEach(function (k) { if (story && Array.isArray(story[k])) story[k].forEach(function (e) { out.push(e); }); });
     return out;
   }
   function channel(story, name) { return story && Array.isArray(story[name]) ? story[name] : []; }
@@ -59,12 +59,33 @@
   }
 
   // The whole site wears what you have done: a lit lamp and a blooming orchard. Called on every page view and when either happens.
+  var clockTimer = null;
   function applyTestament(store) {
     if (typeof document === 'undefined' || !document.body) return;
+    var bloom = !!store.isSolved('story-bloom'), clock = !!store.isSolved('story-clockwork');
     document.body.classList.toggle('lamp-lit', !!store.isSolved('story-finale'));
-    document.body.classList.toggle('orchard-bloom', !!store.isSolved('story-bloom'));
+    document.body.classList.toggle('orchard-bloom', bloom);
+    document.body.classList.toggle('clockwork', clock);
+    var field = document.getElementById('petal-field');
+    if (bloom && !field) {
+      field = document.createElement('div'); field.id = 'petal-field'; field.className = 'petal-field'; field.setAttribute('aria-hidden', 'true');
+      for (var i = 0; i < 12; i++) { var p = document.createElement('span'); p.className = 'drift'; p.style.left = (4 + i * 8 + (i % 3) * 2) + '%'; p.style.animationDelay = (i * 1.7) + 's'; p.style.animationDuration = (16 + (i % 5) * 3) + 's'; field.appendChild(p); }
+      document.body.appendChild(field);
+    } else if (!bloom && field) field.remove();
+    var hc = document.getElementById('testament-clock');
+    if (clock && !hc) {
+      var host = document.querySelector('header .brand'); if (host) {
+        hc = document.createElement('span'); hc.id = 'testament-clock'; hc.className = 'testament-clock'; hc.setAttribute('aria-hidden', 'true');
+        hc.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" class="tc-face"/><line id="tc-h" x1="12" y1="12" x2="12" y2="7" class="tc-hand"/><line id="tc-m" x1="12" y1="12" x2="12" y2="4" class="tc-hand"/><line id="tc-s" x1="12" y1="13" x2="12" y2="3.5" class="tc-sec"/></svg>';
+        host.appendChild(hc); // inside the title so it stays on its line, even on a phone
+        var tick = function () { var d = new Date(), s = d.getSeconds(), m = d.getMinutes() + s / 60, h = (d.getHours() % 12) + m / 60; var set = function (id, a) { var n = document.getElementById(id); if (n) n.setAttribute('transform', 'rotate(' + a + ' 12 12)'); }; set('tc-h', h * 30); set('tc-m', m * 6); set('tc-s', s * 6); };
+        tick(); clearInterval(clockTimer); clockTimer = setInterval(tick, 1000);
+      }
+    } else if (!clock && hc) { hc.remove(); clearInterval(clockTimer); }
   }
-  var api = { personalize: personalize, applyTestament: applyTestament, ARC_HUB: ARC_HUB, allEntries: allEntries, formatFreq: formatFreq, phoneCandidates: phoneCandidates, tryPhone: tryPhone, safeCode: safeCode, parseCommand: parseCommand, KIND_ORDER: KIND_ORDER, KIND_TITLE: KIND_TITLE };
+  // which story a hub page belongs to ('' for other pages)
+  function arcOfPage(pageId) { for (var a in ARC_HUB) if (ARC_HUB[a] === pageId) return a; return ''; }
+  var api = { arcOfPage: arcOfPage, STORY_SLOTS: 4, personalize: personalize, applyTestament: applyTestament, ARC_HUB: ARC_HUB, allEntries: allEntries, formatFreq: formatFreq, phoneCandidates: phoneCandidates, tryPhone: tryPhone, safeCode: safeCode, parseCommand: parseCommand, KIND_ORDER: KIND_ORDER, KIND_TITLE: KIND_TITLE };
 
   // ---- views (browser only) ----
   api.create = function (ctx) {
@@ -308,7 +329,7 @@
     var KIND_TAG = { radio: 'wireless', terminal: 'office', file: 'file', phone: 'call', finale: 'vault' };
     function when(ts) { try { var d = new Date(ts); return d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' }) + ' ' + d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; } }
     // completion of one story: records found + its testament (the lamp, the bloom) out of everything that exists
-    var TESTAMENT = { keeper: 'story-finale', gardener: 'story-bloom' };
+    var TESTAMENT = { keeper: 'story-finale', gardener: 'story-bloom', clockmaker: 'story-clockwork' };
     function progress(arc) {
       var meta = story.meta && story.meta.arcs && story.meta.arcs[arc], total = meta ? meta.records : 0;
       var have = found().filter(function (r) { return (r.arc || 'keeper') === arc; }).length, units = total + 1, got = have + (store.isSolved(TESTAMENT[arc]) ? 1 : 0);
@@ -356,51 +377,19 @@
       if (list) box.appendChild(list);
       if (arc === 'keeper' && store.isSolved('story-finale')) box.appendChild(el('p', 'testament lamp-note', 'The lamp is lit.' + (store.getNote('roll-name') ? ' Seventy-fourth name on the roll: ' + store.getNote('roll-name') + '.' : '')));
       if (arc === 'gardener' && store.isSolved('story-bloom')) box.appendChild(el('p', 'testament bloom-note', 'The orchard is in bloom.'));
+      if (arc === 'clockmaker' && store.isSolved('story-clockwork')) box.appendChild(el('p', 'testament clock-note', 'The clocks are running.'));
       return box.childNodes.length ? box : null;
     }
 
-    // ---- greenhouse (the second story's puzzle) ----
-    var TRADES = ['cook', 'baker', 'tailor', 'clockmaker', 'keeper', 'gardener'], PLOTS = [7, 12, 19, 41];
-    function greenhouseView() {
-      head('The glasshouse', '#/', 'Start');
-      var panel = el('div', 'panel greenhouse'), plots = el('div', 'plots'), msg = el('p', 'msg'), entry = el('div', 'orchard-entry');
-      var selects = PLOTS.map(function (n) {
-        var box = el('label', 'plot'), s = el('select'); box.appendChild(el('span', 'plot-no', 'Plot ' + n));
-        s.setAttribute('aria-label', 'Plot ' + n);
-        var first = el('option', '', 'empty'); first.value = ''; s.appendChild(first);
-        TRADES.forEach(function (tr) { var o = el('option', '', tr); o.value = tr; s.appendChild(o); });
-        box.appendChild(s); plots.appendChild(box); return s;
-      });
-      var go = el('button', '', 'Plant'); go.type = 'button';
-      function reveal(payload) {
-        entry.textContent = '';
-        var water = el('button', 'lamp-btn', payload.water || 'Water'), box = el('div', 'safe-text'), end = el('div', 'safe-end');
-        entry.appendChild(box); entry.appendChild(water); entry.appendChild(end);
-        payload.lines.forEach(function (l) { box.appendChild(el('p', 'vm-line', l)); });
-        function done() { water.disabled = true; applyTestament(store); }
-        water.onclick = function () {
-          store.markSolved('story-bloom');
-          var fin = payload.finale || [], W = root.Widgets;
-          fin.forEach(function (l) { end.appendChild(el('p', 'vm-line bloom-line', l)); });
-          var show = W ? W.petalScene(fin, done) : null;
-          if (!show) done();
-        };
-        if (store.isSolved('story-bloom')) { done(); (payload.finale || []).forEach(function (l) { end.appendChild(el('p', 'vm-line bloom-line', l)); }); }
-      }
-      go.onclick = function () {
-        var code = PLOTS.map(function (n, i) { return n + ' ' + selects[i].value; }).join(' '), r = Seal.tryOpen(channel(story, 'greenhouse'), code);
-        if (!r) { msg.className = 'msg err'; msg.textContent = 'The saplings droop. Something is not planted where it belongs.'; return; }
-        msg.className = 'msg ok'; msg.textContent = 'The trees lift their branches.';
-        plots.hidden = true; go.hidden = true;
-        remember(r.payload, code); reveal(personalize(r.payload, store.getNote('roll-name')));
-      };
-      [plots, go, msg, entry].forEach(function (n) { panel.appendChild(n); });
-      view.appendChild(panel);
-      var saved = store.getNote('seal:orchard'), r0 = saved ? Seal.tryOpen(channel(story, 'greenhouse'), saved) : null;
-      if (r0) { plots.hidden = true; go.hidden = true; msg.className = 'msg ok'; msg.textContent = 'The orchard is planted.'; reveal(personalize(r0.payload, store.getNote('roll-name'))); }
+    // ---- the second and third stories' puzzles live in greenhouse.js and clockroom.js ----
+    function env() {
+      return { view: view, store: store, Seal: Seal, Widgets: root.Widgets, el: el, head: head, later: later, remember: remember, found: found, applyTestament: applyTestament,
+        channel: function (n) { return channel(story, n); }, personalize: function (p) { return personalize(p, store.getNote('roll-name')); } };
     }
+    function greenhouseView() { if (!root.Greenhouse) return ctx.notFound('Nothing here.'); root.Greenhouse.create(env()).view(); }
+    function clockroomView() { if (!root.Clockroom) return ctx.notFound('Nothing here.'); root.Clockroom.create(env()).view(); }
 
-    return { found: found, progress: progress, greenhouse: greenhouseView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store.getNote('roll-name')); return r; }, remember: remember, dispose: disposeAll };
+    return { arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store.getNote('roll-name')); return r; }, remember: remember, dispose: disposeAll };
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Story = api;
