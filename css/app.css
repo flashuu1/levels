@@ -399,3 +399,8 @@ body.orchard-bloom .brand::before { content:"\2740"; color:#7fd18a; margin-right
 .ticket-id { flex:none; display:inline-flex; align-items:center; justify-content:center; width:1.9rem; height:1.9rem; border-radius:50%; background:#3b2a14; color:#f1e4bd; font:700 .95rem Georgia,serif; } .ticket-text { flex:1; margin:0; font-family:Georgia,serif; line-height:1.35; }
 .ticket-ctl { flex:none; display:flex; flex-direction:column; gap:.2rem; } .ticket-ctl .chip { padding:.1rem .5rem; }
 .ticket-result { margin-top:1rem; } .ticket-result h2 { font-family:Georgia,serif; }
+
+/* the call log: press a name to call it again */
+.call-log .plain li { margin:.3rem 0; }
+.call-redial { display:flex; align-items:center; justify-content:space-between; gap:.8rem; width:100%; text-align:left; padding:.55rem .8rem; border-radius:10px; background:linear-gradient(#2f343f,#242831); color:var(--fg); border:1px solid #444c5c; font-weight:600; }
+.call-redial:hover { border-color:var(--acc); } .call-number { font:700 .95rem ui-monospace,Consolas,monospace; color:#8fe3a2; letter-spacing:.06em; } .call-number.mute { font:400 .8rem system-ui,sans-serif; color:var(--mute); letter-spacing:0; }

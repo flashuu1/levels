@@ -223,13 +223,25 @@
       panel.appendChild(body);
       var log = el('div', 'call-log'); // everyone you have reached so far
       function drawLog() {
-        var names = [];
-        lines.forEach(function (l) { if (store.isSolved('phone-' + l.id)) names.push(String(l.name || l.id)); });
-        if (S && S.found) S.found().forEach(function (r) { if (r.kind === 'phone') names.push(String(r.name || r.title)); });
+        var calls = [];
+        lines.forEach(function (l) { if (store.isSolved('phone-' + l.id)) calls.push({ name: String(l.name || l.id), number: store.getNote('dial:' + l.id), at: store.solvedAt ? store.solvedAt('phone-' + l.id) : 0 }); });
+        if (S && S.found) S.found().forEach(function (r) { if (r.kind === 'phone') calls.push({ name: String(r.name || r.title), number: store.getNote('seal:' + r.id), at: r.at || 0 }); });
+        calls.sort(function (a, b) { return b.at - a.at; }); // the latest call first
         log.textContent = '';
-        if (!names.length) return;
+        if (!calls.length) return;
         log.appendChild(el('h3', 'call-log-title', 'Calls you have made'));
-        var ul = el('ul', 'plain'); names.forEach(function (n) { ul.appendChild(el('li', '', '\u260e ' + n)); }); log.appendChild(ul);
+        var ul = el('ul', 'plain');
+        calls.forEach(function (c) {
+          var li = el('li');
+          if (c.number) {
+            var b = el('button', 'call-redial'); b.type = 'button'; b.setAttribute('aria-label', 'Call ' + c.name + ' again, ' + c.number);
+            b.appendChild(el('span', 'call-name', '\u260e ' + c.name)); b.appendChild(el('span', 'call-number', c.number));
+            b.onclick = function () { inp.value = c.number; dial.click(); }; // the number goes in by itself and it calls again
+            li.appendChild(b);
+          } else { li.appendChild(el('span', 'call-name', '\u260e ' + c.name)); li.appendChild(el('span', 'call-number mute', 'dial it once more and its number is kept here')); }
+          ul.appendChild(li);
+        });
+        log.appendChild(ul);
       }
       drawLog();
       [skip, tr, log].forEach(function (n) { panel.appendChild(n); });
@@ -258,7 +270,7 @@
         ev.preventDefault();
         dispose(); playing = null; skip.hidden = true; tr.textContent = ''; hangUp();
         var code = inp.value.replace(/[\s\-]+/g, '');
-        var line = code ? H.findLine(lines, code) : null;
+        var line = code ? H.findLine(lines, code) : null, viaOld = !!line;
         if (!line && code && S) { var sealed = S.tryPhone(code); if (sealed) { line = sealed.payload; S.remember(sealed.payload, sealed.code); } }
         inp.value = '';
         if (!line || !Array.isArray(line.voicemail)) { screen.textContent = 'Dialling\u2026'; later(function () { screen.textContent = 'The number you have dialled is not in service.'; }, 500); return; }
@@ -267,6 +279,7 @@
           screen.classList.remove('ringing'); handset.classList.add('off-hook');
           screen.textContent = 'Connected: ' + String(line.name || line.id);
           store.markSolved('phone-' + line.id); // solved when it connects, not when playback finishes
+          if (viaOld) store.setNote('dial:' + line.id, code); // the number that worked, so the call log can dial it again
           if (ctx.updateProgress) ctx.updateProgress();
           drawLog();
           playing = { rest: line.voicemail.slice(), line: line }; skip.hidden = false;
