@@ -75,7 +75,7 @@
           if (f.sealed) {
             var id = f.sealed === true ? 'ledger' : f.sealed, again = store.getNote('seal:' + id), reopen = again ? Seal.tryOpen(ch(), again) : null;
             if (reopen && reopen.payload.id === id) return print(env.personalize(reopen.payload).lines);
-            return print('sealed. Use: open ' + f.name + ' <passphrase>');
+            return print('sealed' + (f.note ? ', ' + f.note : '') + '. Use: open ' + f.name + ' <passphrase>');
           }
           var fr = virtual('file ' + f.name); return print(fr ? fr.lines : (f.lines || []));
         }
