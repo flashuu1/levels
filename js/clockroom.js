@@ -95,6 +95,7 @@
       function pendulumPanel() {
         var panel = el('div', 'mech pendulum-panel'), done = finding('pendulum');
         panel.appendChild(el('h3', 'clock-title', 'The pendulum'));
+        panel.appendChild(el('p', 'mute', 'Slide the rod to change its length. The reading under it shows how long one full swing takes at that length. Press Set when it beats as the card says it must.'));
         var s = svg('svg', { viewBox: '0 0 200 190', class: 'pend-svg', 'aria-hidden': 'true' });
         s.appendChild(svg('rect', { x: 70, y: 2, width: 60, height: 8, rx: 3, class: 'pend-bracket' }));
         var arm = svg('g', { class: 'pend-arm' }), rod = svg('line', { x1: 100, y1: 8, x2: 100, y2: 100, class: 'pend-rod' }), bob = svg('circle', { cx: 100, cy: 100, r: 11, class: 'pend-bob' });
