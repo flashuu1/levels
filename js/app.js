@@ -71,7 +71,7 @@
   try { v3 = Views3.create({ view: view, store: store, esc: esc, notFound: notFound, hidden: window.LEVELS_DATA && window.LEVELS_DATA.hidden, updateProgress: updateProgress }); } catch (e) { v3 = null; if (window.console) console.error('Views3 failed to load:', e); }
   if (!v3) {
     var failed3 = function () { view.innerHTML = '<h1>Unavailable</h1><p>This section failed to load.</p>'; };
-    v3 = { games: failed3, game: failed3, hidden: failed3, hiddenPage: failed3, phone: failed3, radio: failed3, greenhouse: failed3, clockroom: failed3, terminal: failed3, safe: failed3, dispose: function () {} };
+    v3 = { games: failed3, game: failed3, hidden: failed3, hiddenPage: failed3, phone: failed3, radio: failed3, greenhouse: failed3, clockroom: failed3, garden: failed3, terminal: failed3, safe: failed3, dispose: function () {} };
   }
   function param(raw) { try { return decodeURIComponent(raw); } catch (e) { return raw; } }
 
@@ -252,6 +252,7 @@
     else if (hash === '/terminal') v3.terminal();
     else if (hash === '/greenhouse') v3.greenhouse();
     else if (hash === '/clockroom') v3.clockroom();
+    else if (hash === '/garden') v3.garden();
     else if (hash === '/safe') v3.safe();
     else if (hash === '/profile') profileView();
     else if ((m = /^\/level\/([^/]+)$/.exec(hash))) {

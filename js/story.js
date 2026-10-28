@@ -11,7 +11,7 @@
   // ---- pure helpers (Node-testable) ----
   function allEntries(story) {
     var out = [];
-    ['wireless', 'terminal', 'phone', 'safe', 'epilogue', 'greenhouse', 'clock'].forEach(function (k) { if (story && Array.isArray(story[k])) story[k].forEach(function (e) { out.push(e); }); });
+    ['wireless', 'terminal', 'phone', 'safe', 'epilogue', 'greenhouse', 'clock', 'garden'].forEach(function (k) { if (story && Array.isArray(story[k])) story[k].forEach(function (e) { out.push(e); }); });
     return out;
   }
   function channel(story, name) { return story && Array.isArray(story[name]) ? story[name] : []; }
@@ -370,10 +370,11 @@
         channel: function (n) { return channel(story, n); }, personalize: function (p) { return personalize(p, store); }, parseCommand: parseCommand, visit: visit };
     }
     function greenhouseView() { if (!root.Greenhouse) return ctx.notFound('Nothing here.'); root.Greenhouse.create(env()).view(); }
+    function gardenView() { if (!root.Garden) return ctx.notFound('Nothing here.'); root.Garden.create(env()).view(); }
     function clockroomView() { if (!root.Clockroom) return ctx.notFound('Nothing here.'); root.Clockroom.create(env()).view(); }
 
     current = { progress: progress };
-    return { rooms: rooms, visit: visit, arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store); return r; }, remember: remember, dispose: disposeAll };
+    return { rooms: rooms, visit: visit, arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, garden: gardenView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store); return r; }, remember: remember, dispose: disposeAll };
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Story = api;
