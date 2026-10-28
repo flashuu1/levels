@@ -221,11 +221,13 @@
             if (reopen && reopen.payload.kind === 'file') return print(reopen.payload.lines);
             return print('sealed. Use: open ' + f.name + ' <passphrase>');
           }
+          var fr = Seal.tryOpen(channel(story, 'terminal'), 'file ' + f.name); // each text file is a record of its own: reading it files it under what you have found
+          if (fr) { remember(fr.payload, 'file ' + f.name); return print(fr.payload.lines); }
           return print(f.lines || []);
         }
         if (c.type === 'open') {
           if (!f) return print('No such file: ' + c.file);
-          if (!f.sealed) return print(f.lines || []);
+          if (!f.sealed) return runLine('cat ' + f.name);
           var o = c.pass ? Seal.tryOpen(channel(story, 'terminal'), c.pass) : null;
           if (o && o.payload.kind === 'file') { remember(o.payload, c.pass); return print(o.payload.lines); }
           return print('Wrong passphrase.');
