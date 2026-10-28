@@ -317,21 +317,29 @@
       var have = found().filter(function (r) { return (r.arc || 'keeper') === arc; }).length, units = total + 1, got = have + (store.isSolved(TESTAMENT[arc]) ? 1 : 0);
       return { found: have, total: total, units: units, got: got, pct: units ? Math.round(100 * got / units) : 0 };
     }
+    function roomTitle(id) { for (var k = 0; k < ROOMS.length; k++) if (ROOMS[k].id === id) return ROOMS[k].title.replace(/^The /, ''); return id || ''; }
+    // Every step of a story, in the order the story is meant to be walked, found or not. Found steps show what they are and the room
+    // they are in; steps you have not found are ??? in their place, with the room, so a gap in the numbering shows what you missed.
     function recordList(arc) {
       var recs = found().filter(function (r) { return (r.arc || 'keeper') === arc; }), box = el('div'), pr = progress(arc);
       if (!recs.length && !pr.got) return null;
+      var meta = story.meta && story.meta.arcs && story.meta.arcs[arc], order = (meta && meta.order) || [];
       box.appendChild(el('h2', '', 'What you have found'));
-      var ol = el('ol', 'found-list');
-      recs.forEach(function (r, i) {
-        var li = el('li'), a = el('a', '', String(r.title)); a.href = '#/hidden/story-' + encodeURIComponent(r.id);
-        li.appendChild(el('span', 'found-no', String(i + 1))); li.appendChild(a);
-        li.appendChild(el('span', 'found-tag', KIND_TAG[r.kind] || r.kind)); if (r.at) li.appendChild(el('span', 'found-when', when(r.at)));
+      var ol = el('ol', 'found-list'), bySeq = {}, loose = [];
+      recs.forEach(function (r) { if (typeof r.seq === 'number') bySeq[r.seq] = r; else loose.push(r); });
+      function row(no, r, roomId) {
+        var li = el('li', r ? '' : 'found-unknown'); li.appendChild(el('span', 'found-no', String(no)));
+        if (roomId || (r && r.room)) li.appendChild(el('span', 'found-tag', roomTitle(roomId || r.room)));
+        if (r) {
+          var a = el('a', '', String(r.title)); a.href = '#/hidden/story-' + encodeURIComponent(r.id); li.appendChild(a);
+          if (r.at) li.appendChild(el('span', 'found-when', when(r.at)));
+        } else li.appendChild(el('span', 'found-q', '???'));
         ol.appendChild(li);
-      });
-      var missing = pr.units - pr.got, shown = Math.min(missing, 4);
-      for (var k = 0; k < shown; k++) { var q = el('li', 'found-unknown'); q.appendChild(el('span', 'found-no', String(recs.length + k + 1))); q.appendChild(el('span', 'found-q', '???')); ol.appendChild(q); }
+      }
+      var n = Math.max(order.length, 0);
+      for (var q = 0; q < n; q++) row(q + 1, bySeq[q], order[q]);
+      loose.forEach(function (r, k) { row(n + k + 1, r); });
       box.appendChild(ol);
-      if (missing > shown) box.appendChild(el('p', 'mute', 'and ' + (missing - shown) + ' more ???'));
       return box;
     }
     function recordView(sid) { // sid = 'story-<id>'
