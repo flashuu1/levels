@@ -275,7 +275,7 @@
       };
     }
 
-    return { games: gamesIndex, game: gameRoute, hidden: hiddenIndex, hiddenPage: hiddenPage, phone: phoneView, clockroom: function () { return S ? S.clockroom() : ctx.notFound('Nothing here.'); }, garden: function () { return S ? S.garden() : ctx.notFound('Nothing here.'); }, greenhouse: function () { return S ? S.greenhouse() : ctx.notFound('Nothing here.'); }, radio: function () { return S ? S.radio() : ctx.notFound('Nothing here.'); }, terminal: function () { return S ? S.terminal() : ctx.notFound('Nothing here.'); }, safe: function () { return S ? S.safe() : ctx.notFound('Nothing here.'); }, dispose: dispose };
+    return { games: gamesIndex, game: gameRoute, hidden: hiddenIndex, hiddenPage: hiddenPage, phone: phoneView, clockroom: function () { return S ? S.clockroom() : ctx.notFound('Nothing here.'); }, garden: function () { return S ? S.garden() : ctx.notFound('Nothing here.'); }, tickets: function () { return S ? S.tickets() : ctx.notFound('Nothing here.'); }, greenhouse: function () { return S ? S.greenhouse() : ctx.notFound('Nothing here.'); }, radio: function () { return S ? S.radio() : ctx.notFound('Nothing here.'); }, terminal: function () { return S ? S.terminal() : ctx.notFound('Nothing here.'); }, safe: function () { return S ? S.safe() : ctx.notFound('Nothing here.'); }, dispose: dispose };
   }
 
   root.Views3 = { create: create };

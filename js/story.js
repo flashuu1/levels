@@ -187,7 +187,7 @@
         screen.textContent = f + ' MHz: signal. Recording saved to Hidden.';
         remember(r.payload, f);
         skip.hidden = false;
-        playing = play(r.payload.lines, tr, function () { skip.hidden = true; });
+        playing = play(personalize(r.payload, store).lines, tr, function () { skip.hidden = true; });
       }
       function setF(v) { var n = Math.min(110, Math.max(50, parseFloat(v))); if (!isFinite(n)) return; num.value = formatFreq(n); if (box) box.setFreq(n); }
       if (W) {
@@ -273,7 +273,7 @@
         if (!r) { msg.className = 'msg err'; msg.textContent = 'The dials turn and stop. Nothing gives.'; return false; }
         msg.className = 'msg ok'; msg.textContent = 'Click. The vault opens.';
         door.classList.add('open'); keypad.hidden = true; go.hidden = true; guide.hidden = true; later(function () { door.hidden = true; }, 1400);
-        remember(r.payload, code); reveal(r.payload);
+        remember(r.payload, code); reveal(personalize(r.payload, store));
         return true;
       }
       go.onclick = function () { attempt(safeCode(inputs.map(function (i) { return i.value; }))); };
@@ -371,10 +371,11 @@
     }
     function greenhouseView() { if (!root.Greenhouse) return ctx.notFound('Nothing here.'); root.Greenhouse.create(env()).view(); }
     function gardenView() { if (!root.Garden) return ctx.notFound('Nothing here.'); root.Garden.create(env()).view(); }
+    function ticketsView() { if (!root.Tickets) return ctx.notFound('Nothing here.'); root.Tickets.create(env()).view(); }
     function clockroomView() { if (!root.Clockroom) return ctx.notFound('Nothing here.'); root.Clockroom.create(env()).view(); }
 
     current = { progress: progress };
-    return { rooms: rooms, visit: visit, arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, garden: gardenView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store); return r; }, remember: remember, dispose: disposeAll };
+    return { rooms: rooms, visit: visit, arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, garden: gardenView, tickets: ticketsView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store); return r; }, remember: remember, dispose: disposeAll };
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Story = api;
