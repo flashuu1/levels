@@ -306,6 +306,8 @@ body.orchard-bloom .brand::before { content:"\2740"; color:#7fd18a; margin-right
 .gh-plate { display:flex; gap:4px; } .gh-plate .slot { width:20px; height:26px; border-bottom:3px solid #f1e4bd; }
 .gh-drawer input { flex:1 1 7rem; min-width:0; max-width:11rem; text-align:center; letter-spacing:.2em; text-transform:lowercase; background:#f1e4bd; color:#3b2a14; border-color:#8a6d3b; font-size:16px; }
 .gh-notebook { background:#f6edc9; border:1px solid #c8b77b; border-radius:6px; padding:.8rem 1rem; box-shadow:2px 3px 0 rgba(0,0,0,.25); transform:rotate(-.4deg); color:#3b2a14; font-family:Georgia,'Times New Roman',serif; }
+.pot-fruit { margin-top:.15rem; font:600 .72rem Georgia,serif; color:#f6edc9; text-transform:capitalize; text-shadow:0 1px 2px rgba(0,0,0,.7); }
+.gh-notebook .almanac { margin:.6rem 0; padding:.5rem .7rem; border-left:4px solid #b3571f; background:rgba(179,87,31,.12); font-weight:700; }
 .gh-notebook h2 { margin:.1rem 0 .4rem; font-size:1.15rem; } .gh-notebook p { margin:.35rem 0; line-height:1.4; }
 .gh-row { display:grid; grid-template-columns:repeat(4,1fr); gap:.4rem; margin:.4rem 0; align-items:end; }
 .pot { display:flex; flex-direction:column; align-items:center; }

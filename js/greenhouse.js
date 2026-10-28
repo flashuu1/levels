@@ -125,7 +125,7 @@
           top.appendChild(drawer);
         } else {
           var nb = el('div', 'gh-notebook'); nb.appendChild(el('h2', '', st.notebook.title));
-          st.notebook.lines.forEach(function (l) { nb.appendChild(el('p', '', l)); });
+          st.notebook.lines.forEach(function (l) { nb.appendChild(el('p', /^THE ALMANAC/.test(l) ? 'almanac' : '', l)); });
           top.appendChild(nb);
         }
         scene.appendChild(top);
@@ -138,7 +138,9 @@
           zone.onclick = function () { tapTarget('plot:' + n); };
           if (tree) { var holder = el('div', 'pot-tree' + (st.orchard ? ' grown' : ' sprout')); holder.appendChild(treeSvg(tree, st.orchard && st.orchard.tags ? st.orchard.tags[n] : '', st.wilting)); zone.appendChild(holder); }
           zone.appendChild(el('div', 'pot-clay'));
-          var plate = el('div', 'pot-plate', String(n)); pot.appendChild(zone); pot.appendChild(plate); row.appendChild(pot);
+          var plate = el('div', 'pot-plate', String(n)); pot.appendChild(zone); pot.appendChild(plate);
+          if (tree) pot.appendChild(el('div', 'pot-fruit', tree));        // the name stays under the tree
+          row.appendChild(pot);
         });
         scene.appendChild(row);
 
