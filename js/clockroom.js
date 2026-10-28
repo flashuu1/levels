@@ -129,7 +129,8 @@
       function gearsPanel() {
         var panel = el('div', 'mech gears-panel'), done = finding('gears'), G = { crank: 10, wheel: 40, pinion: 12, minute: 60 };
         panel.appendChild(el('h3', 'clock-title', 'The gear train'));
-        panel.appendChild(el('p', 'mute', 'Turn the crank (drag round it). The minute wheel is the big one on the right.'));
+        panel.appendChild(el('p', 'gear-task', 'The task: how many turns of the crank make the minute wheel turn exactly once? Work it out from the teeth, or measure it by turning the crank.'));
+        panel.appendChild(el('p', 'mute', 'The small crank gear (top left) drives the large wheel. A pinion fixed to the shaft of the large wheel drives the minute wheel (the big one on the right). The number on each gear is its teeth. Drag round the crank to try it, and watch the two counters under the picture.'));
         var s = svg('svg', { viewBox: '0 0 250 200', class: 'gear-svg', 'aria-label': 'A gear train: a ' + G.crank + '-tooth crank gear drives a ' + G.wheel + '-tooth wheel; on the same shaft a ' + G.pinion + '-tooth pinion drives the ' + G.minute + '-tooth minute wheel.' });
         var K = 1.1, A = [80, 112], B = [80 + G.pinion * K + G.minute * K, 112], C = [80 - (G.wheel * K + G.crank * K) * 0.7071, 112 - (G.wheel * K + G.crank * K) * 0.7071];
         function gear(cx, cy, teeth, cls) { var g = svg('g', { class: 'gear ' + cls }); g.appendChild(svg('path', { d: gearPath(cx, cy, teeth * K, teeth) })); g.appendChild(svg('circle', { cx: cx, cy: cy, r: 3, class: 'gear-hub' })); return g; }
@@ -153,6 +154,7 @@
         gC.addEventListener('pointermove', function (ev) { if (!drag) return; var a = ang(ev), d = a - last; while (d > 180) d -= 360; while (d < -180) d += 360; last = a; theta += d; paint(); });
         function up() { drag = false; } gC.addEventListener('pointerup', up); gC.addEventListener('pointercancel', up);
         panel.appendChild(turns); paint();
+        panel.appendChild(el('p', 'gear-ask', 'Crank turns for one turn of the minute wheel:'));
         var row = el('div', 'row clock-row'), inp = el('input', 'gear-answer'), go = el('button', '', 'Set the train'), gmsg = el('p', 'gh-msg');
         inp.type = 'text'; inp.setAttribute('inputmode', 'numeric'); inp.setAttribute('aria-label', 'Crank turns for one turn of the minute wheel'); inp.placeholder = 'crank turns'; inp.maxLength = 4; go.type = 'button'; gmsg.setAttribute('aria-live', 'polite');
         go.onclick = function () {
