@@ -329,7 +329,7 @@
       recs.forEach(function (r) { if (typeof r.seq === 'number') bySeq[r.seq] = r; else loose.push(r); });
       function row(no, r, roomId) {
         var li = el('li', r ? '' : 'found-unknown'); li.appendChild(el('span', 'found-no', String(no)));
-        if (roomId || (r && r.room)) li.appendChild(el('span', 'found-tag', roomTitle(roomId || r.room)));
+        if (r && r.room) li.appendChild(el('span', 'found-tag', roomTitle(r.room)));   // only what you have found says where it was
         if (r) {
           var a = el('a', '', String(r.title)); a.href = '#/hidden/story-' + encodeURIComponent(r.id); li.appendChild(a);
           if (r.at) li.appendChild(el('span', 'found-when', when(r.at)));

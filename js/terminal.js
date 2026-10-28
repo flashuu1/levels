@@ -30,6 +30,8 @@
         if (remembered !== false) env.remember(r.payload, code);
         return env.personalize(r.payload);
       }
+      function sealedId(f) { return f.sealed === true ? 'ledger' : f.sealed; }
+      function openedFile(f) { var id = sealedId(f), c = id ? store.getNote('seal:' + id) : '', r = c ? Seal.tryOpen(ch(), c) : null; return !!(r && r.payload.id === id); }
       function fileNamed(n) { var fs = (session && session.files) || []; for (var i = 0; i < fs.length; i++) if (fs[i].name === n) return fs[i]; return null; }
       function runLine(line) {
         if (pendingUser !== null) { // answering the password prompt
@@ -55,7 +57,7 @@
         if (c.type === 'unknown') return print('command not found: ' + c.cmd + '  (try help)');
         if (!session) return print('Not logged in. Try: login <user>');
         if (c.type === 'ls') {
-          var rows = (session.files || []).map(function (f) { return f.name + (f.sealed ? '   [sealed]' : ''); });
+          var rows = (session.files || []).map(function (f) { return f.name + (f.sealed ? (openedFile(f) ? '   [open]' : '   [sealed]') : ''); });
           if (session.mail && session.mail.length) rows.push('mail   [' + session.mail.length + ' message' + (session.mail.length === 1 ? '' : 's') + ']');
           return print(rows);
         }
@@ -73,8 +75,8 @@
         if (c.type === 'cat') {
           if (!f) return print('No such file: ' + c.file);
           if (f.sealed) {
-            var id = f.sealed === true ? 'ledger' : f.sealed, again = store.getNote('seal:' + id), reopen = again ? Seal.tryOpen(ch(), again) : null;
-            if (reopen && reopen.payload.id === id) return print(env.personalize(reopen.payload).lines);
+            var id = sealedId(f), again = store.getNote('seal:' + id), reopen = again ? Seal.tryOpen(ch(), again) : null;
+            if (reopen && reopen.payload.id === id) return print(env.personalize(reopen.payload).lines);   // opened once: it stays open
             return print('sealed' + (f.note ? ', ' + f.note : '') + '. Use: open ' + f.name + ' <passphrase>');
           }
           var fr = virtual('file ' + f.name); return print(fr ? fr.lines : (f.lines || []));
@@ -82,7 +84,8 @@
         if (c.type === 'open') {
           if (!f) return print('No such file: ' + c.file);
           if (!f.sealed) return runLine('cat ' + f.name);
-          var want = f.sealed === true ? 'ledger' : f.sealed, o = c.pass ? Seal.tryOpen(ch(), c.pass) : null;
+          if (openedFile(f)) { var oc = Seal.tryOpen(ch(), store.getNote('seal:' + sealedId(f))); return print(env.personalize(oc.payload).lines); }   // no passphrase needed twice
+          var want = sealedId(f), o = c.pass ? Seal.tryOpen(ch(), c.pass) : null;
           if (o && o.payload.kind === 'file' && o.payload.id === want) { env.remember(o.payload, c.pass); return print(env.personalize(o.payload).lines); }
           return print('Wrong passphrase.');
         }
