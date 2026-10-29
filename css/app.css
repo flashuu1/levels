@@ -427,3 +427,18 @@ body.orchard-bloom .brand::before { content:"\2740"; color:#7fd18a; margin-right
 .cw-a { transform-origin:40px 66px; animation:cs-spin 30s linear infinite; } .cw-b { transform-origin:84px 42px; animation:cs-spin 20s linear infinite reverse; } .cw-c { transform-origin:108px 74px; animation:cs-spin 15s linear infinite; }
 @media (max-width:600px) { .clockwork-widget { width:70px; opacity:.5; } .cs-clock { width:20vw; } }
 @media (prefers-reduced-motion:reduce) { .cs-glow, .cs-clock, .cs-hand, .cs-arm, .cs-gl, .cs-gr, .cw-g { animation:none !important; } .cs-clock { opacity:1; } }
+
+/* ---------- the Master's office ---------- */
+.harbour { max-width:34rem; margin:.4rem auto 1rem; padding:1rem .8rem 1.2rem; border-radius:16px; background:linear-gradient(#10182b,#1a1f2e 38%,#2a2118 39%,#1d1710); border:2px solid #4a4030; box-shadow:0 12px 28px rgba(0,0,0,.55); color:#f1e4bd; }
+.hb-window { position:relative; height:7rem; border-radius:10px 10px 0 0; background:linear-gradient(#070b18,#0f1a33 70%,#16264a); border:3px solid #5a4528; overflow:hidden; margin-bottom:.6rem; }
+.hb-moon { position:absolute; top:.8rem; right:2rem; width:1.6rem; height:1.6rem; border-radius:50%; background:#f3ecc7; box-shadow:0 0 18px rgba(243,236,199,.7); }
+.hb-lamp { position:absolute; left:20%; bottom:1rem; width:6px; height:6px; border-radius:50%; background:#ffe9a0; box-shadow:0 0 14px 5px rgba(255,233,160,.8); animation:cs-breathe 4s ease-in-out infinite; }
+.hb-desk { display:flex; justify-content:center; margin:.6rem 0; padding:.8rem; border-radius:8px; background:linear-gradient(#6b4e2e,#4a351e); border:2px solid #2e2010; }
+.hb-drawer { position:relative; width:min(100%,16rem); height:3.2rem; border-radius:6px; background:linear-gradient(#8b6a43,#6b4e2e); border:2px solid #3f2c17; cursor:pointer; padding:0; box-shadow:inset 0 2px 0 rgba(255,220,170,.3); }
+.hb-drawer.open { height:1.6rem; background:#2a1d0e; box-shadow:inset 0 6px 8px rgba(0,0,0,.6); }
+.hb-keyhole { position:absolute; left:50%; top:50%; width:14px; height:20px; margin:-10px 0 0 -7px; border-radius:50% 50% 30% 30%; background:#1b1209; box-shadow:0 0 0 3px #b8944f; } .hb-drawer.open .hb-keyhole { display:none; }
+.hb-key { display:flex; align-items:center; gap:0; margin:.4rem auto; padding:.5rem .8rem; background:transparent; border:2px solid transparent; border-radius:8px; cursor:pointer; } .hb-key.selected { border-color:#ffd98a; background:rgba(255,217,138,.15); }
+.hb-key-bow { width:18px; height:18px; border:4px solid #c9a24a; border-radius:50%; } .hb-key-stem { width:34px; height:5px; background:#c9a24a; border-radius:2px; position:relative; } .hb-key-stem::after { content:""; position:absolute; right:2px; top:5px; width:5px; height:7px; background:#c9a24a; box-shadow:-9px 0 0 #c9a24a; }
+.hb-letter { margin:.6rem 0; padding:.8rem 1rem; border-radius:6px; background:#f6edc9; color:#3b2a14; font-family:Georgia,'Times New Roman',serif; box-shadow:2px 3px 0 rgba(0,0,0,.3); transform:rotate(.3deg); } .hb-letter h2 { margin:.1rem 0 .4rem; font-size:1.1rem; } .hb-letter p { margin:.4rem 0; line-height:1.4; }
+.hb-clock { margin:.8rem 0 .2rem; text-align:center; } .hb-face { width:min(100%,13rem); margin:0 auto; border-radius:50%; }
+.hb-finale { margin-top:1rem; }

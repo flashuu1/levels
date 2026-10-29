@@ -11,7 +11,7 @@
   // ---- pure helpers (Node-testable) ----
   function allEntries(story) {
     var out = [];
-    ['wireless', 'terminal', 'phone', 'safe', 'epilogue', 'greenhouse', 'clock', 'garden'].forEach(function (k) { if (story && Array.isArray(story[k])) story[k].forEach(function (e) { out.push(e); }); });
+    ['wireless', 'terminal', 'phone', 'safe', 'epilogue', 'greenhouse', 'clock', 'garden', 'harbour'].forEach(function (k) { if (story && Array.isArray(story[k])) story[k].forEach(function (e) { out.push(e); }); });
     return out;
   }
   function channel(story, name) { return story && Array.isArray(story[name]) ? story[name] : []; }
@@ -327,7 +327,7 @@
     var ROOMS = [
       { id: 'wireless', title: 'The wireless', href: '#/wireless' }, { id: 'phone', title: 'The phone line', href: '#/phone' }, { id: 'terminal', title: 'The terminal', href: '#/terminal' },
       { id: 'safe', title: 'The vault', href: '#/safe' }, { id: 'greenhouse', title: 'The glasshouse', href: '#/greenhouse' }, { id: 'garden', title: 'The walled garden', href: '#/garden' },
-      { id: 'clockroom', title: 'The workshop', href: '#/clockroom' }, { id: 'tickets', title: 'The ticket archive', href: '#/tickets' },
+      { id: 'clockroom', title: 'The workshop', href: '#/clockroom' }, { id: 'tickets', title: 'The ticket archive', href: '#/tickets' }, { id: 'harbour', title: "The Master's office", href: '#/harbour' },
     ];
     function visit(id) { if (!store.isSolved('room-' + id)) store.markSolved('room-' + id); }
     function rooms() {
@@ -406,11 +406,12 @@
     }
     function greenhouseView() { if (!root.Greenhouse) return ctx.notFound('Nothing here.'); root.Greenhouse.create(env()).view(); }
     function gardenView() { if (!root.Garden) return ctx.notFound('Nothing here.'); root.Garden.create(env()).view(); }
+    function harbourView() { if (!root.Harbour) return ctx.notFound('Nothing here.'); root.Harbour.create(env()).view(); }
     function ticketsView() { if (!root.Tickets) return ctx.notFound('Nothing here.'); root.Tickets.create(env()).view(); }
     function clockroomView() { if (!root.Clockroom) return ctx.notFound('Nothing here.'); root.Clockroom.create(env()).view(); }
 
     current = { progress: progress };
-    return { rooms: rooms, visit: visit, arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, garden: gardenView, tickets: ticketsView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store); return r; }, remember: remember, dispose: disposeAll };
+    return { rooms: rooms, visit: visit, arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, garden: gardenView, tickets: ticketsView, harbour: harbourView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store); return r; }, remember: remember, dispose: disposeAll };
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Story = api;
