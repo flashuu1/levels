@@ -94,6 +94,21 @@
       for (var i = 0; i < 12; i++) { var p = document.createElement('span'); p.className = 'drift'; p.style.left = (4 + i * 8 + (i % 3) * 2) + '%'; p.style.animationDelay = (i * 1.7) + 's'; p.style.animationDuration = (16 + (i % 5) * 3) + 's'; field.appendChild(p); }
       document.body.appendChild(field);
     } else if (!bloom && field) field.remove();
+    // the clockwork mechanism, bottom left, with a faint brass glow, while the Clockmaker's story is complete
+    var cw = document.getElementById('clockwork-widget');
+    if (clock && !cw && root.Widgets && root.Widgets.gearPath) {
+      var G = root.Widgets.gearPath;
+      cw = document.createElement('div'); cw.id = 'clockwork-widget'; cw.className = 'clockwork-widget'; cw.setAttribute('aria-hidden', 'true');
+      cw.innerHTML = '<svg viewBox="0 0 130 110"><g class="cw-g cw-a"><path d="' + G(40, 66, 30, 12, 4) + '"/><circle cx="40" cy="66" r="5"/></g>' +
+        '<g class="cw-g cw-b"><path d="' + G(84, 42, 20, 8, 3.5) + '"/><circle cx="84" cy="42" r="4"/></g><g class="cw-g cw-c"><path d="' + G(108, 74, 13, 6, 3) + '"/><circle cx="108" cy="74" r="3"/></g></svg>';
+      document.body.appendChild(cw);
+    } else if (!clock && cw) cw.remove();
+    // every story that has a finishing scene: note (silently) that a story already complete on arrival has had its moment, and
+    // forget it when the story drops below 100 again, so the next completion plays the scene again
+    ['clockmaker'].forEach(function (arc) {
+      var seen = store.getNote('scene:' + arc), full = complete(arc, arc === 'clockmaker' ? 'story-clockwork' : '', store);
+      if (full && !seen) store.setNote('scene:' + arc, '1'); else if (!full && seen) store.setNote('scene:' + arc, '');
+    });
     var hc = document.getElementById('testament-clock');
     if (clock && !hc) {
       var host = document.querySelector('header .brand'); if (host) {
@@ -131,7 +146,19 @@
       var hit = Seal.tryOpen(allEntries(story), code); if (hit) store.setNote('salt:' + payload.id, hit.entry.salt); // and reopened with one decryption
       foundCache = null;
       if (ctx.updateProgress) ctx.updateProgress();
+      finishing();
       applyTestament(store);
+    }
+    // The moment a find takes a story to 100%, whichever find it is (step 16 after step 20 counts), its finishing scene plays once.
+    var FINISH = { clockmaker: ['Four clocks, a gear train and six tickets agree.', 'Every hour of that night has been kept, and the people in it counted.', 'THE CLOCKS ARE RUNNING. Keep the time.'] };
+    function finishing() {
+      Object.keys(FINISH).forEach(function (arc) {
+        var full = progress(arc).pct >= 100, seen = store.getNote('scene:' + arc);
+        if (full && !seen) {
+          store.setNote('scene:' + arc, '1');
+          if (root.Widgets && root.Widgets.clockScene && arc === 'clockmaker') root.Widgets.clockScene(FINISH[arc], function () { applyTestament(store); });
+        } else if (!full && seen) store.setNote('scene:' + arc, '');
+      });
     }
     var foundCache = null;
     function openFound(k) {

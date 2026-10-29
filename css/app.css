@@ -406,3 +406,24 @@ body.orchard-bloom .brand::before { content:"\2740"; color:#7fd18a; margin-right
 .call-redial:hover { border-color:var(--acc); } .call-number { font:700 .95rem ui-monospace,Consolas,monospace; color:#8fe3a2; letter-spacing:.06em; } .call-number.mute { font:400 .8rem system-ui,sans-serif; color:var(--mute); letter-spacing:0; }
 
 .gear-task { margin:.4rem 0; font-weight:700; color:#f1e4bd; } .gear-ask { margin:.6rem 0 0; font-weight:600; color:#e8d6a0; }
+
+/* ---------- the Clockmaker's finishing scene and the clockwork in the corner ---------- */
+.clock-scene { background:radial-gradient(ellipse at 50% 55%, #3a2a14 0%, #1b130a 55%, #0b0805 100%); color:#f6e7bd; }
+.clock-scene .cs-glow { position:absolute; inset:0; background:radial-gradient(ellipse 60% 45% at 50% 52%, rgba(201,162,74,.22), transparent 70%); animation:cs-breathe 5s ease-in-out infinite; }
+@keyframes cs-breathe { 0%,100% { opacity:.7; } 50% { opacity:1; } }
+.cs-row { position:absolute; left:0; right:0; top:42%; display:flex; justify-content:center; gap:min(3vw,1.2rem); padding:0 .6rem; }
+.cs-clock { width:min(21vw,110px); height:auto; filter:drop-shadow(0 0 10px rgba(201,162,74,.5)); animation:cs-in .9s ease both; } .cs-clock.c1 { animation-delay:.5s; } .cs-clock.c2 { animation-delay:1s; } .cs-clock.c3 { animation-delay:1.5s; }
+@keyframes cs-in { from { opacity:0; transform:scale(.7); } to { opacity:1; transform:scale(1); } }
+.cs-rim { fill:#6b5230; stroke:#c9a24a; stroke-width:2; } .cs-dial { fill:#f1e8d0; } .cs-tick { stroke:#4a3a24; stroke-width:1.6; } .cs-boss { fill:#c9a24a; }
+.cs-hand { stroke:#2a2016; stroke-linecap:round; transform-origin:50px 50px; } .cs-hand.h { stroke-width:3.4; animation:cs-spin 90s linear infinite; } .cs-hand.m { stroke-width:2.4; animation:cs-spin 7s linear infinite; }
+.cs-clock.c1 .cs-hand.m { animation-duration:9s; } .cs-clock.c2 .cs-hand.m { animation-duration:6s; } .cs-clock.c3 .cs-hand.m { animation-duration:11s; }
+@keyframes cs-spin { to { transform:rotate(360deg); } }
+.cs-pend { position:absolute; left:50%; top:60%; width:0; height:0; } .cs-arm { position:absolute; left:0; top:0; width:0; height:min(22vh,170px); transform-origin:0 0; animation:cs-swing 2s ease-in-out infinite; }
+.cs-rod { position:absolute; left:-1px; top:0; width:2px; height:100%; background:#c9a24a; } .cs-bob { position:absolute; left:-14px; bottom:-14px; width:28px; height:28px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #f1d58a, #a07c2a); box-shadow:0 0 14px rgba(201,162,74,.7); }
+@keyframes cs-swing { 0%,100% { transform:rotate(-16deg); } 50% { transform:rotate(16deg); } }
+.cs-gear { position:absolute; bottom:-6vmin; width:min(44vw,260px); opacity:.5; } .cs-gear path { fill:#8f7436; stroke:#c9a24a; stroke-width:.8; } .cs-gl { left:-8vmin; animation:cs-spin 40s linear infinite; } .cs-gr { right:-6vmin; animation:cs-spin 28s linear infinite reverse; }
+.clockwork-widget { position:fixed; left:max(.5rem, env(safe-area-inset-left)); bottom:max(.5rem, env(safe-area-inset-bottom)); width:104px; z-index:3; pointer-events:none; opacity:.62; filter:drop-shadow(0 0 7px rgba(201,162,74,.55)); }
+.clockwork-widget svg { width:100%; height:auto; display:block; } .cw-g path { fill:#7e6530; stroke:#d6b45f; stroke-width:1; } .cw-g circle { fill:#1b1710; stroke:#d6b45f; stroke-width:1; }
+.cw-a { transform-origin:40px 66px; animation:cs-spin 30s linear infinite; } .cw-b { transform-origin:84px 42px; animation:cs-spin 20s linear infinite reverse; } .cw-c { transform-origin:108px 74px; animation:cs-spin 15s linear infinite; }
+@media (max-width:600px) { .clockwork-widget { width:70px; opacity:.5; } .cs-clock { width:20vw; } }
+@media (prefers-reduced-motion:reduce) { .cs-glow, .cs-clock, .cs-hand, .cs-arm, .cs-gl, .cs-gr, .cw-g { animation:none !important; } .cs-clock { opacity:1; } }

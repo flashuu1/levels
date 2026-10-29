@@ -155,6 +155,31 @@
     return sc;
   }
 
-  var api = { knob: knob, radioBox: radioBox, vaultDial: vaultDial, lampScene: lampScene, petalScene: petalScene, reduced: reduced };
+  // an outline of a toothed wheel, for pictures made of gears
+  function gearPath(cx, cy, r, teeth, depth) {
+    var d = '', step = 2 * Math.PI / teeth, h = depth || 3;
+    for (var i = 0; i < teeth; i++) {
+      var a = i * step, pts = [[r - h, a - step * 0.28], [r + h, a - step * 0.16], [r + h, a + step * 0.16], [r - h, a + step * 0.28]];
+      pts.forEach(function (p, k) { d += (i === 0 && k === 0 ? 'M' : 'L') + (cx + Math.cos(p[1]) * p[0]).toFixed(2) + ' ' + (cy + Math.sin(p[1]) * p[0]).toFixed(2) + ' '; });
+    }
+    return d + 'Z';
+  }
+  // The finishing scene for the Clockmaker: a dark workshop, four brass clocks running, a pendulum swinging, wheels turning.
+  function clockScene(lines, done) {
+    if (reduced()) { if (done) done(); return { stage: null, close: function () {} }; }
+    var sc = scene('clock-scene', lines, done, 1700), faces = '', k, i;
+    for (k = 0; k < 4; k++) {
+      var ticks = '';
+      for (i = 0; i < 12; i++) { var a = i * 30 * Math.PI / 180; ticks += '<line x1="' + (50 + Math.sin(a) * 38).toFixed(1) + '" y1="' + (50 - Math.cos(a) * 38).toFixed(1) + '" x2="' + (50 + Math.sin(a) * 44).toFixed(1) + '" y2="' + (50 - Math.cos(a) * 44).toFixed(1) + '" class="cs-tick"/>'; }
+      faces += '<svg class="cs-clock c' + k + '" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" class="cs-rim"/><circle cx="50" cy="50" r="44" class="cs-dial"/>' + ticks +
+        '<line x1="50" y1="52" x2="50" y2="26" class="cs-hand h"/><line x1="50" y1="54" x2="50" y2="14" class="cs-hand m"/><circle cx="50" cy="50" r="3" class="cs-boss"/></svg>';
+    }
+    var g1 = gearPath(60, 60, 44, 16, 5), g2 = gearPath(60, 60, 28, 10, 4);
+    sc.stage.innerHTML = '<div class="cs-glow"></div><div class="cs-row">' + faces + '</div>' +
+      '<div class="cs-pend"><div class="cs-arm"><span class="cs-rod"></span><span class="cs-bob"></span></div></div>' +
+      '<svg class="cs-gear cs-gl" viewBox="0 0 120 120" aria-hidden="true"><path d="' + g1 + '"/></svg><svg class="cs-gear cs-gr" viewBox="0 0 120 120" aria-hidden="true"><path d="' + g2 + '"/></svg>';
+    return sc;
+  }
+  var api = { gearPath: gearPath, clockScene: clockScene, knob: knob, radioBox: radioBox, vaultDial: vaultDial, lampScene: lampScene, petalScene: petalScene, reduced: reduced };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Widgets = api;
 })(typeof window !== 'undefined' ? window : globalThis);
