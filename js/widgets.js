@@ -180,6 +180,13 @@
       '<svg class="cs-gear cs-gl" viewBox="0 0 120 120" aria-hidden="true"><path d="' + g1 + '"/></svg><svg class="cs-gear cs-gr" viewBox="0 0 120 120" aria-hidden="true"><path d="' + g2 + '"/></svg>';
     return sc;
   }
-  var api = { gearPath: gearPath, clockScene: clockScene, knob: knob, radioBox: radioBox, vaultDial: vaultDial, lampScene: lampScene, petalScene: petalScene, reduced: reduced };
+  // The finishing scene for the Baker: the Undercroft machine failing, scanlines, torn text, NO CARRIER.
+  function glitchScene(lines, done) {
+    if (reduced()) { if (done) done(); return { stage: null, close: function () {} }; }
+    var sc = scene('glitch-scene', lines, done, 1800);
+    sc.stage.innerHTML = '<div class="gs-scan"></div><div class="gs-noise"></div><div class="gs-title" data-text="UNDERCROFT / OFFICE">UNDERCROFT / OFFICE</div><div class="gs-bar b1"></div><div class="gs-bar b2"></div><div class="gs-bar b3"></div>';
+    return sc;
+  }
+  var api = { glitchScene: glitchScene, gearPath: gearPath, clockScene: clockScene, knob: knob, radioBox: radioBox, vaultDial: vaultDial, lampScene: lampScene, petalScene: petalScene, reduced: reduced };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Widgets = api;
 })(typeof window !== 'undefined' ? window : globalThis);

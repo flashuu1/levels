@@ -25,7 +25,7 @@
       function turned(id) { cells[id].classList.add('turned'); var d = dugCells(); if (d.indexOf(id) === -1) { d.push(id); store.setNote('garden:turned', d.join(',')); } }
       function drawFinds() {
         finds.textContent = '';
-        env.found().filter(function (r) { return /^dig-/.test(r.id); }).forEach(function (r) {
+        env.found().filter(function (r) { return (/^dig-/.test(r.id) || r.id === 'warm-bed'); }).forEach(function (r) {
           var card = el('div', 'garden-find'); card.appendChild(el('h3', '', r.title)); r.lines.forEach(function (l) { card.appendChild(el('p', 'vm-line', l)); }); finds.appendChild(card);
         });
       }
@@ -36,7 +36,10 @@
         env.remember(r.payload, code); msg.className = 'gh-msg good'; msg.textContent = 'Bed ' + id + ': something hard under the spade.'; cells[id].classList.add('found'); drawFinds();
       }
       dugCells().forEach(function (id) { if (cells[id]) cells[id].classList.add('turned'); });
-      env.found().filter(function (r) { return /^dig-/.test(r.id); }).forEach(function (r) { var code = store.getNote('seal:' + r.id) || '', id = code.replace('dig ', '').toUpperCase(); if (cells[id]) cells[id].classList.add('found'); });
+      env.found().filter(function (r) { return (/^dig-/.test(r.id) || r.id === 'warm-bed'); }).forEach(function (r) { var code = store.getNote('seal:' + r.id) || '', id = code.replace('dig ', '').toUpperCase(); if (cells[id]) cells[id].classList.add('found'); });
+      // new and unannounced: after Dov's voicemail, one bed on the plan is warm to the touch
+      var dl = env.found().filter(function (r) { return r.id === 'dov-line' && r.warm; })[0];
+      if (dl && cells[String(dl.warm).toUpperCase()]) { cells[String(dl.warm).toUpperCase()].classList.add('warm'); cells[String(dl.warm).toUpperCase()].setAttribute('title', 'warm'); }
       box.appendChild(grid); box.appendChild(msg); box.appendChild(finds); env.view.appendChild(box); drawFinds();
     }
     return { view: view };

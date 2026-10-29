@@ -166,10 +166,22 @@
         if (done) { var d = openRecord('gears', store.getNote('seal:gears')); if (d) { inp.value = String(parseInt(store.getNote('seal:gears').split(' ')[1], 10)); inp.disabled = true; go.hidden = true; panel.appendChild(noteBox(d.payload)); } }
         return panel;
       }
+      function hatchPanel() {
+        var panel = el('div', 'mech hatch-panel'), done = finding('hatch'), bk = env.channel('bakery');
+        panel.appendChild(el('h3', 'clock-title', 'A warm hatch'));
+        panel.appendChild(el('p', 'mute', 'Behind the pendulum case, in the brickwork, a small iron hatch you have not noticed before. The metal is warm to the touch.'));
+        function show(r) { panel.appendChild(noteBox(r.payload)); }
+        var open = el('button', '', 'Open the hatch'); open.type = 'button';
+        open.onclick = function () { var r = Seal.tryOpen(bk, 'hatch open'); if (!r) return; env.remember(r.payload, 'hatch open'); open.hidden = true; show(r); draw(); };
+        if (done) { var c = store.getNote('seal:hatch'), d = c ? Seal.tryOpen(bk, c) : null; if (d) { open.hidden = true; show(d); } }
+        panel.appendChild(open);
+        return panel;
+      }
       function draw() {
         mech.textContent = '';
         if (finding('case-card')) mech.appendChild(pendulumPanel());
         if (finding('pendulum')) mech.appendChild(gearsPanel());
+        if (finding('six-oclock')) mech.appendChild(hatchPanel());   // new, and unannounced: it appears once the bread bulletin has been heard
       }
       var origCheck = checkCase;
       checkCase = function () { origCheck(); draw(); };

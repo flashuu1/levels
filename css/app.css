@@ -442,3 +442,52 @@ body.orchard-bloom .brand::before { content:"\2740"; color:#7fd18a; margin-right
 .hb-letter { margin:.6rem 0; padding:.8rem 1rem; border-radius:6px; background:#f6edc9; color:#3b2a14; font-family:Georgia,'Times New Roman',serif; box-shadow:2px 3px 0 rgba(0,0,0,.3); transform:rotate(.3deg); } .hb-letter h2 { margin:.1rem 0 .4rem; font-size:1.1rem; } .hb-letter p { margin:.4rem 0; line-height:1.4; }
 .hb-clock { margin:.8rem 0 .2rem; text-align:center; } .hb-face { width:min(100%,13rem); margin:0 auto; border-radius:50%; }
 .hb-finale { margin-top:1rem; }
+
+/* ---------- the Baker's Round: the hatch, the warm bed, the bakehouse, the failing terminal, the exchange, the loaf ---------- */
+.g-cell.warm { background:#7a4a1c; border-color:#f2a04a; color:#ffd9a0; animation:warm-pulse 2.4s ease-in-out infinite; box-shadow:0 0 12px rgba(242,160,74,.6); }
+.g-cell.warm.turned { background:#6b4e2e; } @keyframes warm-pulse { 50% { box-shadow:0 0 20px rgba(255,190,110,.95); } }
+.hatch-panel .mute { text-align:left; }
+
+.bakehouse { max-width:36rem; margin:.4rem auto 1rem; padding:1rem .8rem 1.2rem; border-radius:16px; background:linear-gradient(#2a1b0f,#1d130b); border:2px solid #5c4128; box-shadow:0 12px 28px rgba(0,0,0,.55); color:#f6e7c8; }
+.bh-sign { display:flex; flex-direction:column; align-items:center; gap:.2rem; margin:1rem auto; padding:1rem 1.6rem; width:max-content; border:3px solid #c9a24a; border-radius:8px; background:#3b2a14; letter-spacing:.2em; text-align:center; } .bh-sign strong { font-size:1.4rem; }
+.bh-window { width:100%; max-width:26rem; height:auto; display:block; margin:0 auto; } .bh-frame { fill:#4a3220; stroke:#c9a24a; stroke-width:3; } .bh-shelf { fill:#7b5532; }
+.loaf ellipse, .loaf rect { fill:#c98a42; stroke:#7a4a1c; stroke-width:1.5; } .loaf .score { stroke:#f0cf94; stroke-width:1.6; stroke-linecap:round; fill:none; } .loaf.plait ellipse { fill:#d29a52; }
+.bh-wall { margin:.8rem 0; padding:.7rem .9rem; border-radius:8px; background:#26331f; border:2px solid #4c5e3f; } .bh-wall h3 { margin:.1rem 0 .4rem; color:#cfe7b9; font-size:.95rem; text-transform:uppercase; letter-spacing:.06em; }
+.bh-wall p { margin:.3rem 0; color:#d8e8c8; } .bh-chalk { font:700 1rem ui-monospace,Consolas,monospace; letter-spacing:.04em; color:#f1f1e6 !important; word-break:break-word; }
+.bh-oven { position:relative; height:5.2rem; margin:.8rem auto; width:min(100%,16rem); border-radius:10px 10px 4px 4px; background:linear-gradient(#3d3d44,#26262c); border:3px solid #5b5b66; }
+.bh-door { position:absolute; inset:.5rem; border-radius:6px; background:#17171b; box-shadow:inset 0 0 18px rgba(255,120,40,.35); transform-origin:left center; transition:transform 1s ease, background 1s; } .bh-oven.open .bh-door { transform:perspective(500px) rotateY(-75deg); background:#2a1b0f; }
+.bh-controls { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:.7rem 1.2rem; margin:.4rem 0 .6rem; } .bh-controls label { display:flex; align-items:center; gap:.4rem; } .bh-controls input[type=number] { width:4.5rem; text-align:center; }
+.bh-read { font:700 1rem ui-monospace,Consolas,monospace; color:#ffb347; min-width:3.4rem; }
+.bh-after { margin:.6rem 0; } .bh-walk { margin:.4rem 0; background:#c9a24a; }
+.bh-tunnel { margin-top:.8rem; padding:.8rem .9rem; border-radius:8px; background:#1a1410; border:1px solid #5c4128; } .bh-tunnel h3 { margin:.1rem 0 .4rem; color:#ffd98a; }
+@media (max-width:480px) { .bh-controls { flex-direction:column; align-items:stretch; } }
+
+/* the terminal, failing: it jitters, tears and flickers (the words stay exactly as written, so the ciphers stay readable) */
+.term-out.glitching { position:relative; animation:t-jitter 5s steps(1) infinite; text-shadow:1px 0 rgba(255,60,90,.55), -1px 0 rgba(60,200,255,.5); }
+.term-out.glitching::after { content:""; position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px); animation:t-roll 6s linear infinite; }
+@keyframes t-jitter { 0%,92%,100% { transform:none; } 93% { transform:translateX(-3px) skewX(2deg); } 95% { transform:translateX(4px); filter:hue-rotate(60deg); } 97% { transform:translateX(-2px) skewX(-3deg); } }
+@keyframes t-roll { from { background-position:0 0; } to { background-position:0 24px; } }
+.term-dead { max-width:28rem; margin:.6rem auto; text-align:center; background:#05070a; border-color:#1f2a2a; } .dead-static { width:100%; max-width:22rem; height:auto; image-rendering:pixelated; border:1px solid #1f2a2a; }
+.dead-line { margin:.8rem 0 .2rem; font:700 1.4rem ui-monospace,Consolas,monospace; letter-spacing:.3em; color:#d8d8d8; } .dead-frag { font:600 1.05rem ui-monospace,Consolas,monospace; letter-spacing:.18em; color:#8fe3a2; text-shadow:0 0 8px rgba(143,227,162,.6); animation:t-jitter 3.5s steps(1) infinite; }
+@media (prefers-reduced-motion:reduce) { .term-out.glitching, .term-out.glitching::after, .dead-frag, .g-cell.warm { animation:none !important; } }
+
+.glitch-scene { background:#030507; color:#d8ffe6; } .glitch-scene .scene-line { font-family:ui-monospace,Consolas,monospace; font-weight:600; letter-spacing:.04em; text-shadow:1px 0 rgba(255,60,90,.6), -1px 0 rgba(60,200,255,.6); }
+.gs-scan { position:absolute; inset:0; background:repeating-linear-gradient(0deg, rgba(120,255,170,.07) 0 2px, transparent 2px 4px); animation:t-roll 4s linear infinite; }
+.gs-noise { position:absolute; inset:0; opacity:.5; background-image:radial-gradient(1px 1px at 12% 20%, #fff, transparent), radial-gradient(1px 1px at 78% 34%, #9fe, transparent), radial-gradient(1px 1px at 44% 74%, #fff, transparent), radial-gradient(1px 1px at 90% 88%, #9fe, transparent); animation:gs-flicker 1.4s steps(2) infinite; }
+@keyframes gs-flicker { 0% { opacity:.2; } 50% { opacity:.7; } 100% { opacity:.3; } }
+.gs-title { position:absolute; left:0; right:0; top:46%; text-align:center; font:700 clamp(1.4rem,6vw,2.4rem) ui-monospace,Consolas,monospace; letter-spacing:.25em; color:#bff5d3; animation:t-jitter 2.4s steps(1) infinite; text-shadow:2px 0 rgba(255,60,90,.7), -2px 0 rgba(60,200,255,.7); }
+.gs-bar { position:absolute; left:0; right:0; height:10px; background:rgba(120,255,170,.18); animation:gs-bar 3s linear infinite; } .gs-bar.b2 { animation-duration:4.4s; animation-delay:-1s; height:6px; } .gs-bar.b3 { animation-duration:5.2s; animation-delay:-2.4s; height:14px; }
+@keyframes gs-bar { from { top:-5%; } to { top:105%; } }
+@media (prefers-reduced-motion:reduce) { .gs-scan, .gs-noise, .gs-title, .gs-bar { animation:none !important; } }
+
+.exchange { max-width:34rem; margin:.4rem auto 1rem; padding:1rem; border-radius:14px; background:linear-gradient(#2a2118,#1a140e); border:2px solid #5c4128; color:#f1e4bd; }
+.ex-board { display:grid; grid-template-columns:repeat(8,1fr); gap:.7rem .5rem; padding:1rem .8rem; margin-bottom:.8rem; border-radius:8px; background:linear-gradient(#3a2d1d,#2a2016); border:3px solid #6b5230; }
+.ex-jack { aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 50% 40%, #0b0805 40%, #8a7040 42% 62%, #4a3a24 64%); } .ex-jack.lit { background:radial-gradient(circle at 50% 40%, #ffe9a0 30%, #c9a24a 45%, #4a3a24 64%); box-shadow:0 0 14px 4px rgba(255,233,160,.7); animation:cs-breathe 3s ease-in-out infinite; }
+
+/* the Baker's testament: a loaf with steam, bottom right, while the story is complete */
+.loaf-widget { position:fixed; right:max(.5rem, env(safe-area-inset-right)); bottom:max(.5rem, env(safe-area-inset-bottom)); width:96px; z-index:3; pointer-events:none; opacity:.7; filter:drop-shadow(0 0 8px rgba(255,170,80,.45)); }
+.loaf-widget svg { width:100%; height:auto; display:block; } .loaf-body { fill:#c98a42; stroke:#7a4a1c; stroke-width:2; } .loaf-score { stroke:#f0cf94; stroke-width:2.4; stroke-linecap:round; fill:none; }
+.steam { fill:none; stroke:rgba(255,236,210,.7); stroke-width:3; stroke-linecap:round; animation:steam-up 3.6s ease-in-out infinite; opacity:0; } .steam.s2 { animation-delay:1.2s; } .steam.s3 { animation-delay:2.4s; }
+@keyframes steam-up { 0% { opacity:0; transform:translateY(8px); } 30% { opacity:.9; } 100% { opacity:0; transform:translateY(-12px); } }
+@media (max-width:600px) { .loaf-widget { width:64px; opacity:.55; } }
+@media (prefers-reduced-motion:reduce) { .steam { animation:none; opacity:.5; } }

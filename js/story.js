@@ -4,14 +4,14 @@
   // anywhere until found: records are ciphertext (see seal.js) and open only with the code the player discovers. Local only.
   var Seal = (typeof module !== 'undefined' && module.exports) ? require('./seal.js') : root.Seal;
   var LINE_DELAY = 1300;
-  var ARC_HUB = { keeper: 'keepers-log', gardener: 'gardeners-verse', clockmaker: 'clockmakers-bench' }; // the plain hidden page that is each story's hub
+  var ARC_HUB = { keeper: 'keepers-log', gardener: 'gardeners-verse', clockmaker: 'clockmakers-bench', baker: 'bakers-round' }; // the plain hidden page that is each story's hub
   var KIND_ORDER = ['radio', 'terminal', 'file', 'phone', 'finale'];
   var KIND_TITLE = { radio: 'Transmissions', terminal: 'Office', file: 'Office files', phone: 'Voicemails', finale: 'The vault' };
 
   // ---- pure helpers (Node-testable) ----
   function allEntries(story) {
     var out = [];
-    ['wireless', 'terminal', 'phone', 'safe', 'epilogue', 'greenhouse', 'clock', 'garden', 'harbour'].forEach(function (k) { if (story && Array.isArray(story[k])) story[k].forEach(function (e) { out.push(e); }); });
+    ['wireless', 'terminal', 'phone', 'safe', 'epilogue', 'greenhouse', 'clock', 'garden', 'harbour', 'bakery'].forEach(function (k) { if (story && Array.isArray(story[k])) story[k].forEach(function (e) { out.push(e); }); });
     return out;
   }
   function channel(story, name) { return story && Array.isArray(story[name]) ? story[name] : []; }
@@ -69,6 +69,7 @@
     if (cmd === 'logout' || cmd === 'exit') return { type: 'logout' };
     if (cmd === 'login') return { type: 'login', user: rest[0] || '' };
     if (cmd === 'su') return { type: 'su', user: rest[0] || '' };
+    if (cmd === 'bake') return { type: 'bake', phrase: rest.join(' ') };
     if (cmd === 'who') return { type: 'who' };
     if (cmd === 'last') return { type: 'last' };
     if (cmd === 'mail') return { type: 'mail', n: rest[0] ? parseInt(rest[0], 10) || 0 : 0 };
@@ -88,6 +89,14 @@
     document.body.classList.toggle('lamp-lit', complete('keeper', 'story-finale', store));
     document.body.classList.toggle('orchard-bloom', bloom);
     document.body.classList.toggle('clockwork', clock);
+    var bake = complete('baker', 'story-glitch', store);
+    document.body.classList.toggle('bakery', bake);
+    var lw = document.getElementById('loaf-widget');
+    if (bake && !lw) {
+      lw = document.createElement('div'); lw.id = 'loaf-widget'; lw.className = 'loaf-widget'; lw.setAttribute('aria-hidden', 'true');
+      lw.innerHTML = '<svg viewBox="0 0 120 100"><path class="steam s1" d="M44 44 C36 34 52 28 44 16"/><path class="steam s2" d="M62 44 C54 32 70 26 62 12"/><path class="steam s3" d="M80 44 C72 34 88 28 80 18"/><ellipse class="loaf-body" cx="62" cy="72" rx="44" ry="22"/><path class="loaf-score" d="M36 62 L44 78 M52 58 L60 80 M70 58 L76 80 M86 62 L92 76"/></svg>';
+      document.body.appendChild(lw);
+    } else if (!bake && lw) lw.remove();
     var field = document.getElementById('petal-field');
     if (bloom && !field) {
       field = document.createElement('div'); field.id = 'petal-field'; field.className = 'petal-field'; field.setAttribute('aria-hidden', 'true');
@@ -105,8 +114,8 @@
     } else if (!clock && cw) cw.remove();
     // every story that has a finishing scene: note (silently) that a story already complete on arrival has had its moment, and
     // forget it when the story drops below 100 again, so the next completion plays the scene again
-    ['clockmaker'].forEach(function (arc) {
-      var seen = store.getNote('scene:' + arc), full = complete(arc, arc === 'clockmaker' ? 'story-clockwork' : '', store);
+    ['clockmaker', 'baker'].forEach(function (arc) {
+      var seen = store.getNote('scene:' + arc), full = complete(arc, arc === 'clockmaker' ? 'story-clockwork' : 'story-glitch', store);
       if (full && !seen) store.setNote('scene:' + arc, '1'); else if (!full && seen) store.setNote('scene:' + arc, '');
     });
     var hc = document.getElementById('testament-clock');
@@ -142,30 +151,48 @@
     function saltIndex() { if (!bySalt) { bySalt = {}; allEntries(story).forEach(function (e) { bySalt[e.salt] = e; }); } return bySalt; }
     function remember(payload, code) {
       if (!store.isSolved('story-' + payload.id)) store.markSolved('story-' + payload.id); // the first find keeps its time: it is the order you found things in
+      store.setNote('arc:' + payload.id, payload.arc || 'keeper');
       store.setNote('seal:' + payload.id, code); // so the record can be reopened from the Hidden page
       var hit = Seal.tryOpen(allEntries(story), code); if (hit) store.setNote('salt:' + payload.id, hit.entry.salt); // and reopened with one decryption
       foundCache = null;
+      if (payload.id === 'file-static' && !store.isSolved('story-glitch')) store.markSolved('story-glitch'); // the terminal's last word: the milestone of the Baker's story
       if (ctx.updateProgress) ctx.updateProgress();
       finishing();
       applyTestament(store);
     }
     // The moment a find takes a story to 100%, whichever find it is (step 16 after step 20 counts), its finishing scene plays once.
-    var FINISH = { clockmaker: ['Four clocks, a gear train and six tickets agree.', 'Every hour of that night has been kept, and the people in it counted.', 'THE CLOCKS ARE RUNNING. Keep the time.'] };
+    var FINISH = { clockmaker: ['Four clocks, a gear train and six tickets agree.', 'Every hour of that night has been kept, and the people in it counted.', 'THE CLOCKS ARE RUNNING. Keep the time.'],
+      baker: ['The Undercroft machine has said everything it knew.', 'The last of it went down a wire that is being cut as you read this.', 'NO CARRIER.', 'Somewhere, a board of brass jacks lights a single lamp.'] };
+    var SCENE = { clockmaker: 'clockScene', baker: 'glitchScene' };
     function finishing() {
       Object.keys(FINISH).forEach(function (arc) {
         var full = progress(arc).pct >= 100, seen = store.getNote('scene:' + arc);
         if (full && !seen) {
           store.setNote('scene:' + arc, '1');
-          if (root.Widgets && root.Widgets.clockScene && arc === 'clockmaker') root.Widgets.clockScene(FINISH[arc], function () { applyTestament(store); });
+          if (root.Widgets && root.Widgets[SCENE[arc]]) root.Widgets[SCENE[arc]](FINISH[arc], function () { applyTestament(store); });
         } else if (!full && seen) store.setNote('scene:' + arc, '');
       });
     }
     var foundCache = null;
+    var memo = {};
     function openFound(k) {
       var id = k.slice(6), code = store.getNote('seal:' + id); if (!code) return null;
+      var mk = id + '|' + code; if (memo[mk]) return memo[mk];
       var salt = store.getNote('salt:' + id), e = salt ? saltIndex()[salt] : null, p = e ? Seal.open(e, code) : null;
-      if (p) return p;
-      var r = Seal.tryOpen(allEntries(story), code); return r ? r.payload : null;
+      if (!p) { var r = Seal.tryOpen(allEntries(story), code); p = r ? r.payload : null; }
+      if (p) memo[mk] = p;
+      return p;
+    }
+    // Counting a story's finds must not mean decrypting them all: the story of each find is kept beside it (and learned once, for finds
+    // made before it was kept).
+    function arcOfFind(k) {
+      var id = k.slice(6), a = store.getNote('arc:' + id); if (a) return a;
+      var p = openFound(k); if (!p) return ''; a = p.arc || 'keeper'; store.setNote('arc:' + id, a); return a;
+    }
+    function countArc(arc) {
+      var n = 0;
+      store.solvedIds().forEach(function (k) { if (k.indexOf('story-') === 0 && store.getNote('seal:' + k.slice(6)) && arcOfFind(k) === arc) n++; });
+      return n;
     }
     function found() {
       var raw = [];
@@ -327,7 +354,7 @@
     var ROOMS = [
       { id: 'wireless', title: 'The wireless', href: '#/wireless' }, { id: 'phone', title: 'The phone line', href: '#/phone' }, { id: 'terminal', title: 'The terminal', href: '#/terminal' },
       { id: 'safe', title: 'The vault', href: '#/safe' }, { id: 'greenhouse', title: 'The glasshouse', href: '#/greenhouse' }, { id: 'garden', title: 'The walled garden', href: '#/garden' },
-      { id: 'clockroom', title: 'The workshop', href: '#/clockroom' }, { id: 'tickets', title: 'The ticket archive', href: '#/tickets' }, { id: 'harbour', title: "The Master's office", href: '#/harbour' },
+      { id: 'clockroom', title: 'The workshop', href: '#/clockroom' }, { id: 'tickets', title: 'The ticket archive', href: '#/tickets' }, { id: 'harbour', title: "The Master's office", href: '#/harbour' }, { id: 'bakehouse', title: 'The bakehouse', href: '#/bakehouse' }, { id: 'switchboard', title: 'The exchange', href: '#/switchboard' },
     ];
     function visit(id) { if (!store.isSolved('room-' + id)) store.markSolved('room-' + id); }
     function rooms() {
@@ -338,10 +365,10 @@
     var KIND_TAG = { radio: 'wireless', terminal: 'office', file: 'file', phone: 'call', finale: 'vault' };
     function when(ts) { try { var d = new Date(ts); return d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' }) + ' ' + d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; } }
     // completion of one story: records found + its testament (the lamp, the bloom) out of everything that exists
-    var TESTAMENT = { keeper: 'story-finale', gardener: 'story-bloom', clockmaker: 'story-clockwork' };
+    var TESTAMENT = { keeper: 'story-finale', gardener: 'story-bloom', clockmaker: 'story-clockwork', baker: 'story-glitch' };
     function progress(arc) {
       var meta = story.meta && story.meta.arcs && story.meta.arcs[arc], total = meta ? meta.records : 0;
-      var have = found().filter(function (r) { return (r.arc || 'keeper') === arc; }).length, units = total + 1, got = have + (store.isSolved(TESTAMENT[arc]) ? 1 : 0);
+      var have = countArc(arc), units = total + 1, got = have + (store.isSolved(TESTAMENT[arc]) ? 1 : 0);
       return { found: have, total: total, units: units, got: got, pct: units ? Math.round(100 * got / units) : 0 };
     }
     function roomTitle(id) { for (var k = 0; k < ROOMS.length; k++) if (ROOMS[k].id === id) return ROOMS[k].title.replace(/^The /, ''); return id || ''; }
@@ -402,16 +429,20 @@
     // ---- the second and third stories' puzzles live in greenhouse.js and clockroom.js ----
     function env() {
       return { view: view, visit: visit, store: store, Seal: Seal, Widgets: root.Widgets, el: el, head: head, later: later, remember: remember, found: found, applyTestament: applyTestament,
-        channel: function (n) { return channel(story, n); }, personalize: function (p) { return personalize(p, store); }, parseCommand: parseCommand, visit: visit };
+        channel: function (n) { return channel(story, n); }, personalize: function (p) { return personalize(p, store); }, parseCommand: parseCommand, visit: visit,
+        complete: function (a) { return progress(a).pct >= 100; }, cleanup: function (f) { cleanups.push(f); },
+        deadTerminal: function () { return ['keeper', 'gardener', 'clockmaker', 'baker'].every(function (a) { return progress(a).pct >= 100; }); } };
     }
     function greenhouseView() { if (!root.Greenhouse) return ctx.notFound('Nothing here.'); root.Greenhouse.create(env()).view(); }
     function gardenView() { if (!root.Garden) return ctx.notFound('Nothing here.'); root.Garden.create(env()).view(); }
+    function bakehouseView() { if (!root.Bakehouse) return ctx.notFound('Nothing here.'); root.Bakehouse.create(env()).view(); }
+    function switchboardView() { if (!root.Switchboard) return ctx.notFound('Nothing here.'); root.Switchboard.create(env()).view(); }
     function harbourView() { if (!root.Harbour) return ctx.notFound('Nothing here.'); root.Harbour.create(env()).view(); }
     function ticketsView() { if (!root.Tickets) return ctx.notFound('Nothing here.'); root.Tickets.create(env()).view(); }
     function clockroomView() { if (!root.Clockroom) return ctx.notFound('Nothing here.'); root.Clockroom.create(env()).view(); }
 
     current = { progress: progress };
-    return { rooms: rooms, visit: visit, arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, garden: gardenView, tickets: ticketsView, harbour: harbourView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store); return r; }, remember: remember, dispose: disposeAll };
+    return { rooms: rooms, visit: visit, arcOfPage: arcOfPage, found: found, progress: progress, greenhouse: greenhouseView, clockroom: clockroomView, garden: gardenView, tickets: ticketsView, harbour: harbourView, bakehouse: bakehouseView, switchboard: switchboardView, hub: hub, radio: radioView, terminal: terminalView, safe: safeView, recordList: recordList, recordView: recordView, tryPhone: function (code) { var r = tryPhone(story, code); if (r) r.payload = personalize(r.payload, store); return r; }, remember: remember, dispose: disposeAll };
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Story = api;

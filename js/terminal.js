@@ -9,10 +9,26 @@
     function accounts() { return env.found().filter(function (r) { return r.kind === 'terminal' && r.user; }); }
     function account(user) { var a = accounts(); for (var i = 0; i < a.length; i++) if (a[i].user === user) return a[i]; return null; }
 
+    // Once all four stories are complete the line to the Undercroft office is dead: static, NO CARRIER, and a fragment of carrier that is
+    // really a place to go next (a Caesar shift of three, for the Tools page).
+    function deadScreen() {
+      var panel = el('div', 'panel term-dead'), cv = el('canvas', 'dead-static'); cv.width = 240; cv.height = 90; cv.setAttribute('aria-hidden', 'true');
+      var ctx2 = cv.getContext && cv.getContext('2d'), raf = 0, gone = false;
+      function frame() { if (gone || !ctx2) return; raf = requestAnimationFrame(frame); ctx2.fillStyle = '#05070a'; ctx2.fillRect(0, 0, 240, 90); for (var i = 0; i < 420; i++) { ctx2.fillStyle = 'rgba(160,185,170,' + (Math.random() * 0.8).toFixed(2) + ')'; ctx2.fillRect(Math.random() * 240, Math.random() * 90, 3, 2); } }
+      if (ctx2 && !(root.matchMedia && root.matchMedia('(prefers-reduced-motion: reduce)').matches)) frame();
+      env.cleanup(function () { gone = true; cancelAnimationFrame(raf); });
+      panel.appendChild(cv);
+      panel.appendChild(el('p', 'dead-line', 'NO CARRIER'));
+      panel.appendChild(el('p', 'mute', 'The line to the Undercroft office went down with the last of the bread. The screen shows only weather.'));
+      panel.appendChild(el('p', 'dead-frag', 'carrier fragment, repeating: VZLWFKERDUG'));
+      env.view.appendChild(panel);
+    }
     function view() {
       env.visit('terminal');
       env.head('Terminal', '#/', 'Start');
+      if (env.deadTerminal()) return deadScreen();
       var panel = el('div', 'panel term'), out = el('pre', 'term-out'), form = el('form', 'row term-form');
+      if (store.isSolved('story-acct-dov')) out.classList.add('glitching'); // the machine has started to fail
       var prompt = el('span', 'term-prompt', '>'), inp = el('input');
       inp.type = 'text'; inp.autocomplete = 'off'; inp.setAttribute('aria-label', 'Command'); inp.setAttribute('autocapitalize', 'none'); inp.setAttribute('autocorrect', 'off'); inp.spellcheck = false;
       var go = el('button', '', 'Enter'); go.type = 'submit';
@@ -23,6 +39,7 @@
       function setPrompt() { prompt.textContent = pendingUser !== null ? 'password:' : (session ? session.user + '@undercroft>' : '>'); inp.type = pendingUser !== null ? 'password' : 'text'; }
       function start(payload, how) {
         session = payload; pendingUser = null; store.setNote('term:cur', payload.id); setPrompt();
+        if (store.isSolved('story-acct-dov')) out.classList.add('glitching'); // from the moment Dov's account has been opened, the machine is failing
         print(['', how === 'restored' ? 'Session restored.' : how === 'su' ? 'Switched to ' + payload.user + '.' : 'Login accepted.'].concat(payload.motd || []));
       }
       function virtual(code, remembered) { // a record sealed under a command: read it, file it
@@ -56,6 +73,10 @@
         if (c.type === 'logout') { session = null; store.setNote('term:cur', 'none'); setPrompt(); return print('Logged out.'); }
         if (c.type === 'unknown') return print('command not found: ' + c.cmd + '  (try help)');
         if (!session) return print('Not logged in. Try: login <user>');
+        if (c.type === 'bake') {
+          if (session.user !== 'dov') return print('Nothing in here is an oven.');
+          var br = c.phrase ? virtual('bake ' + c.phrase) : null; return print(br ? br.lines : 'The oven is cold.');
+        }
         if (c.type === 'ls') {
           var rows = (session.files || []).map(function (f) { return f.name + (f.sealed ? (openedFile(f) ? '   [open]' : '   [sealed]') : ''); });
           if (session.mail && session.mail.length) rows.push('mail   [' + session.mail.length + ' message' + (session.mail.length === 1 ? '' : 's') + ']');
